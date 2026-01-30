@@ -458,6 +458,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#project-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Sections
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -809,6 +818,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#project-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Sections
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -840,31 +858,61 @@
   <h1>Welcome</h1>
 
 <p></p><center>
-<font size="6"> Mihir Patel Datasheet</font><br>
+<font size="6"> Mihir Patel — Individual Datasheet </font><br>
 as part of<br>
-<font size="8"> Project Name</font><br>
+<font size="8"> R6 Recon Amphibot (Amphibot V1) </font><br>
 for<br>
 <font size="5"> Team 302 </font><br><p></p>
 <p><strong>Submission: April, 03, 2026</strong>
 </p></center><p></p>
 <h2 id="introduction">Introduction</h2>
-<ul>
-<li><strong>This needs to be updated so that a reader gets an idea of the purpose of this datasheet.</strong></li>
-</ul>
+<p>This datasheet documents the hardware and firmware plan for my individual subsystem: the <strong>Internet-based Two-way Wireless Communication module</strong> (ESP32 Gateway) for the Amphibot V1. Its purpose is to record clear, testable requirements, show the block-level hardware layout, list parts and interfaces, and explain how my work plugs into the team-level system (UART daisy-chain, power bus, and MQTT/Wi-Fi). This page is intended for teammates, instructors, and graders so they can quickly understand what I will build and how it integrates into the overall project.</p>
 <h3 id="project-summary">Project Summary</h3>
+<p>The Amphibot V1 is a small, throwable amphibious exploration robot that streams live FPV video and telemetry to a remote operator while reporting a consolidated hazard score. My module provides the bi-directional Wi-Fi gateway between the robot and the operator's device. It will:</p>
 <ul>
-<li>This needs to be updated to reflect <ins>your version</ins> of the team project, so when shared not via the team's report, the reader gets an idea of the direction of the project and how your work will contribute to the overall success.</li>
+<li>Host a reliable Wi-Fi connection and talk to an external MQTT broker (or local broker during demos).</li>
+<li>Translate UART traffic from the onboard modular bus into MQTT topics (and vice versa).</li>
+<li>Stream low-latency FPV video (target &lt; 500 ms) to the operator app.</li>
+<li>Implement safe fallback behaviors on connection loss (motor safe-stop command via UART).</li>
+</ul>
+<p>This gateway is crucial for remote control, live telemetry, and demo display functions of the Amphibot.</p>
+<ul>
 <li>Add context that ties into the link to your <a href="https://egr314-s-2026-302.github.io/EGR314-Team302.github.io/">team report.</a></li>
 </ul>
 <h3 id="my-contribution">My Contribution</h3>
+<p>I (Mihir Patel) own the Wireless Communication subsystem (ESP32). My responsibilities are:</p>
 <ul>
-<li>This needs to be updated to reflect a team introduction</li>
-<li>Content should also help an unfamiliar reader navigate to areas of interest. Information like:</li>
+<li>Hardware: select and integrate the ESP32 module, the 3.3 V switching regulator, barrel jack and power-jumper circuitry, and the 2×4 IDC ribbon connector interface.</li>
+<li>Firmware: implement Wi-Fi + MQTT client, MQTT↔UART packet bridge with CRC checking, reconnection and fail-safe behaviors, and a basic web/socket interface for debugging.</li>
+<li>FPV stream handling: configure/stream camera video (ESP32-CAM or serial camera) and optimize to achieve target latency.</li>
+<li>System integration: define and verify UART packet formats, work with teammates to map ribbon pins, and ensure safe behavior when the wireless link is lost.</li>
+<li>Documentation &amp; verification: supply the module datasheet, BOM, block diagram, and verification test log for integration.</li>
 </ul>
-<p>To review the details listed of the material used to construct the subsection, you can review it in the <a href="https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-BOM/BOM/">"BOM"</a> section of the datasheet.</p>
-<blockquote>
-<p>Continue for all the remaining/missing sections.</p>
-</blockquote>
+<h3 id="project-sections">Project Sections</h3>
+<p>You can navigate the main sections of this individual datasheet using the top menu or the links below. Each section documents a specific stage of the design and implementation of the <strong>Wireless Communication (ESP32) subsystem</strong>.</p>
+<ul>
+<li>
+<p><strong><a href="01-Requirements/Requirements/">Project Requirements</a></strong> – Module-level requirements, thresholds, target goals, and stretch objectives  </p>
+</li>
+<li>
+<p><strong><a href="02-Block-Diagram/Block-Diagram/">Block Diagram</a></strong> – Subsystem-level block diagram showing power domains, UART daisy-chain connections, ESP32 peripherals, and external interfaces  </p>
+</li>
+<li>
+<p><strong><a href="03-Component-Selection/Component-Selection/">Component Selection</a></strong> – Selected components and design rationale for the ESP32 wireless gateway  </p>
+</li>
+<li>
+<p><strong><a href="04-BOM/BOM/">Bill of Materials (BOM)</a></strong> – Manufacturer part numbers, footprints, quantities, and estimated costs  </p>
+</li>
+<li>
+<p><strong><a href="05-Schematic/schematic/">Schematic</a></strong> – Electrical schematics for the wireless communication module  </p>
+</li>
+<li>
+<p><strong><a href="06-PCB/pcb.txt">PCB Layout</a></strong> – PCB layout, routing decisions, and design considerations  </p>
+</li>
+<li>
+<p><strong><a href="07-Reflection/Reflection.txt">Reflection</a></strong> – Lessons learned, challenges faced, and design insights from this subsystem</p>
+</li>
+</ul>
 
 
 
