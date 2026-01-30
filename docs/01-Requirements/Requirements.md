@@ -14,7 +14,7 @@ The purpose of this section is to define the engineering requirements for the **
 ## Module Requirements — Wireless Communication (ESP32)  
 **Teammate: Mihir Patel**
 
-| Requirement Description | Minimum Threshold | Target Goal | Stretch (Yes/No) |
+| Requirement Description | Measure of Threshold | Target Measure | Stretch (Yes/No) |
 |------------------------|------------------|-------------|------------------|
 | Surface-mounted 3.3 V switching regulator | Output ≥ 3.2 V | Stable 3.3 V output | No |
 | ESP32 microcontroller operation | Boots successfully | Runs Wi-Fi and MQTT | No |
