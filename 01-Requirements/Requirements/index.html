@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-requirements" class="md-skip">
+        <a href="#project-requirements" class="md-skip">
           Skip to content
         </a>
       
@@ -466,6 +466,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -494,6 +496,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -502,9 +506,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-requirements" class="md-nav__link">
+  <a href="#module-requirements-wireless-communication-esp32" class="md-nav__link">
     <span class="md-ellipsis">
-      Module Requirements
+      Module Requirements — Wireless Communication (ESP32)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-to-requirement-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature-to-Requirement Rationale
     </span>
   </a>
   
@@ -783,6 +796,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -791,9 +806,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-requirements" class="md-nav__link">
+  <a href="#module-requirements-wireless-communication-esp32" class="md-nav__link">
     <span class="md-ellipsis">
-      Module Requirements
+      Module Requirements — Wireless Communication (ESP32)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-to-requirement-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature-to-Requirement Rationale
     </span>
   </a>
   
@@ -822,46 +846,63 @@
   
 
 
-  <h1>Module's Requirements</h1>
-
-<h2 id="module-requirements">Module Requirements</h2>
-<p>The following sections document the requirements that the this module need to fulfills to .....</p>
+<h1 id="project-requirements">Project Requirements</h1>
+<p>The purpose of this section is to define the engineering requirements for the <strong>Wireless Communication subsystem (ESP32)</strong>. This module is responsible for enabling remote control of the exploration device, transmitting telemetry and video data to the user, and ensuring safe system behavior if the wireless connection is lost. Each requirement below describes the minimum functionality required for the module to be considered operational, along with target performance goals and optional stretch objectives.</p>
+<hr>
+<h2 id="module-requirements-wireless-communication-esp32">Module Requirements — Wireless Communication (ESP32)</h2>
+<p><strong>Teammate: Mihir Patel</strong></p>
 <table>
 <thead>
 <tr>
-<th><strong>Requirement Description</strong></th>
-<th><strong>Measure of<br> Threshold</strong></th>
-<th><strong>Target<br>Measure</strong></th>
-<th style="text-align: center;"><strong>Stretch<br>Requirement<br>(Y-N)</strong></th>
+<th>Requirement Description</th>
+<th>Minimum Threshold</th>
+<th>Target Goal</th>
+<th>Stretch (Yes/No)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Surface mounted, 3.3V switching power regulatore</td>
-<td>3.2 Volts</td>
-<td>3.3 Volts</td>
-<td style="text-align: center;">No</td>
+<td>Surface-mounted 3.3 V switching regulator</td>
+<td>Output ≥ 3.2 V</td>
+<td>Stable 3.3 V output</td>
+<td>No</td>
 </tr>
 <tr>
-<td>Surface mounted microcontroller</td>
-<td>1 PIC or ESP</td>
-<td>8-bit PIC</td>
-<td style="text-align: center;">No</td>
+<td>ESP32 microcontroller operation</td>
+<td>Boots successfully</td>
+<td>Runs Wi-Fi and MQTT</td>
+<td>No</td>
 </tr>
 <tr>
-<td>Wireless Communication</td>
-<td>Able to send or receive a Wi-Fi data</td>
-<td>Send and receive Wi-Fi Data to MQTT</td>
-<td style="text-align: center;">Yes</td>
+<td>Wireless communication</td>
+<td>One-way data transfer</td>
+<td>Two-way MQTT messaging</td>
+<td>No</td>
 </tr>
 <tr>
-<td><em>Rest are items your modules needs to support the task you are covering for the team's device.</em></td>
-<td>---</td>
-<td>---</td>
-<td style="text-align: center;"><strong>NO</strong></td>
+<td>UART communication with system bus</td>
+<td>Basic TX/RX</td>
+<td>Structured packets with CRC</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Video data handling</td>
+<td>Video stream present</td>
+<td>Stable low-latency stream</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Connection loss handling</td>
+<td>Detect disconnection</td>
+<td>Trigger safe-stop behavior</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
+<hr>
+<h2 id="feature-to-requirement-rationale">Feature-to-Requirement Rationale</h2>
+<p>Wireless communication is a critical part of the exploration device because it allows the robot to be operated from a safe distance while providing real-time situational awareness. Features such as remote driving, live video feedback, and telemetry monitoring directly resulted in requirements for reliable two-way Wi-Fi communication and structured UART messaging with the rest of the system.</p>
+<p>Power-related requirements were included to ensure stable operation of the ESP32 and prevent communication failures caused by voltage drops. Connection-loss handling was added as a safety measure so the system can respond predictably if wireless control is interrupted. Together, these requirements ensure that the wireless module reliably supports the overall exploration device while operating safely within the system architecture.</p>
 
 
 
