@@ -874,47 +874,50 @@ Things to mention are:
 <p>Showing an example of how to import a screenshot of the block diagram created outside of git and brought into a page.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../individual-block-diagram.png" data-desc-position="bottom"><img alt="Example of Indivial Block diagram " src="../individual-block-diagram.png"></a></p>
 <h2 id="block-diagram-wireless-communication-subsystem-esp32">Block Diagram — Wireless Communication Subsystem (ESP32)</h2>
-<p>```mermaid
-flowchart TB</p>
-<p>%% Cloud / Network
-  MQTT[/"MQTT Server\n(Wi-Fi)"/]</p>
-<p>%% Subsystem Boundary
+<pre class="mermaid"><code>flowchart TB
+
+  %% Cloud / Network
+  MQTT[/"MQTT Server\n(Wi-Fi)"/]
+
+  %% Subsystem Boundary
   subgraph SUBSYS["Mihir Patel — ESP32 Wireless Gateway\nTeam 302 · R6 Recon Amphibot"]
-    style SUBSYS stroke-dasharray: 6 4</p>
-<pre><code>%% Power Section
-BARREL["DC Barrel Jack\n(9–12 V DC)"]
-JUMPER["Power Jumpers\n(Local / Bus Select)"]
-REG["3.3 V Switching Regulator\n(3.3 V, 1.5 A max)"]
+    style SUBSYS stroke-dasharray: 6 4
 
-BARREL --&gt; JUMPER --&gt; REG
+    %% Power Section
+    BARREL["DC Barrel Jack\n(9–12 V DC)"]
+    JUMPER["Power Jumpers\n(Local / Bus Select)"]
+    REG["3.3 V Switching Regulator\n(3.3 V, 1.5 A max)"]
 
-%% ESP32 Block
-subgraph ESP["ESP32 Wi-Fi Module"]
-  UART["UART\nTX, RX\nDigital-Serial (2 pins, 3.3 V)"]
-  WIFI["Wi-Fi\nMQTT Client\n(Publish / Subscribe)"]
-  USB["USB\nProgramming / Serial"]
-  GPIO["GPIO\nStatus / Debug"]
-end
+    BARREL --&gt; JUMPER --&gt; REG
 
-REG --&gt;|3.3 V| ESP
+    %% ESP32 Block
+    subgraph ESP["ESP32 Wi-Fi Module"]
+      UART["UART\nTX, RX\nDigital-Serial (2 pins, 3.3 V)"]
+      WIFI["Wi-Fi\nMQTT Client\n(Publish / Subscribe)"]
+      USB["USB\nProgramming / Serial"]
+      GPIO["GPIO\nStatus / Debug"]
+    end
 
-%% Ribbon Connectors
-IN["Connector IN\n2×4 IDC (Upstream)"]
-OUT["Connector OUT\n2×4 IDC (Downstream)"]
+    REG --&gt;|3.3 V| ESP
 
-IN &lt;--&gt; |UART (2 pins, 3.3 V)| UART
-UART &lt;--&gt; |UART (2 pins, 3.3 V)| OUT
+    %% Ribbon Connectors
+    IN["Connector IN\n2×4 IDC (Upstream)"]
+    OUT["Connector OUT\n2×4 IDC (Downstream)"]
 
-REG --&gt;|3.3 V Bus| IN
-REG --&gt;|3.3 V Bus| OUT
+    IN &lt;--&gt; |UART (2 pins, 3.3 V)| UART
+    UART &lt;--&gt; |UART (2 pins, 3.3 V)| OUT
 
-%% USB Programming
-USBPORT["USB Port\n(ESP32 Programming)"]
-USBPORT --&gt; USB
-</code></pre>
-<p>end</p>
-<p>%% Wireless Link
-  WIFI -.-&gt; |Wireless (Wi-Fi)| MQTT</p>
+    REG --&gt;|3.3 V Bus| IN
+    REG --&gt;|3.3 V Bus| OUT
+
+    %% USB Programming
+    USBPORT["USB Port\n(ESP32 Programming)"]
+    USBPORT --&gt; USB
+
+  end
+
+  %% Wireless Link
+  WIFI -.-&gt; |Wireless (Wi-Fi)| MQTT</code></pre>
 
 
 
