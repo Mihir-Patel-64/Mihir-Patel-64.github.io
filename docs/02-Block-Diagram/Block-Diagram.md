@@ -70,3 +70,4 @@ flowchart TB
 
   %% Wireless Link
   WIFI -.-> |Wireless (Wi-Fi)| MQTT
+```
