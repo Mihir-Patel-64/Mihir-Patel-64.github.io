@@ -554,12 +554,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subsystem-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsystem Functionality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programming-and-development-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming and Development Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale-and-standards-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Rationale and Standards Compliance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-block-diagram" class="md-nav__link">
+  <a href="#block-diagram" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Block Diagram
+      Block Diagram
     </span>
   </a>
   
@@ -806,12 +857,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subsystem-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsystem Functionality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programming-and-development-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming and Development Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale-and-standards-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Rationale and Standards Compliance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-block-diagram" class="md-nav__link">
+  <a href="#block-diagram" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Block Diagram
+      Block Diagram
     </span>
   </a>
   
@@ -843,18 +945,49 @@
   <h1>Module's Block Diagram</h1>
 
 <h2 id="overview">Overview</h2>
-<p>This needs to be updated with a brief purpose for having the block diagram.
-Things to mention are:
-* power levels
-* sensor
-* Actuator
-* team connections
-* Power source
-* ...</p>
-<p>To get some initial formatting help, one can view <a href="https://embedded-systems-design.github.io/EGR304DataSheetTemplate/Appendix/basic-markdown-examples/">"here"</a> some basic techniques.</p>
-<h2 id="example-block-diagram">Example Block Diagram</h2>
-<p>Showing an example of how to import a screenshot of the block diagram created outside of git and brought into a page.</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../individual-block-diagram.png" data-desc-position="bottom"><img alt="Example of Indivial Block diagram " src="../individual-block-diagram.png"></a></p>
+<p>This block diagram represents the <strong>ESP32-based Internet Two-way Wireless Communication subsystem</strong> developed by <strong>Mihir Patel</strong> for <strong>Team 302 – R6 Recon Amphibot</strong>. The purpose of this subsystem is to act as the system’s wireless gateway, enabling remote communication with the operator while coordinating data exchange between the onboard subsystems using a UART daisy-chain architecture.</p>
+<p>The diagram follows the EGR314 block diagram template and clearly separates this individual subsystem from the rest of the system using a dashed boundary. All major electrical components, communication interfaces, and power paths are shown with labeled signal directions, pin counts, and voltage levels.</p>
+<hr>
+<h3 id="subsystem-functionality">Subsystem Functionality</h3>
+<p>The ESP32 Wireless Gateway performs three primary functions within the overall exploration device:</p>
+<ol>
+<li>
+<p><strong>Two-Way Wireless Communication</strong><br>
+   The ESP32 connects to an external MQTT server over Wi-Fi. Telemetry, system status, and debug information are published to defined MQTT topics, while control commands are received through subscribed topics. This satisfies the team requirement for duplex wireless communication using MQTT.</p>
+</li>
+<li>
+<p><strong>UART Daisy-Chain System Interface</strong><br>
+   The ESP32 communicates with the Sensor/HMI and Actuator subsystems through a standardized UART daisy-chain. Incoming and outgoing UART signals are routed through upstream and downstream <strong>2×4 IDC connectors</strong>, allowing structured messages to pass safely across all boards without direct coupling between subsystems.</p>
+</li>
+<li>
+<p><strong>Local Debug and Status Indication</strong><br>
+   Multiple GPIO-driven debug LEDs provide visual feedback for MQTT activity and UART transmission/reception. These indicators help with system bring-up, debugging, and demonstration clarity during lab testing and the Innovation Showcase.</p>
+</li>
+</ol>
+<hr>
+<h3 id="power-architecture">Power Architecture</h3>
+<p>Power is supplied to the subsystem through an external <strong>12 V AC-DC wall adapter</strong> connected via a <strong>DC barrel jack</strong>. This input feeds an onboard <strong>3.3 V switching regulator rated at 1.5 A</strong>, which provides regulated power to the ESP32 module. The regulated 3.3 V rail is also distributed to the system bus through the IDC connectors, supporting downstream modules when needed. All power connections are labeled with voltage levels and current capability in the diagram.</p>
+<hr>
+<h3 id="programming-and-development-interface">Programming and Development Interface</h3>
+<p>The ESP32 is programmed and debugged locally using a <strong>USB programming interface</strong>, shown as a dedicated connection between the ESP32 module and the host computer. This interface is used exclusively for firmware upload and serial debugging and is intentionally kept separate from the UART system bus.</p>
+<hr>
+<h3 id="camera-integration">Camera Integration</h3>
+<p>An onboard <strong>ESP32-CAM / OV2640 camera module</strong> is included within the ESP32 subsystem. The camera communicates internally with the ESP32 through the module’s native camera interface and does not use UART, SPI, or I²C buses. Captured video data is streamed wirelessly over Wi-Fi as part of the system’s live feedback capability, without affecting inter-board communication.</p>
+<hr>
+<h3 id="design-rationale-and-standards-compliance">Design Rationale and Standards Compliance</h3>
+<p>This block diagram meets the EGR314 requirements by:</p>
+<ul>
+<li>Clearly identifying the <strong>individual subsystem boundary</strong></li>
+<li>Showing all <strong>microcontroller peripherals</strong> used (UART, GPIO, USB)</li>
+<li>Labeling <strong>signal types, directions, voltages, and pin counts</strong></li>
+<li>Including both <strong>upstream and downstream 2×4 IDC connectors</strong></li>
+<li>Separating <strong>wireless communication</strong> from wired system buses</li>
+<li>Supporting a <strong>modular, standards-based system architecture</strong></li>
+</ul>
+<p>Isolating wireless communication and system coordination within the ESP32 gateway reduces complexity in other subsystems and improves reliability, scalability, and ease of debugging.</p>
+<hr>
+<h2 id="block-diagram">Block Diagram</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../EGR314_team302_blockdiagram_Mihir.drawio.png" data-desc-position="bottom"><img alt="ESP32 Wireless Gateway Block Diagram" src="../EGR314_team302_blockdiagram_Mihir.drawio.png"></a></p>
 
 
 
