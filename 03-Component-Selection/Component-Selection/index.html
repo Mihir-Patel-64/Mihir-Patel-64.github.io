@@ -598,13 +598,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-wireless-mcu-wi-fi-module" class="md-nav__link">
+  <a href="#1-wireless-mcu-wi-fi-module-core-subsystem" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Wireless MCU / Wi-Fi Module
+      1. Wireless MCU / Wi-Fi Module (Core Subsystem)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Wireless MCU / Wi-Fi Module">
+    <nav class="md-nav" aria-label="1. Wireless MCU / Wi-Fi Module (Core Subsystem)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1106,13 +1106,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-wireless-mcu-wi-fi-module" class="md-nav__link">
+  <a href="#1-wireless-mcu-wi-fi-module-core-subsystem" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Wireless MCU / Wi-Fi Module
+      1. Wireless MCU / Wi-Fi Module (Core Subsystem)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Wireless MCU / Wi-Fi Module">
+    <nav class="md-nav" aria-label="1. Wireless MCU / Wi-Fi Module (Core Subsystem)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1447,7 +1447,7 @@
 
 
 <h1 id="esp32-wireless-communication-component-selection">ESP32 Wireless Communication — Component Selection</h1>
-<h2 id="1-wireless-mcu-wi-fi-module">1. Wireless MCU / Wi-Fi Module</h2>
+<h2 id="1-wireless-mcu-wi-fi-module-core-subsystem">1. Wireless MCU / Wi-Fi Module <strong>(Core Subsystem)</strong></h2>
 <h3 id="option-1">Option 1</h3>
 <table>
 <thead>
@@ -1503,7 +1503,7 @@
 <strong>Rationale:</strong> The ESP32-S3-WROOM-1-N4 module is selected because it provides the most reliable and low-risk solution for implementing Wi-Fi and MQTT communication in this subsystem. Since this board is responsible for two-way wireless communication, stable connectivity is critical. Using a pre-certified module significantly reduces RF design complexity compared to the bare QFN chip option.</p>
 <p>The S3 version also provides improved performance and peripheral support compared to the classic ESP32-WROOM-32, while still remaining affordable. Its dual-core architecture allows separation of networking tasks (MQTT, telemetry, reconnection handling) from UART communication with the team daisy-chain system. Although the module has a slightly larger footprint than the bare chip, the reduction in RF tuning risk and faster bring-up time make it the optimal choice for this project.</p>
 <hr>
-<h2 id="2-33-v-switching-regulator-power-subsystem">2. 3.3 V Switching Regulator (<strong>Power Subsystem</strong>)</h2>
+<h2 id="2-33-v-switching-regulator-power-subsystem">2. 3.3 V Switching Regulator <strong>(Power Subsystem)</strong></h2>
 <h3 id="option-1_1">Option 1</h3>
 <table>
 <thead>
@@ -1560,7 +1560,7 @@
 <p>Although the AP63203WU-7 is more affordable and compact, its lower efficiency under heavier loads makes it less ideal for sustained wireless operation. The PMIC-style option provides flexibility but adds unnecessary complexity for a single-rail design.</p>
 <p>By choosing the TPS62840, I improve overall power efficiency, reduce thermal risk during long demo sessions, and ensure stable operation of the ESP32 during MQTT communication and video streaming. The slightly higher cost is justified by the increased reliability and performance margin for this subsystem.</p>
 <hr>
-<h2 id="3-power-input-connector-strategy-mechanical-interface">3. Power Input / Connector Strategy (<strong>Mechanical Interface</strong>)</h2>
+<h2 id="3-power-input-connector-strategy-mechanical-interface">3. Power Input / Connector Strategy <strong>(Mechanical Interface)</strong></h2>
 <h3 id="option-1_2">Option 1</h3>
 <table>
 <thead>
@@ -1618,7 +1618,7 @@
 <p>The JST battery connector is compact and useful for portable designs, but it does not meet the course expectation for wall-powered lab testing and demonstration.</p>
 <p>By choosing the barrel jack, I ensure mechanical robustness, compliance with course standards, and straightforward hardware verification during external design review.</p>
 <hr>
-<h2 id="4-antenna-solution-rf-subsystem">4. Antenna Solution (<strong>RF Subsystem</strong>)</h2>
+<h2 id="4-antenna-solution-rf-subsystem">4. Antenna Solution <strong>(RF Subsystem)</strong></h2>
 <h3 id="option-1_3">Option 1</h3>
 <table>
 <thead>
@@ -1676,7 +1676,7 @@
 <p>The u.FL connector option offers flexibility and extended range, but its mechanical fragility and added cost make it less suitable for repeated handling during testing and showcase demonstrations.</p>
 <p>Using the integrated antenna keeps the design compact, reliable, and aligned with the goal of achieving stable wireless communication with minimal RF debugging.</p>
 <hr>
-<h2 id="5-usb-uart-programming-interface-bring-up-ota">5. USB ↔ UART / Programming Interface (<strong>Bring-up / OTA</strong>)</h2>
+<h2 id="5-usb-uart-programming-interface-bring-up-ota">5. USB ↔ UART / Programming Interface <strong>(Bring-up / OTA)</strong></h2>
 <h3 id="option-1_4">Option 1</h3>
 <table>
 <thead>
@@ -1733,7 +1733,7 @@
 <p>However, if USB pins are not available or routing constraints make native USB difficult, the CP2102N USB-to-UART bridge provides a highly reliable and widely supported alternative. Many ESP32 development boards use this chip, which reduces driver compatibility risks and simplifies development.</p>
 <p>While the 2×5 programming header is inexpensive, it adds inconvenience during testing and demonstration because it requires an external adapter. For fast firmware iteration, OTA testing, and smooth TA verification, having direct USB access on the board is the most practical solution.</p>
 <hr>
-<h2 id="6-input-protection-emi-filtering-reliability">6. Input Protection &amp; EMI Filtering (<strong>Reliability</strong>)</h2>
+<h2 id="6-input-protection-emi-filtering-reliability">6. Input Protection &amp; EMI Filtering <strong>(Reliability)</strong></h2>
 <h3 id="option-1_5">Option 1</h3>
 <table>
 <thead>
@@ -1790,7 +1790,7 @@
 <p>Although a simple Schottky diode is cheaper, it does not offer true surge protection. The Pi filter with common-mode choke provides excellent noise suppression but increases cost and board area beyond what is necessary for this application.</p>
 <p>The TVS + LC combination provides a practical balance between protection, cost, and PCB complexity, improving system reliability without overcomplicating the design.</p>
 <hr>
-<h2 id="7-testability-debug-pads-manufacturability-bring-up">7. Testability &amp; Debug Pads (<strong>Manufacturability / Bring-up</strong>)</h2>
+<h2 id="7-testability-debug-pads-manufacturability-bring-up">7. Testability &amp; Debug Pads <strong>(Manufacturability / Bring-up)</strong></h2>
 <h3 id="option-1_6">Option 1</h3>
 <table>
 <thead>
@@ -1921,7 +1921,7 @@
 </table>
 <p>*Only required if native USB routing is not used.</p>
 <hr>
-<p><strong>Estimated Total Core Component Cost: ≈ $14 – $16 per board</strong><br>
+<p><strong>Estimated Total Core Component Cost: ≈ <span class="arithmatex">\(14-\)</span>16 per board</strong><br>
 (excluding passives, PCB fabrication, shipping, and optional USB-UART redundancy)</p>
 <hr>
 <h3 id="cost-discussion">Cost Discussion</h3>
