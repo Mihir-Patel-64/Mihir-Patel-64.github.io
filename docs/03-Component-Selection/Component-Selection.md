@@ -4,7 +4,7 @@ title: Module's Selected Major Components
 
 # ESP32 Wireless Communication — Component Selection  
 
-## 1. Wireless MCU / Wi-Fi Module
+## 1. Wireless MCU / Wi-Fi Module **(Core Subsystem)**
 
 ### Option 1
 
@@ -34,7 +34,7 @@ The S3 version also provides improved performance and peripheral support compare
 
 ---
 
-## 2. 3.3 V Switching Regulator (**Power Subsystem**)
+## 2. 3.3 V Switching Regulator **(Power Subsystem)**
 
 ### Option 1
 
@@ -64,7 +64,7 @@ By choosing the TPS62840, I improve overall power efficiency, reduce thermal ris
 
 ---
 
-## 3. Power Input / Connector Strategy (**Mechanical Interface**)
+## 3. Power Input / Connector Strategy **(Mechanical Interface)**
 
 ### Option 1
 
@@ -97,7 +97,7 @@ By choosing the barrel jack, I ensure mechanical robustness, compliance with cou
 
 ---
 
-## 4. Antenna Solution (**RF Subsystem**)
+## 4. Antenna Solution **(RF Subsystem)**
 
 ### Option 1
 
@@ -132,7 +132,7 @@ Using the integrated antenna keeps the design compact, reliable, and aligned wit
 
 ---
 
-## 5. USB ↔ UART / Programming Interface (**Bring-up / OTA**)
+## 5. USB ↔ UART / Programming Interface **(Bring-up / OTA)**
 
 ### Option 1
 
@@ -162,7 +162,7 @@ While the 2×5 programming header is inexpensive, it adds inconvenience during t
 
 ---
 
-## 6. Input Protection & EMI Filtering (**Reliability**)
+## 6. Input Protection & EMI Filtering **(Reliability)**
 
 ### Option 1
 
@@ -194,7 +194,7 @@ The TVS + LC combination provides a practical balance between protection, cost, 
 
 ---
 
-## 7. Testability & Debug Pads (**Manufacturability / Bring-up**)
+## 7. Testability & Debug Pads **(Manufacturability / Bring-up)**
 
 ### Option 1
 
@@ -244,7 +244,7 @@ The table below summarizes the major active components selected for Mihir's ESP3
 
 ---
 
-**Estimated Total Core Component Cost: ≈ $14 – $16 per board**  
+**Estimated Total Core Component Cost: ≈ $14-$16 per board**  
 (excluding passives, PCB fabrication, shipping, and optional USB-UART redundancy)
 
 ---
