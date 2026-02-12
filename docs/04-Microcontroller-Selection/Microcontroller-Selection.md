@@ -20,7 +20,6 @@ Based on team subsystem planning:
 
 **Choice A — ESP32-S3-WROOM-1-N4 (selected)**  
 - **Link / Datasheet:** [Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
-
 - **Type:** Surface-mount module (SMD) with integrated antenna, 4 MB flash  
 - **Pros:** Integrated Wi-Fi/BLE, native USB support, camera interface support (ESP32-CAM), large GPIO count, pre-certified RF reduces layout risk.  
 - **Cons:** Slightly larger footprint and higher per-unit cost than bare chip; module antenna performance depends on board placement.
