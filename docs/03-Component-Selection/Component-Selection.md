@@ -246,7 +246,7 @@ The table below summarizes the major active components selected for Mihir's ESP3
 
 ---
 
-**Estimated Total Core Component Cost: ≈ $14-$16 per board**  
+**Estimated Total Core Component Cost: ≈ $14 - $16 per board**  
 (excluding passives, PCB fabrication, shipping, and optional USB-UART redundancy)
 
 ---
