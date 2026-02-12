@@ -13,6 +13,7 @@ This page presents the Power Budget for Mihir Patel’s ESP32 Wireless Communica
 ## Overview
 
 The Power Budget includes:
+
 - Power requirements of all major active components.
 - Assigned voltage rail and total current consumption.
 - Regulator and external source selections with 25% safety margins.
