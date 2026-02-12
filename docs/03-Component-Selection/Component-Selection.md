@@ -1,5 +1,7 @@
 ---
 title: Module's Selected Major Components
+tags:
+- Mihir's Individual Datasheet - Component Selection
 ---
 
 # ESP32 Wireless Communication — Component Selection  

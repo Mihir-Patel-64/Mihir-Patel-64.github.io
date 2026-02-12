@@ -1,8 +1,7 @@
 ---
 title: Module's Block Diagram
 tags:
-- tag1
-- tag2
+- Mihir's Individual Datasheet - Block Diagram
 ---
 
 ## Overview

@@ -1,5 +1,7 @@
 ---
 title: Module's Microntroller Selection
+tags:
+- Mihir's Individual Datasheet - Microcontroller Selection
 ---
 
 # ESP32 Wireless Communication — Microntroller Selection

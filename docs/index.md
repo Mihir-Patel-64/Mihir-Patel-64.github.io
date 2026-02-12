@@ -1,8 +1,7 @@
 ---
 title: Welcome
 tags:
-- tag1
-- tag2
+- Mihir's Individual Datasheet - Welcome Page
 ---
 <center>
 <font size= "6"> Mihir Patel — Individual Datasheet </font><br>
