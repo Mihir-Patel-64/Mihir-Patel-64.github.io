@@ -1286,16 +1286,26 @@
 
 <h1 id="esp32-wireless-communication-microntroller-selection">ESP32 Wireless Communication — Microntroller Selection</h1>
 <h2 id="1-microcontroller-selection">1. Microcontroller Selection</h2>
-<p>Based on team subsystem planning:
-- Laksh → PIC (Sensors &amp; HMI)
-- Raunak → PIC (Actuators)
-- Mihir → ESP32 (Wireless Communication)</p>
+<p>Based on team subsystem planning:</p>
+<ul>
+<li>
+<p>Laksh → PIC (Sensors &amp; HMI)</p>
+</li>
+<li>
+<p>Raunak → PIC (Actuators)</p>
+</li>
+<li>
+<p>Mihir → ESP32 (Wireless Communication)</p>
+</li>
+</ul>
 <h3 id="microcontrollers-considered">Microcontrollers Considered</h3>
 <p><strong>Choice A — ESP32-S3-WROOM-1-N4 (selected)</strong><br>
-- <strong>Link / Datasheet:</strong> <a href="https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf">Datasheet</a>
-- <strong>Type:</strong> Surface-mount module (SMD) with integrated antenna, 4 MB flash<br>
-- <strong>Pros:</strong> Integrated Wi-Fi/BLE, native USB support, camera interface support (ESP32-CAM), large GPIO count, pre-certified RF reduces layout risk.<br>
-- <strong>Cons:</strong> Slightly larger footprint and higher per-unit cost than bare chip; module antenna performance depends on board placement.</p>
+- <strong>Link / Datasheet:</strong> <a href="https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf">Datasheet</a></p>
+<ul>
+<li><strong>Type:</strong> Surface-mount module (SMD) with integrated antenna, 4 MB flash  </li>
+<li><strong>Pros:</strong> Integrated Wi-Fi/BLE, native USB support, camera interface support (ESP32-CAM), large GPIO count, pre-certified RF reduces layout risk.  </li>
+<li><strong>Cons:</strong> Slightly larger footprint and higher per-unit cost than bare chip; module antenna performance depends on board placement.</li>
+</ul>
 <p><strong>Choice B — ESP32-WROOM-32 (classic module)</strong><br>
 - <strong>Link / Datasheet:</strong> <a href="https://documentation.espressif.com/esp32-wroom-32_datasheet_en.pdf">Datasheet</a><br>
 - <strong>Type:</strong> Surface-mount module, classic ESP32 (older core)<br>
@@ -1320,12 +1330,16 @@
 <li>3.3V operating voltage</li>
 </ul>
 <p>The module pin layout and definitions are shown in:</p>
+<hr>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../esp32_pin_layout.png" data-desc-position="bottom"><img alt="ESP32-S3-WROOM-1-N4 Pin Layout (Top View)" src="../esp32_pin_layout.png"></a></p>
 <p><strong>Figure 01:</strong> ESP32-S3-WROOM-1-N4 Module Pin Layout (Top View) (Figure 3.1)</p>
+<hr>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../pin_description_1.png" data-desc-position="bottom"><img alt="ESP32-S3-WROOM-1-N4 Pin Definitions Table" src="../pin_description_1.png"></a></p>
 <p><strong>Figure 02:</strong> ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 1)</p>
+<hr>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../pin_description_2.png" data-desc-position="bottom"><img alt="ESP32-S3-WROOM-1-N4 Pin Definitions Table (Continued)" src="../pin_description_2.png"></a></p>
 <p><strong>Figure 03:</strong> ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 2)</p>
+<hr>
 <p>These confirm:
 - 3V3 = Pin 2<br>
 - GND = Pins 1 and 40<br>
