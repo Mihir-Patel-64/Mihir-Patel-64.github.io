@@ -48,7 +48,7 @@ The S3 version also provides improved performance and peripheral support compare
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **TI TPS62840DLCR**<br>![TPS62840DLCR](TPS62840DLCR.jpg)<br>High-efficiency synchronous buck converter, optimized for low quiescent current and battery-powered systems<br>Price: $2.08/each<br>[Product Page](https://www.digikey.com/en/products/detail/texas-instruments/TPS62840DLCR/10445071)<br>[Datasheet](ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Ftps62840) | - Up to 95% efficiency across wide load range<br>- Excellent transient response for radio current spikes<br>- Very low quiescent current (good for battery demos)<br>- Lower heat generation compared to basic buck regulators | - Higher cost than AP63203<br>- Requires careful PCB layout and proper inductor selection<br>- Slightly more complex BOM |
+| **TI TPS62840DLCR**<br>![TPS62840DLCR](TPS62840DLCR.jpg)<br>High-efficiency synchronous buck converter, optimized for low quiescent current and battery-powered systems<br>Price: $2.08/each<br>[Product Page](https://www.digikey.com/en/products/detail/texas-instruments/TPS62840DLCR/10445071)<br>[Datasheet](https://www.ti.com/lit/ds/symlink/tps62840.pdf?ts=1770872928987) | - Up to 95% efficiency across wide load range<br>- Excellent transient response for radio current spikes<br>- Very low quiescent current (good for battery demos)<br>- Lower heat generation compared to basic buck regulators | - Higher cost than AP63203<br>- Requires careful PCB layout and proper inductor selection<br>- Slightly more complex BOM |
 
 
 ### Option 3
