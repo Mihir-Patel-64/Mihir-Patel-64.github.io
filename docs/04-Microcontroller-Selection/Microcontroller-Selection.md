@@ -53,10 +53,9 @@ Based on team subsystem planning:
 - Integrated PCB antenna
 - 3.3V operating voltage
 
+---
 
 The module pin layout and definitions are shown in:
-
----
 
 ![ESP32-S3-WROOM-1-N4 Pin Layout (Top View)](esp32_pin_layout.png)
 
@@ -73,8 +72,6 @@ The module pin layout and definitions are shown in:
 ![ESP32-S3-WROOM-1-N4 Pin Definitions Table (Continued)](pin_description_2.png)
 
 **Figure 03:** ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 2)
-
----
 
 These confirm:
 - 3V3 = Pin 2  
