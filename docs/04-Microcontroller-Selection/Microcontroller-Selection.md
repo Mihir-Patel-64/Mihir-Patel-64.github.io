@@ -7,14 +7,18 @@ title: Module's Microntroller Selection
 ## 1. Microcontroller Selection
 
 Based on team subsystem planning:
+
 - Laksh → PIC (Sensors & HMI)
+
 - Raunak → PIC (Actuators)
+
 - Mihir → ESP32 (Wireless Communication)
 
 ### Microcontrollers Considered
 
 **Choice A — ESP32-S3-WROOM-1-N4 (selected)**  
 - **Link / Datasheet:** [Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
+
 - **Type:** Surface-mount module (SMD) with integrated antenna, 4 MB flash  
 - **Pros:** Integrated Wi-Fi/BLE, native USB support, camera interface support (ESP32-CAM), large GPIO count, pre-certified RF reduces layout risk.  
 - **Cons:** Slightly larger footprint and higher per-unit cost than bare chip; module antenna performance depends on board placement.
@@ -48,19 +52,28 @@ Based on team subsystem planning:
 - Integrated PCB antenna
 - 3.3V operating voltage
 
+
 The module pin layout and definitions are shown in:
+
+---
 
 ![ESP32-S3-WROOM-1-N4 Pin Layout (Top View)](esp32_pin_layout.png)
 
 **Figure 01:** ESP32-S3-WROOM-1-N4 Module Pin Layout (Top View) (Figure 3.1)
 
+---
+
 ![ESP32-S3-WROOM-1-N4 Pin Definitions Table](pin_description_1.png)
 
 **Figure 02:** ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 1)
 
+---
+
 ![ESP32-S3-WROOM-1-N4 Pin Definitions Table (Continued)](pin_description_2.png)
 
 **Figure 03:** ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 2)
+
+---
 
 These confirm:
 - 3V3 = Pin 2  
