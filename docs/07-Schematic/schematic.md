@@ -1,16 +1,31 @@
 ---
 title: Module Schematic
+tags:
+- Mihir's Individual Datasheet - Schematic
 ---
 
-## Overview
+## Individual Subsystem Schematic
 
-This schematic is design to support .... (highlight functionally, power, and controller).
+This schematic shows the complete design for my Wireless Communication subsystem. It includes the ESP32-S3-WROOM-1-N4 microcontroller module, switching 3.3V power supply (TPS62840 buck regulator), barrel jack input with fuse and reverse polarity protection, USB micro connector for programming, UART daisy-chain ribbon connectors, boot and enable circuitry, debug LEDs, and expansion headers.
 
+The schematic demonstrates all required power regulation, signal routing, protection circuitry, and communication interfaces necessary for reliable subsystem operation and integration within the team’s UART-based daisy-chain architecture.
 
-![schematic](Screenshot.png){style width:"350" height:"300;"}
-**Figure ##:** Showing a example schematic.
+![Wireless Communication Schematic](EGR314_Schematic_Mihir.jpg)
 
+**Figure 01:** Wireless Communication Subsystem Schematic
 
-## Resouces
+---
 
-The schematic as a PDF download is available [*here*](ExampleSchematic.pdf), and the Zip folder of the project [*here*](dummyZip.zip).
+### Downloadable Files
+
+- **Project ZIP:**  
+  [Download KiCad Project ZIP](Patel_EGR314_projectzip_2_20.zip)
+
+- **Symbol Library ZIP:**  
+  [Download Symbol Library ZIP](Patel_314_symbols.zip)
+
+- **Schematic Image:**  
+  [Wireless Communication Schematic](EGR314_Schematic_Mihir.jpg "Wireless Communication Schematic")
+
+- **Schematic PDF:**  
+  [Download High-Resolution Schematic PDF](EGR314_Schematic_Mihir.pdf)
