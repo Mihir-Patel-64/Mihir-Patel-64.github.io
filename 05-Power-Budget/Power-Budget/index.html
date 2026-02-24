@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#power-budget" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -750,15 +750,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#power-budget-table" class="md-nav__link">
     <span class="md-ellipsis">
       Power Budget Table
@@ -1061,15 +1052,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#power-budget-table" class="md-nav__link">
     <span class="md-ellipsis">
       Power Budget Table
@@ -1158,35 +1140,34 @@
   
 
 
-<h1 id="power-budget">Power Budget</h1>
-<p>This page presents the Power Budget for Mihir Patel’s ESP32 Wireless Communication subsystem, verifying that all voltage rails, regulators, and the selected external power supply can reliably meet the total current demand of every major component in the design.</p>
-<hr>
-<h2 id="overview">Overview</h2>
-<p>The Power Budget includes:</p>
+<h1 id="overview">Overview</h1>
+<p>This page presents the power budget for Mihir Patel's ESP32 Wireless Communication subsystem, verifying that all voltage rails, regulators, and the selected external power supply can reliably meet the total current demand of every major active component in the design.</p>
+<p>The power budget covers:</p>
 <ul>
-<li>Power requirements of all major active components.</li>
-<li>Assigned voltage rail and total current consumption.</li>
-<li>Regulator and external source selections with 25% safety margins.</li>
+<li>Peak current requirements of all major active components on the +3.3V rail</li>
+<li>Assigned voltage rail and total current consumption with a 25% safety margin</li>
+<li>Regulator selection verification confirming adequate current headroom</li>
+<li>External power source selection confirming the supply can drive all regulators simultaneously</li>
 </ul>
-<p>This subsystem operates primarily from a single regulated +3.3V rail derived from a 12V wall adapter.</p>
+<p>This subsystem operates entirely from a single regulated +3.3V rail derived from a 9V AC-DC wall adapter through an onboard switching buck regulator.</p>
 <hr>
 <h2 id="power-budget-table">Power Budget Table</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="PowerBudget_MP.jpg" data-desc-position="bottom"><img alt="Power Budget Table" src="PowerBudget_MP.jpg"></a></p>
-<p><strong>Figure 01:</strong> ESP32 Wireless Communication Subsystem Power Budget</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../PowerBudget_MP.png" data-desc-position="bottom"><img alt="Power Budget Table" src="../PowerBudget_MP.png"></a></p>
+<p><strong>Figure 01:</strong> ESP32 Wireless Communication Subsystem — Full Power Budget (Team 302, Version 1B)</p>
 <hr>
 <h3 id="how-the-power-budget-informed-design-choices">How the Power Budget Informed Design Choices</h3>
 <ul>
 <li>
-<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail, including the ESP32-S3-WROOM-1-N4 microcontroller, OV2640 camera module, USB-UART interface (if populated), debug LEDs, and supporting logic overhead. By summing each device’s peak current and adding a 25% safety margin, the spreadsheet confirmed a maximum required load of approximately <strong>1.19 A</strong> on the +3.3V rail.</p>
+<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N4 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
 </li>
 <li>
-<p>This requirement directly informed the regulator selection. A TPS62840 switching regulator rated for <strong>1.5 A</strong> was selected to provide adequate overhead above the 1.19 A requirement. This ensures stable operation during Wi-Fi transmission spikes and camera streaming bursts without approaching the regulator’s limits.</p>
+<p>This requirement directly informed the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.</p>
 </li>
 <li>
-<p>The same budget was used to verify that the external +12V wall adapter can supply the regulator without being overstressed. With an estimated input current of approximately <strong>0.36 A</strong> at 12V (after accounting for conversion efficiency), and a 12V / 2A adapter selected, more than <strong>1.6 A of headroom</strong> remains available for startup transients or additional subsystem loads.</p>
+<p>The same budget was used to verify the external power source. The WSU090-2500 9V AC-DC wall adapter, rated at 2500 mA, was selected to supply the regulator. Since the regulator draws at most 2000 mA from the 9V input, this leaves 500 mA of headroom on the supply, confirming no risk of overloading the wall adapter during normal or peak operation.</p>
 </li>
 <li>
-<p>From these calculations, the key conclusion is that a single +3.3V regulated rail powered from a +12V wall adapter through a high-efficiency buck regulator is sufficient for all wireless, camera, and communication functions in Mihir’s subsystem. No additional voltage rails are required.</p>
+<p>The key conclusion from this analysis is that a single +3.3V regulated rail powered from a 9V wall adapter through the AP63203WU-7 is sufficient for all wireless, camera, and communication functions in this subsystem. No additional voltage rails or battery supply are required.</p>
 </li>
 </ul>
 <hr>
@@ -1194,15 +1175,15 @@
 <ul>
 <li>
 <p><strong>Power Budget EXCEL:</strong><br>
-<a href="PowerBudget_MP.xlsx">Download Power Budget (Excel)</a></p>
+<a href="../PowerBudget_MP.xlsx">Download Power Budget (Excel)</a></p>
 </li>
 <li>
 <p><strong>Power Budget ZIP:</strong><br>
-<a href="PowerBudget_MP.xlsx.zip">Download Power Budget (ZIP)</a></p>
+<a href="../PowerBudget_MP.xlsx.zip">Download Power Budget (ZIP)</a></p>
 </li>
 <li>
 <p><strong>Power Budget PDF:</strong><br>
-<a href="PowerBudget_MP.pdf">Download Power Budget (PDF)</a></p>
+<a href="../PowerBudget_MP.pdf">Download Power Budget (PDF)</a></p>
 </li>
 </ul>
 <hr>
@@ -1221,16 +1202,16 @@
 <tbody>
 <tr>
 <td>+3.3V</td>
-<td>Switching Buck Regulator</td>
-<td>TPS62840</td>
-<td>+3.3V</td>
-<td>1500</td>
-<td>Powers ESP32, camera, USB interface, debug LEDs</td>
+<td>Synchronous Buck Regulator (2A)</td>
+<td>AP63203WU-7</td>
+<td>+3.3V fixed</td>
+<td>2000</td>
+<td>Powers ESP32, camera, LEDs, switches, USB logic</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>All major components, including the ESP32-S3-WROOM-1-N4, OV2640 camera module, CP2102N USB-UART interface (if used), and debug LEDs, are powered from a single +3.3V regulated supply. This simplifies distribution, reduces conversion losses, and improves system stability.</p>
+<p>All major components are powered from a single +3.3V regulated supply. This simplifies power distribution, reduces conversion losses, and improves overall system stability.</p>
 </blockquote>
 <hr>
 <h2 id="power-source-verification">Power Source Verification</h2>
@@ -1241,30 +1222,30 @@
 <th><strong>Part Number</strong></th>
 <th><strong>Output</strong></th>
 <th><strong>Max Current (mA)</strong></th>
-<th><strong>Used (mA)</strong></th>
+<th><strong>Regulator Supplied</strong></th>
 <th><strong>Remaining (mA)</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Wall Supply</td>
-<td>12V DC Adapter</td>
-<td>+12V, 2A</td>
-<td>2000</td>
-<td>363</td>
-<td>1637</td>
+<td>9V AC-DC Wall Adapter</td>
+<td>WSU090-2500</td>
+<td>9V DC</td>
+<td>2500</td>
+<td>+3.3V [AP63203WU-7]</td>
+<td>500</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>The +12V adapter feeds the TPS62840 buck regulator, supplying the entire +3.3V rail with significant overhead.</p>
+<p>The WSU090-2500 9V wall adapter feeds the AP63203WU-7 buck regulator, which supplies the entire +3.3V rail. The 9V output is well above the regulator's minimum input voltage of 3.8V, providing adequate dropout margin.</p>
 <p>No battery supply is required for this subsystem.</p>
 </blockquote>
 <hr>
 <h3 id="power-budget-summary">Power Budget Summary</h3>
-<p>This power budget directly accounts for the electrical demands of all wireless and communication components, assigning each to a single +3.3V logic rail. Current estimates were based on worst-case peak consumption and include a 25% safety margin as required by the design review guidelines.</p>
-<p>The selected TPS62840 regulator exceeds the required current with safe overhead, and the 12V / 2A wall adapter provides more than sufficient capacity to support continuous operation, Wi-Fi transmission bursts, and camera streaming activity.</p>
-<p>No additional voltage rails or battery supply are necessary for normal operation. The chosen power architecture simplifies the system while maintaining appropriate electrical headroom and thermal safety margins.</p>
+<p>This power budget accounts for the electrical demands of all active components in the ESP32 wireless communication subsystem, assigning each to a single +3.3V logic rail. Current estimates are based on worst-case peak consumption with a 25% safety margin applied.</p>
+<p>The selected AP63203WU-7 regulator (2A rated) exceeds the required 1152.5 mA with 847.5 mA of regulator headroom, and the WSU090-2500 9V wall adapter provides 500 mA of supply headroom above the regulator's maximum draw. Both margins are positive, confirming the power architecture is sound.</p>
+<p>No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and camera streaming.</p>
 
 
 
