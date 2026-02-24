@@ -184,7 +184,7 @@ I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial 
 | **Pi Filter + Common-Mode Choke (WE-CNSW 744231091)**<br>![Common Mode Choke](744231091.jpeg)<br>Common-mode choke combined with capacitors for strong EMI suppression<br>Price: $1.13/each<br>[Product Page](https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/744231091/2650431)<br>[Datasheet](https://www.we-online.com/components/products/datasheet/744231091.pdf) | - Excellent EMI suppression<br>- Reduces noise coupling between boards<br>- Useful for compliance-focused designs | - Larger footprint<br>- Higher cost<br>- Overkill for small low-voltage system |
 
 
-**Choice:** Option 1 — Schottky Diode (D_Shockley) + Polyfuse (F1)   
+**Choice:** Option 2 — Schottky Diode (D_Shockley) + Polyfuse (F1)   
 **Rationale:** I went with a Schottky diode and polyfuse combination because it covers the two most likely failure scenarios during development, accidental reverse polarity and overcurrent from a short circuit, without overcomplicating the design. The Schottky diode on the barrel jack input (D1) blocks reverse voltage if the supply is plugged in backwards, which is an easy mistake to make in a busy lab. It also does the power-path OR-ing between the barrel jack and USB VBUS so both supplies can be connected at the same time without one backfeeding the other. The polyfuse F1 handles overcurrent, if something on the board shorts during bring-up, the fuse trips and resets itself once the fault is cleared, so I don't have to dig through a parts drawer to replace a blown fuse mid-session.
 
 The TVS diode option is better for protecting against voltage spikes on long cable runs, which isn't really the concern here since we're running off a regulated bench supply. The common-mode choke would help with EMI, but for a 9V/3.3V low-frequency system it's completely unnecessary and adds cost and footprint. The Schottky + polyfuse approach is simple, proven, and practical for a student lab environment.
@@ -322,6 +322,8 @@ RGB LEDs would be cool for showing different states with different colors, but e
 **Rationale:** I need two buttons on this board — one for BOOT to put the ESP32 into download mode, and one for ENABLE to manually reset it. I went with the CTS 222AMVBAR because it's a compact top-actuated SMD switch with solid tactile feedback, and its gull-wing footprint integrates cleanly onto the PCB without needing any drilled holes. The 0.05A, 12V rating is way more than needed for a 3.3V GPIO input, so there's no concern about it being underspecced for this application. Each switch is paired with a 470Ω pull-up resistor to 3.3V and a 0.1µF decoupling capacitor to GND, which is the standard ESP32 boot and reset button circuit.
 
 Through-hole buttons would honestly be a bit easier to press during demos since the surface area is bigger, but they require drilling the PCB and sit noticeably taller than the rest of the surface-mount components, which I wanted to avoid. Capacitive touch is an interesting option in theory, but it needs a dedicated controller IC, firmware driver, and is well known for being sensitive to RF noise, which is a real concern on a board that's actively running Wi-Fi. For two simple pushbuttons, there's no reason to add that complexity.
+
+---
 
 # Final Component Selection Summary
 
