@@ -68,7 +68,7 @@ These indicators assist with:
 
 Power is supplied through an external:
 
-**WSU090-1300-R 9V 1.3A AC-DC wall adapter**
+**WSU090-2500 9V 2.5A AC-DC wall adapter**
 
 The adapter connects via a **DC barrel jack**, feeding an onboard:
 
