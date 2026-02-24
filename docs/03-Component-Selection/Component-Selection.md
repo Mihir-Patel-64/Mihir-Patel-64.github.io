@@ -348,7 +348,7 @@ This excludes passive components (resistors, capacitors, inductors) and standard
 
 ## Estimated Total Core Component Cost
 
-**≈ $13 – $15 per board**  
+**≈ 13 – 15 USD per board**  
 *(Excluding passives, PCB fabrication, and shipping)*
 
 ---
