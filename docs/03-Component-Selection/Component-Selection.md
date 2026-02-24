@@ -57,12 +57,10 @@ The S3 version also provides improved performance and peripheral support compare
 |----------|------|------|
 | **MCP1640B Boost + LDO Combination (PMIC-style approach)**<br>![MCP1640B](MCP1604B.jpeg)<br>High-efficiency DC-DC converter combined with linear regulator for multi-rail designs<br>Price: $0.81/each<br>[Product Page](https://www.digikey.com/en/products/detail/microchip-technology/MCP1640B-I-MC/2258562)<br>[Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP1640-Family-Data-Sheet-DS20002234E.pdf) | - Flexible voltage configuration<br>- Can support additional rails in future revisions<br>- Efficient switching topology | - More complex design than needed for single 3.3V rail<br>- Larger PCB footprint<br>- Extra components increase layout difficulty |
 
-**Choice:** Option 2 — TI TPS62840DLCR 
-**Rationale:** The TPS62840 is selected because the ESP32’s Wi-Fi radio produces short, high-current bursts that can stress lower-efficiency regulators. A high-efficiency synchronous buck like the TPS62840 maintains a stable 3.3 V output during these transient spikes while generating significantly less heat than simpler regulators.
+**Choice:** Option 1 — AP63203WU-7
+**Rationale:** I chose the AP63203WU-7 because it keeps the power circuit simple while still meeting the current requirements of the ESP32-S3. The fixed 3.3V output means I don't need to calculate or place feedback resistors, the datasheet application circuit is just an inductor and two capacitors, which is exactly what's shown in my schematic. At 600 mA output, it comfortably handles the ESP32's typical operating current with enough headroom for Wi-Fi bursts.
 
-Although the AP63203WU-7 is more affordable and compact, its lower efficiency under heavier loads makes it less ideal for sustained wireless operation. The PMIC-style option provides flexibility but adds unnecessary complexity for a single-rail design.
-
-By choosing the TPS62840, I improve overall power efficiency, reduce thermal risk during long demo sessions, and ensure stable operation of the ESP32 during MQTT communication and video streaming. The slightly higher cost is justified by the increased reliability and performance margin for this subsystem.
+I did consider the TPS62840 for its higher efficiency, but after looking at the numbers, the AP63203 is more than adequate for this design. The ESP32-S3 draws around 250–350 mA during active Wi-Fi transmission, which is well within the AP63203's rating. The efficiency difference doesn't justify paying three times the price, especially since this board will mostly be powered from a bench supply during demos rather than running on battery. The MCP1640B is a boost converter, which steps voltage up, so it simply can't be used to regulate down from 9V, that option was eliminated right away.
 
 ---
 
@@ -98,6 +96,7 @@ The JST battery connector is compact and useful for portable designs, but it doe
 By choosing the barrel jack, I ensure mechanical robustness, compliance with course standards, and straightforward hardware verification during external design review.
 
 ---
+
 
 ## 4. Antenna Solution **(RF Subsystem)**
 
@@ -155,12 +154,10 @@ Using the integrated antenna keeps the design compact, reliable, and aligned wit
 |----------|------|------|
 | **2×5 Programming Header (Tag-Connect / 0.1” Header)**<br>![Programming Header](PTH.jpeg)<br>Standard programming/debug header for external USB-to-serial adapter<br>Price: $1.80/each<br>[Product Page](https://www.sparkfun.com/shrouded-header-pth-0-1in-2x5-pin.html)<br>[Datasheet](https://cdn.sparkfun.com/assets/2/e/c/e/1/Shrouded-10pin.pdf) | - Very low cost<br>- Minimal onboard components<br>- Useful for low-level debugging | - Requires external USB-to-serial adapter<br>- Less convenient during demos<br>- Extra cables increase setup complexity |
 
-**Choice:** Option 1 if module exposes USB; otherwise Option 2 — CP2102N  
-**Rationale:** The preferred approach is to use the ESP32-S3’s native USB interface if the selected module exposes the required D+ and D− pins. This minimizes component count, reduces PCB area, and simplifies firmware flashing and serial debugging.
+**Choice:** Option 1 — Micro USB SMD Connector (Native USB)  
+**Rationale:** The Micro USB connector serves two purposes on my board, it acts as a secondary power input through VBUS (protected by a Schottky diode D7 so it doesn't fight with the barrel jack), and it's the primary way I'll be flashing firmware using the ESP32-S3's native USB pins. Because the S3 already has USB D+ and D− built in, I don't need a separate USB-to-UART chip at all. That saves me a chip, the routing that comes with it, and about $4 off the BOM.
 
-However, if USB pins are not available or routing constraints make native USB difficult, the CP2102N USB-to-UART bridge provides a highly reliable and widely supported alternative. Many ESP32 development boards use this chip, which reduces driver compatibility risks and simplifies development.
-
-While the 2×5 programming header is inexpensive, it adds inconvenience during testing and demonstration because it requires an external adapter. For fast firmware iteration, OTA testing, and smooth TA verification, having direct USB access on the board is the most practical solution.
+I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial ESP32 boards are designed, but it felt like overkill here. The CP2102N works great, but it adds another IC to place and route, and since the S3 natively supports USB, it's just extra complexity for no real benefit. The 2×5 header-only option was the other end of the spectrum -  cheaper, but requiring an external adapter every time I want to flash code is something I didn't want to deal with, especially during back-to-back verification sessions. Having the USB connector directly on the board is just much more convenient.
 
 ---
 
@@ -177,7 +174,7 @@ While the 2×5 programming header is inexpensive, it adds inconvenience during t
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **Schottky Diode + Bulk Capacitor**<br>![Schottky Diode](DIODE_SS14.jpeg)<br>Reverse-polarity protection using Schottky diode with input capacitor filtering<br>Diode Price: $0.25/each<br>[Product Page](https://www.sparkfun.com/schottky-diode-40v-1a-ss14-e3-61t.html)<br>[Datasheet](https://cdn.sparkfun.com/assets/e/d/0/b/0/SS14-E3_61T-datasheet-COM-29464.pdf) | - Very low cost solution<br>- Simple to implement<br>- Provides reverse polarity protection | - Does not clamp high-energy surges<br>- Limited EMI suppression capability<br>- Less robust for long cable runs |
+| **Schottky Diode + Polyfuse**<br>![Schottky Diode](DIODE_SS14.jpeg)<br>Schottky diode for reverse polarity/path isolation + resettable polyfuse for overcurrent<br>Diode Price: $0.25/each<br>[Product Page](https://www.sparkfun.com/schottky-diode-40v-1a-ss14-e3-61t.html)<br>[Datasheet](https://cdn.sparkfun.com/assets/e/d/0/b/0/SS14-E3_61T-datasheet-COM-29464.pdf) | - Simple and low cost<br>- Schottky provides reverse polarity and path-OR protection<br>- Polyfuse is resettable, no need to replace blown fuses during testing<br>- Widely understood and easy to debug | - Schottky has a small forward voltage drop (~0.3V)<br>- Polyfuse has some resistance and may trip under high transient load |
 
 
 ### Option 3
@@ -187,72 +184,182 @@ While the 2×5 programming header is inexpensive, it adds inconvenience during t
 | **Pi Filter + Common-Mode Choke (WE-CNSW 744231091)**<br>![Common Mode Choke](744231091.jpeg)<br>Common-mode choke combined with capacitors for strong EMI suppression<br>Price: $1.13/each<br>[Product Page](https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/744231091/2650431)<br>[Datasheet](https://www.we-online.com/components/products/datasheet/744231091.pdf) | - Excellent EMI suppression<br>- Reduces noise coupling between boards<br>- Useful for compliance-focused designs | - Larger footprint<br>- Higher cost<br>- Overkill for small low-voltage system |
 
 
-**Choice:** Option 1 — TVS Diode + LC Input Filter   
-**Rationale:** Since this subsystem connects to the team’s 8-wire UART daisy-chain ribbon cable, it may experience voltage transients or noise introduced by cable length and switching activity from other boards. A TVS diode provides surge suppression, while the LC filter reduces conducted EMI entering the regulator stage.
+**Choice:** Option 1 — Schottky Diode (D_Shockley) + Polyfuse (F1)   
+**Rationale:** I went with a Schottky diode and polyfuse combination because it covers the two most likely failure scenarios during development, accidental reverse polarity and overcurrent from a short circuit, without overcomplicating the design. The Schottky diode on the barrel jack input (D1) blocks reverse voltage if the supply is plugged in backwards, which is an easy mistake to make in a busy lab. It also does the power-path OR-ing between the barrel jack and USB VBUS so both supplies can be connected at the same time without one backfeeding the other. The polyfuse F1 handles overcurrent, if something on the board shorts during bring-up, the fuse trips and resets itself once the fault is cleared, so I don't have to dig through a parts drawer to replace a blown fuse mid-session.
 
-Although a simple Schottky diode is cheaper, it does not offer true surge protection. The Pi filter with common-mode choke provides excellent noise suppression but increases cost and board area beyond what is necessary for this application.
-
-The TVS + LC combination provides a practical balance between protection, cost, and PCB complexity, improving system reliability without overcomplicating the design.
+The TVS diode option is better for protecting against voltage spikes on long cable runs, which isn't really the concern here since we're running off a regulated bench supply. The common-mode choke would help with EMI, but for a 9V/3.3V low-frequency system it's completely unnecessary and adds cost and footprint. The Schottky + polyfuse approach is simple, proven, and practical for a student lab environment.
 
 ---
 
-## 7. Testability & Debug Pads **(Manufacturability / Bring-up)**
+## 6. Power Path Jumpers (Bus Power Control)
 
 ### Option 1
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **1.27 mm SMD Test Pads (Keystone 5015)**<br>![Test Pads](5015.jpeg)<br>Compact surface-mount test points for probing key signals (3V3, GND, UART TX/RX, I2C, RESET)<br>Price: $0.48/each<br>[Product Page](https://www.digikey.com/en/products/detail/keystone-electronics/5015/278885)<br>[Datasheet](https://www.keyelco.com/userAssets/file/M65p55.pdf) | - Enables quick voltage and signal probing<br>- Very small PCB footprint<br>- Ideal for production testing and debugging<br>- Improves hardware verification efficiency | - Consumes small amount of PCB space<br>- Requires careful silkscreen labeling |
-
+| **2-Position 2.54mm Jumper (Wurth 732-13618-ND)**<br>![Wurth 732-13618-ND](732_13618_ND.jpg)<br>Standard 2-pin shorting jumper, 2.54mm pitch<br>Price: ~$0.35/each<br>[Product Page](https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/609002115121/9920882?s=N4IgTCBcDaIOoFcBOAXAFgAgOwGYwFoBGHANkIA58A5AERAF0BfIA)<br>[Datasheet](https://www.we-online.com/components/products/datasheet/609002115121.pdf) | - Fulfills EGR314 required jumper specification directly<br>- Standard 0.1" pitch — easy to manually place/remove<br>- Extremely low cost<br>- No tools needed for reconfiguration | - Manual operation only (not software switchable)<br>- Small size can be lost during lab sessions |
 
 ### Option 2
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **2×5 0.1” Programming Header (Samtec TSW-105-07-G-D)**<br>![2x5 Header](TSW.png)<br>Through-hole 10-pin header for full programming and debug access<br>Price: $0.76/each<br>[Product Page](https://www.samtec.com/products/tsw-105-07-g-d)<br>[Datasheet](https://suddendocs.samtec.com/productspecs/tsw-sxx.pdf?_gl=1*xh4gbm*_gcl_au*MTMwNDkyMjYzNC4xNzcwNzk1Mzc4*_ga*MTIwMDU0MzgzNy4xNzcwNzk1Mzc4*_ga_3KFNZC07WW*czE3NzA3OTUzNzgkbzEkZzAkdDE3NzA3OTUzNzgkajYwJGwwJGg2ODI1ODE2MTc.) | - Provides full programming and debugging interface<br>- Standard 0.1” spacing for common adapters<br>- Mechanically strong and easy to solder | - Larger footprint than SMD pads<br>- May be redundant if native USB programming is used |
-
+| **SPDT Slide Switch**<br>Small SMD slide switch for bus power toggling<br>Price: ~$0.40–$0.80/each | - Stays in set position without falling off<br>- More user-friendly than removable jumpers | - Larger footprint than a 2-pin header<br>- Not the standard EGR314 jumper approach<br>- Harder to source in SMD form |
 
 ### Option 3
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **Via Probes + Silkscreen Labels Only**<br>![Via Pads](VIA.jpeg)<br>Exposed vias used as probing points without dedicated test hardware<br>Price: No additional cost | - Minimal PCB area used<br>- No additional BOM cost | - Harder to probe reliably<br>- Slower debugging process<br>- Not ideal for repeated lab testing |
+| **P-channel MOSFET Power Switch**<br>Soft-switching via GPIO control<br>Price: ~$0.50–$1.00/each | - Software controllable<br>- No manual intervention needed | - Significantly more complex — gate driver, pull resistors needed<br>- Overkill for a simple power isolation requirement<br>- Not aligned with course specification |
 
+**Choice:** Option 1 — Wurth 732-13618-ND 2-Position Jumper  
+**Rationale:** The course spec explicitly requires two jumpers per board, one to connect or disconnect bus power from the regulator, and one to connect or disconnect the barrel jack from the bus. The Wurth 732-13618-ND is a standard 2.54mm shorting jumper that fits a regular 2-pin header, so it satisfies that requirement directly with no fuss. Being able to physically remove a jumper to isolate my board from the team bus is really useful during debugging, because it means I can test my subsystem independently before connecting it to everyone else's hardware.
 
-**Choice:** Option 1 + Option 2 — Dedicated Test Pads and 2×5 Programming Header   
-**Rationale:** For a student-designed PCB that will go through multiple debugging and verification stages, proper testability is essential. Dedicated SMD test pads allow quick measurement of power rails and communication lines during bring-up. This significantly reduces debugging time and makes hardware verification more efficient.
-
-The 2×5 programming header provides a reliable backup interface for flashing firmware and low-level debugging, especially if USB-based flashing encounters issues. While it does consume additional PCB space, the benefit during testing and external review outweighs the minor footprint increase.
-
-Using only exposed vias would reduce cost slightly, but it would make debugging slower and more error-prone. Since this board will be evaluated during demonstrations and design reviews, prioritizing accessibility and reliability during bring-up is the most practical approach.
+A slide switch would also work, but it takes up more PCB space and isn't the typical way jumpers are implemented in EGR314 designs. A MOSFET-based software switch could do the same thing and add remote controllability, but that would need a gate driver circuit, pull resistors, and firmware support, way more complexity than what this requirement calls for. A simple removable jumper does the job perfectly.
 
 ---
 
-## Final Component Selection Summary
+## 7. GPIO Headers & Expansion Pins (Connectivity)
 
-The table below summarizes the major active components selected for Mihir's ESP32 Wireless Communication subsystem. This excludes passive components (resistors, capacitors, inductors), small matching-network components, and standard PCB hardware.
+### Option 1
 
-| **Subsystem**            | **Component**                               | **Manufacturer**            | **Key Specs**                                             | **Price** | **Source**  |
-|--------------------------|---------------------------------------------|----------------------------|----------------------------------------------------------|-----------|------------|
-| **Wireless MCU**         | ESP32-S3-WROOM-1-N4                         | Espressif Systems         | Dual-core, 4MB Flash, Wi-Fi + BLE, 3.3V logic           | $5.06     | DigiKey    |
-| **3.3V Regulation**      | TPS62840DLCR                                | Texas Instruments         | 3.3V synchronous buck, up to 95% efficiency             | $2.08     | DigiKey    |
-| **Power Input**          | PJ-102A Barrel Jack                         | CUI Devices               | 5.5mm x 2.1mm DC input, through-hole                    | $0.59     | DigiKey    |
-| **RF Antenna**           | Integrated PCB Antenna (Module Variant)     | Espressif Systems         | 2.4 GHz Wi-Fi antenna built into module                 | Included  | DigiKey    |
-| **USB Interface**        | Native USB (ESP32-S3) / CP2102N (backup)    | Espressif / Silicon Labs  | USB 2.0 interface for flashing & UART debugging         | $4.14*    | DigiKey    |
-| **Input Protection**     | SMBJ9.0A TVS Diode + LC Filter              | Littelfuse + Bourns       | Surge suppression + EMI filtering                       | ~$1.04    | DigiKey    |
-| **Debug Interface**      | Keystone 5015 Test Pads + 2×5 Header        | Keystone / Samtec         | SMD test points + 0.1” programming header               | ~$1.24    | DigiKey    |
+| Solution | Pros | Cons |
+|----------|------|------|
+| **Harwin M52-040023V2045 (2×10, 1.27mm pitch SMD)**<br>![Harwin M52-040023V2045 (2×10, 1.27mm pitch SMD)](M52_040023V2045.jpg)<br>SMD vertical header, 20-pin, 1.27mm pitch<br>Price: ~$2.94/each<br>[Product Page](https://www.digikey.com/en/products/detail/harwin-inc/M52-040023V2045/6797702?s=N4IgTCBcDaILIFYwFoAMAWVqwGYBqYGCIAugL5A)<br>[Datasheet](https://content.harwin.com/m/d0f746354cedd7a4/original/PD002-Product-Datasheet-ARCHER-M50-and-M52-ranges-BBi.pdf) | - Compact 1.27mm pitch saves PCB area<br>- SMD compatible — no drilling required<br>- Provides access to ESP32 GPIO, UART, and debug pins<br>- Sufficient pin count for all required signals | - Smaller pitch requires careful soldering<br>- Not compatible with standard 0.1" breadboard jumpers |
 
-\*Only required if native USB routing is not used.
+### Option 2
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **Standard 2.54mm Through-Hole Pin Header (1×10 or 2×5)**<br>Price: ~$0.20–$0.40/each | - Universal 0.1" pitch — works with standard jumper wires<br>- Easy to hand solder | - Larger PCB footprint<br>- Through-hole requires drilling in PCB<br>- Less professional appearance for a compact SMD design |
+
+### Option 3
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **No Expansion Headers (Direct Trace Routing Only)**<br>Price: $0 | - Minimum PCB area used<br>- Cleanest board layout | - No external probe access to GPIO signals<br>- Makes debugging extremely difficult<br>- Fails to support team integration requirements |
+
+**Choice:** Option 1 — Harwin M52-040023V2045  
+**Rationale:** I chose the Harwin M52-040023V2045 because it gives me a way to break out the key GPIO signals I need, RX/TX, UART daisy chain lines, BOOT, ENABLE, and some spare pins, in a compact SMD footprint that keeps the board looking clean. The 1.27mm pitch is smaller than a standard 0.1" header, but it's still solderable by hand and the pin count is enough to expose everything I need without running out of space.
+
+Standard through-hole 0.1" headers would definitely be easier to plug jumper wires into, but they require drilling the PCB and take up significantly more area. For a subsystem board that's already fairly busy with the ESP32 module, regulator, protection circuitry, and connectors, saving that space matters. Leaving out expansion headers entirely wasn't really an option either, without them, it would be very difficult to probe signals or connect to teammate boards during integration, which would slow down the whole team's verification process.
 
 ---
 
-**Estimated Total Core Component Cost: ≈ $14 - $16 per board**  
-(excluding passives, PCB fabrication, shipping, and optional USB-UART redundancy)
+## 8. Daisy Chain Connectors (Upstream / Downstream)
+
+### Option 1
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **2×4 IDC Female Header (8-pin, 2.54mm pitch)**<br>Standard 8-wire ribbon cable IDC connector for EGR314 daisy chain bus<br>Price: ~$0.50–$0.80/each<br>[Product Page](https://www.digikey.com/en/products/detail/marutsuelec/21602X40GSE/21669085)<br>[Datasheet](https://www.marutsu.co.jp/contents/shop/marutsu/datasheet/2160.pdf) | - Directly specified by EGR314 project requirements<br>- Keyed IDC connector prevents incorrect insertion<br>- Compatible with standard ribbon cable assemblies<br>- Provides all required pins: VCC, GND, UART TX/RX, and extra GPIO | - Through-hole mounting required<br>- Slightly larger footprint than custom connectors |
+### Option 2
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **JST-XH 8-Pin Connector**<br>Price: ~$0.30/each | - Compact and lightweight<br>- Secure locking mechanism | - Not the EGR314 specified connector standard<br>- Not compatible with team ribbon cable assemblies<br>- Would require custom cables |
+
+### Option 3
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **Screw Terminal Block (8-pin)**<br>Price: ~$1.00/each | - Very robust mechanical connection<br>- Easy wire attachment | - Very large PCB footprint<br>- Not IDC ribbon cable compatible<br>- Does not meet course connector standard |
+
+**Choice:** Option 1 — 2×4 IDC Female Header (8-pin)  
+**Rationale:** This one was basically decided by the course spec. EGR314 requires all boards to use an 8-wire ribbon cable with a 2×4 IDC female header for the daisy chain network, so using anything else would mean my board can't physically connect to my teammates' boards. I have two of these, one for the upstream connection (Connector In) and one for the downstream connection (Connector Out) — which matches the layout shown in the class daisy chain diagram.
+
+JST connectors are nice for compact designs but they aren't IDC ribbon-compatible, so the whole team would need custom cables just for my board, which isn't practical. Screw terminals are extremely bulky and also incompatible with ribbon cables. There really wasn't a decision to make here, the 2×4 IDC header is the only option that keeps my board compatible with the rest of the system.
 
 ---
 
-### Cost Discussion
+## 9. Status & Debug LEDs (Testability)
 
-The total cost remains relatively low for a Wi-Fi-enabled communication subsystem. The ESP32 module represents the largest cost contributor, which is expected due to its integrated wireless capabilities. The high-efficiency regulator slightly increases cost compared to lower-end buck converters, but it significantly improves thermal performance and reliability during Wi-Fi transmission bursts.
+### Option 1
 
-Protection components and debug hardware add minimal cost while greatly improving robustness and ease of verification. Overall, the design balances cost, performance, reliability, and manufacturability in alignment with course requirements and system-level reliability goals.
+| Solution | Pros | Cons |
+|----------|------|------|
+| **SMD LED 0805 Green Diffused (ams-OSRAM)**<br>![475-LGR971-KN-1CT-ND](475_LGR971_KN_1CT_ND.jpeg)<br>Standard green SMD LED, 0805 package<br>Price: ~$0.15/each<br>[Product Page](https://www.digikey.com/en/products/detail/ams-osram-usa-inc/LG-R971-KN-1-0-20-R18/1227925?s=N4IgTCBcDaICwHYCsBaAMgcQEoE4EEYUBrAOxXwGEAVFAOQBEQBdAXyA)<br>[Datasheet](https://look.ams-osram.com/m/2da6f2ceeebf8fac/original/LG-R971.pdf) | - Small 0805 footprint — easy to hand solder<br>- Standard current requirements (10–20mA) work with 220Ω resistor at 3.3V<br>- Bright enough for lab visibility<br>- Low cost per unit | - Only one color — less informative for multi-state debug |
+
+### Option 2
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **RGB SMD LED (Common Cathode)**<br>Price: ~$0.50–$1.00/each | - Multiple colors allow distinct status indication<br>- Single LED replaces 3 status LEDs | - Requires 3 GPIO pins per LED<br>- More complex firmware<br>- Higher cost |
+
+### Option 3
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **WS2812B Addressable LED**<br>Price: ~$0.30/each | - Single-wire control for full color<br>- Chainable | - Requires specific timing protocol<br>- Overkill for basic status indication<br>- More complex firmware overhead |
+
+**Choice:** Option 1 — Green SMD LED 0805 (×5)  
+**Rationale:** I'm using five green 0805 LEDs spread across the board for different debug purposes, two are tied to the RX and TX test points (pins 41 and 40) so I can visually confirm data is flowing through the UART lines, and the others give me status feedback for various GPIO states. The 0805 package is small enough to fit comfortably on the board but still large enough to solder by hand without too much difficulty, and a simple 220Ω current-limiting resistor at 3.3V keeps each one in the right operating range.
+
+RGB LEDs would be cool for showing different states with different colors, but each one would need three separate GPIO pins and more complex firmware logic to control. That's a lot of overhead for what is basically a debugging aid. WS2812B addressable LEDs are even more involved, they need a specific single-wire timing protocol and their own power filtering. Both options are overkill for this use case. Simple green LEDs tell me what I need to know during bring-up and verification without adding any complexity to the firmware or the schematic.
+
+---
+
+## 10. Tactile Buttons (User Input)
+
+### Option 1
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **CTS 222AMVBAR SPST-NO Tactile Switch (SMD)**<br>Top-actuated surface-mount tactile switch<br>Price: $0.22/each — SPST-NO, 12 V, 0.05 A rating<br>[Product Page](https://www.digikey.com/en/products/detail/cts-electrocomponents/222AMVBAR/5227982) | - Surface-mount gull-wing — fits cleanly on PCB<br>- Excellent tactile feedback and reliable operation<br>- Compact footprint<br>- 12V rated, well above 3.3V logic requirements | - Still a small surface switch — may be slightly harder to press than a larger thru-hole button |
+
+### Option 2
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **Through-hole 6 mm Tactile Push Button**<br>Price: ~$0.15/each | - Larger button surface — easier to press<br>- Very widely available | - Through-hole requires PCB drilling<br>- Taller profile |
+
+### Option 3
+
+| Solution | Pros | Cons |
+|----------|------|------|
+| **Capacitive Touch Pad (Standalone IC)**<br>Price: ~$1.00–$2.00/each | - No mechanical parts — higher longevity<br>- Modern interface | - Requires additional IC and firmware driver<br>- Susceptible to false triggers in lab EMI environment<br>- Overkill for boot/enable functions |
+
+**Choice:** Option 1 — CTS 222AMVBAR SPST-NO Tactile Switch (×2)  
+**Rationale:** I need two buttons on this board — one for BOOT to put the ESP32 into download mode, and one for ENABLE to manually reset it. I went with the CTS 222AMVBAR because it's a compact top-actuated SMD switch with solid tactile feedback, and its gull-wing footprint integrates cleanly onto the PCB without needing any drilled holes. The 0.05A, 12V rating is way more than needed for a 3.3V GPIO input, so there's no concern about it being underspecced for this application. Each switch is paired with a 470Ω pull-up resistor to 3.3V and a 0.1µF decoupling capacitor to GND, which is the standard ESP32 boot and reset button circuit.
+
+Through-hole buttons would honestly be a bit easier to press during demos since the surface area is bigger, but they require drilling the PCB and sit noticeably taller than the rest of the surface-mount components, which I wanted to avoid. Capacitive touch is an interesting option in theory, but it needs a dedicated controller IC, firmware driver, and is well known for being sensitive to RF noise, which is a real concern on a board that's actively running Wi-Fi. For two simple pushbuttons, there's no reason to add that complexity.
+
+# Final Component Selection Summary
+
+The table below summarizes the major components selected for the ESP32 Wireless Communication subsystem.  
+This excludes passive components (resistors, capacitors, inductors) and standard PCB hardware.
+
+| Subsystem | Component | Manufacturer | Key Specs | Price | Source |
+|------------|------------|---------------|------------|--------|--------|
+| **Wireless MCU** | ESP32-S3-WROOM-1-N4 | Espressif Systems | Dual-core, 4MB Flash, Wi-Fi + BLE, native USB D+/D− | $5.06 | DigiKey |
+| **3.3V Regulation** | AP63203WU-7 | Diodes Incorporated | 600mA synchronous buck, SOT-23-6, fixed 3.3V output | $0.71 | DigiKey |
+| **Primary Power** | PJ-102A Barrel Jack | CUI Devices (Same Sky) | 5.5mm × 2.1mm DC input, through-hole, 9V supply | $0.59 | DigiKey |
+| **Secondary Power / Programming** | Micro USB SMD Connector | GCT | USB_B_Micro, VBUS backup power + native ESP32 USB flashing | ~$0.60 | DigiKey |
+| **RF Antenna** | Integrated PCB Antenna (Module) | Espressif Systems | 2.4 GHz Wi-Fi antenna built into WROOM module | Included | DigiKey |
+| **Input Protection** | Schottky Diode + 2.5A Polyfuse | onsemi + Littelfuse | Reverse polarity protection + resettable overcurrent fuse | ~$0.69 | DigiKey |
+| **Bus Power Jumpers** | Wurth 732-13618-ND | Wurth Elektronik | 2-pos 2.54mm shorting jumper ×2 (bus + barrel jack isolation) | ~$0.35 ea | DigiKey |
+| **GPIO Headers** | Harwin M52-040023V2045 | Harwin Inc | 20-pin SMD, 1.27mm pitch, UART + GPIO breakout | ~$2.94 | DigiKey |
+| **Daisy Chain Connectors** | 2×4 IDC Female Header | Marutsuelec | 8-pin, 2.54mm pitch, ribbon cable compatible ×2 | ~$0.65 ea | DigiKey |
+| **Status / Debug LEDs** | Green SMD LED 0805 (LG-R971) | ams-OSRAM | 0805, ~20mA, RX/TX indicators + GPIO status ×5 | ~$0.15 ea | DigiKey |
+| **Tactile Buttons** | CTS 222AMVBAR | CTS Electrocomponents | SPST-NO, 0.05A 12V, gull-wing SMD ×2 (BOOT + ENABLE) | ~$0.22 ea | DigiKey |
+
+---
+
+## Estimated Total Core Component Cost
+
+**≈ $13 – $15 per board**  
+*(Excluding passives, PCB fabrication, and shipping)*
+
+---
+
+# Cost Discussion
+
+Overall, the total cost for this subsystem landed in a very reasonable range. The **ESP32-S3-WROOM-1-N4** is the largest single expense, but for a Wi-Fi-capable board there’s really no avoiding that. At roughly $5, it integrates a dual-core processor, RF front end, PCB antenna, BLE, Wi-Fi, and native USB, which significantly reduces external component count.
+
+Two deliberate design decisions helped control cost:
+
+- Switching to the **AP63203WU-7** instead of a higher-end regulator (such as TPS62840) saved over $1 per board while still comfortably meeting the ESP32’s current requirements.
+- Using the **ESP32-S3’s native USB interface** eliminated the need for a CP2102N USB-to-UART bridge chip, saving roughly $4 per board while maintaining full programming and debugging capability.
+
+The protection components (Schottky diode + polyfuse) and debug hardware (LEDs and tactile switches) add minimal cost individually but significantly improve robustness, safety, and ease of verification during bring-up.
+
+Altogether, the board achieves strong functionality, compliance with EGR314 requirements, and good debug visibility while staying within a realistic student project budget.
