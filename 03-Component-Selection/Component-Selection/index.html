@@ -2251,7 +2251,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Choice:</strong> Option 1 — Schottky Diode (D_Shockley) + Polyfuse (F1) <br>
+<p><strong>Choice:</strong> Option 2 — Schottky Diode (D_Shockley) + Polyfuse (F1) <br>
 <strong>Rationale:</strong> I went with a Schottky diode and polyfuse combination because it covers the two most likely failure scenarios during development, accidental reverse polarity and overcurrent from a short circuit, without overcomplicating the design. The Schottky diode on the barrel jack input (D1) blocks reverse voltage if the supply is plugged in backwards, which is an easy mistake to make in a busy lab. It also does the power-path OR-ing between the barrel jack and USB VBUS so both supplies can be connected at the same time without one backfeeding the other. The polyfuse F1 handles overcurrent, if something on the board shorts during bring-up, the fuse trips and resets itself once the fault is cleared, so I don't have to dig through a parts drawer to replace a blown fuse mid-session.</p>
 <p>The TVS diode option is better for protecting against voltage spikes on long cable runs, which isn't really the concern here since we're running off a regulated bench supply. The common-mode choke would help with EMI, but for a 9V/3.3V low-frequency system it's completely unnecessary and adds cost and footprint. The Schottky + polyfuse approach is simple, proven, and practical for a student lab environment.</p>
 <hr>
@@ -2538,6 +2538,7 @@
 <p><strong>Choice:</strong> Option 1 — CTS 222AMVBAR SPST-NO Tactile Switch (×2)<br>
 <strong>Rationale:</strong> I need two buttons on this board — one for BOOT to put the ESP32 into download mode, and one for ENABLE to manually reset it. I went with the CTS 222AMVBAR because it's a compact top-actuated SMD switch with solid tactile feedback, and its gull-wing footprint integrates cleanly onto the PCB without needing any drilled holes. The 0.05A, 12V rating is way more than needed for a 3.3V GPIO input, so there's no concern about it being underspecced for this application. Each switch is paired with a 470Ω pull-up resistor to 3.3V and a 0.1µF decoupling capacitor to GND, which is the standard ESP32 boot and reset button circuit.</p>
 <p>Through-hole buttons would honestly be a bit easier to press during demos since the surface area is bigger, but they require drilling the PCB and sit noticeably taller than the rest of the surface-mount components, which I wanted to avoid. Capacitive touch is an interesting option in theory, but it needs a dedicated controller IC, firmware driver, and is well known for being sensitive to RF noise, which is a real concern on a board that's actively running Wi-Fi. For two simple pushbuttons, there's no reason to add that complexity.</p>
+<hr>
 <h1 id="final-component-selection-summary">Final Component Selection Summary</h1>
 <p>The table below summarizes the major components selected for the ESP32 Wireless Communication subsystem.<br>
 This excludes passive components (resistors, capacitors, inductors) and standard PCB hardware.</p>
