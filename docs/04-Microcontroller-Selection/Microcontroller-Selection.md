@@ -18,10 +18,10 @@ Based on team subsystem planning:
 
 ### Microcontrollers Considered
 
-**Choice A — ESP32-S3-WROOM-1-N4 (selected)**  
+**Choice A — ESP32-S3-WROOM-1-N8R8 (selected)**  
 - **Link / Datasheet:** [Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)
-- **Type:** Surface-mount module (SMD) with integrated antenna, 4 MB flash  
-- **Pros:** Integrated Wi-Fi/BLE, native USB support, camera interface support (ESP32-CAM), large GPIO count, pre-certified RF reduces layout risk.  
+- **Type:** Surface-mount module (SMD) with integrated antenna, 8MB flash, 8MB PSRAM  
+- **Pros:** Integrated Wi-Fi/BLE, native USB support, 8MB PSRAM enables OV5640 camera frame buffering, large GPIO count, pre-certified RF reduces layout risk, same footprint as N4 variant.  
 - **Cons:** Slightly larger footprint and higher per-unit cost than bare chip; module antenna performance depends on board placement.
 
 **Choice B — ESP32-WROOM-32 (classic module)**  
@@ -36,42 +36,43 @@ Based on team subsystem planning:
 - **Pros:** Smallest PCB footprint, lowest BOM cost (chip only), maximum control over RF layout and BOM.  
 - **Cons:** Requires custom RF layout and impedance matching (high risk for first spin), more difficult assembly (QFN), needs certified antenna or careful trace design.
 
-**Selection Rationale (summary):** The ESP32-S3-WROOM-1-N4 (Choice A) gives the best tradeoff of RF reliability, native camera and USB support, and quick bring-up for the wireless gateway role. Choice B is a reasonable fallback if S3 modules are unavailable; Choice C is lowest cost but introduces RF design risk unacceptable for a first student PCB.
+**Selection Rationale (summary):** The ESP32-S3-WROOM-1-N8R8 (Choice A) gives the best tradeoff of RF reliability, native camera and USB support, 8MB PSRAM for OV5640 frame buffering, and quick bring-up for the wireless gateway role. Choice B lacks PSRAM entirely and cannot support the OV5640 camera at any useful resolution. Choice C is lowest cost but introduces RF design risk unacceptable for a first student PCB.
 
 
 ---
 
 ## 2. Selected Microcontroller
 
-### ESP32-S3-WROOM-1-N4
+### ESP32-S3-WROOM-1-N8R8
 
 - 41-pin surface-mount module
 - Dual-core Xtensa LX7 processor
 - Integrated Wi-Fi + BLE
-- 4MB flash
-- Native USB support
+- 8MB flash + 8MB PSRAM
+- Native USB support (GPIO19/20)
 - Integrated PCB antenna
 - 3.3V operating voltage
+- Same PCB footprint as N4 variant — drop-in replacement
 
 ---
 
 The module pin layout and definitions are shown in:
 
-![ESP32-S3-WROOM-1-N4 Pin Layout (Top View)](esp32_pin_layout.png)
+![ESP32-S3-WROOM-1-N8R8 Pin Layout (Top View)](esp32_pin_layout.png)
 
-**Figure 01:** ESP32-S3-WROOM-1-N4 Module Pin Layout (Top View) (Figure 3.1)
-
----
-
-![ESP32-S3-WROOM-1-N4 Pin Definitions Table](pin_description_1.png)
-
-**Figure 02:** ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 1)
+**Figure 01:** ESP32-S3-WROOM-1-N8R8 Module Pin Layout (Top View) (Figure 3.1)
 
 ---
 
-![ESP32-S3-WROOM-1-N4 Pin Definitions Table (Continued)](pin_description_2.png)
+![ESP32-S3-WROOM-1-N8R8 Pin Definitions Table](pin_description_1.png)
 
-**Figure 03:** ESP32-S3-WROOM-1-N4 - Pin Definitions (Table 3-1, Part 2)
+**Figure 02:** ESP32-S3-WROOM-1-N8R8 - Pin Definitions (Table 3-1, Part 1)
+
+---
+
+![ESP32-S3-WROOM-1-N8R8 Pin Definitions Table (Continued)](pin_description_2.png)
+
+**Figure 03:** ESP32-S3-WROOM-1-N8R8 - Pin Definitions (Table 3-1, Part 2)
 
 These confirm:
 - 3V3 = Pin 2  
@@ -92,16 +93,17 @@ These confirm:
 |------------|----------|----------|
 | UART | Yes | 1 (RX + TX) |
 | Wi-Fi | Yes | Integrated |
-| Camera Interface | Yes | 1 (OV2640) |
+| Camera Interface | Yes | 1 (OV5640) |
 | USB | Yes | 1 |
-| GPIO | Yes | 4 Debug LEDs |
+| GPIO | Yes | 4 Debug LEDs + 1 Power LED |
+| PSRAM | Yes | 8MB (OV5640 frame buffers) |
 | SPI | No | 0 |
 | I2C | No | 0 |
 | ADC | No | 0 |
 | DAC | No | 0 |
 | PWM | Optional | 1 |
 
-**Estimated required GPIO count: ~10–12**
+**Estimated required GPIO count: ~20–22 (includes 8 camera data lines + 6 camera control/sync signals + UART + USB + LEDs)**
 
 ---
 
@@ -112,73 +114,88 @@ These confirm:
 | 32-bit CPU | No (8-bit) | Yes | Preferred | ESP32 |
 | Wi-Fi | No | Yes | Required | ESP32 |
 | UART | Yes | Yes (3) | ≥1 | Both |
-| Camera Support | No | Yes | Required | ESP32 |
+| Camera Support (DVP) | No | Yes | Required | ESP32 |
 | USB Native | Limited | Yes | Preferred | ESP32 |
-| GPIO Count | ~36 | ~36 | ≥6 | Both |
-| Flash | Limited | 4MB | ≥2MB | ESP32 |
+| PSRAM | No | Yes(8MB) | Required for OV5640 | ESP32 |
+| GPIO Count | ~36 | ~36 | ≥20 | Both |
+| Flash | Limited | 8MB | ≥2MB | ESP32 |
 
 ### Evaluation
 
-The PIC18F47Q10 does not support Wi-Fi or camera streaming without additional hardware modules.  
-The ESP32-S3-WROOM-1-N4 directly satisfies all wireless and streaming requirements.
-
-No critical requirements are unmet by the ESP32.
+The PIC18F47Q10 does not support Wi-Fi, camera streaming, or PSRAM without significant additional hardware. The ESP32-S3-WROOM-1-N8R8 directly satisfies all wireless, streaming, and memory requirements. No critical requirements are unmet by the ESP32.
 
 ---
 
 ## 5. Pin Allocation Table (Verified Against Datasheet)
 
-| Function | Module Pin | GPIO | Verified From Datasheet |
-|----------|------------|------|--------------------------|
-| 3.3V | Pin 2 | 3V3 | Figure 02: Table 3-1 |
-| GND | Pins 1, 40 | GND | Figure 03: Table 3-1 |
-| EPAD | Center Pad | GND | Figure 03: Table 3-1 |
-| EN | Pin 3 | EN | Figure 02: Table 3-1 |
-| UART TX | Pin 37 | GPIO43 | RXD0/TXD0 entry |
-| UART RX | Pin 36 | GPIO44 | RXD0/TXD0 entry |
-| USB D- | Pin 13 | GPIO19 | USB_D- entry |
-| USB D+ | Pin 14 | GPIO20 | USB_D+ entry |
-| MQTT LED | Pin 32 | GPIO39 | Figure 03: Table 3-1 |
-| RX LED | Pin 33 | GPIO40 | Figure 03: Table 3-1 |
-| TX LED | Pin 34 | GPIO41 | Figure 03: Table 3-1 |
-| Status LED | Pin 31 | GPIO38 | Figure 02: Table 3-1 |
-| Camera | Internal Camera Interface | Dedicated Pins | ESP32-S3 Camera Support |
+| Function      | Module     | Pin         | GPIO   | Notes                      |
+|---------------|------------|-------------|--------|----------------------------|
+| 3.3V          | Power      | Pin 2       | 3V3    |                            |
+| GND           | Ground     | Pins 1, 40  | GND    |                            |
+| EPAD          | Ground     | Center Pad  | GND    | Exposed pad                |
+| EN            |            | Pin 3       | EN     | Enable                     |
+| UART TX       |            | Pin 37      | GPIO43 | Daisy-chain TX             |
+| UART RX       |            | Pin 36      | GPIO44 | Daisy-chain RX             |
+| USB D−        |            | Pin 13      | GPIO19 | Native USB programming     |
+| USB D+        |            | Pin 14      | GPIO20 | Native USB programming     |
+| MQTT LED 1    |            | Pin 32      | GPIO39 | MQTT publish indicator     |
+| MQTT LED 2    |            | Pin 31      | GPIO38 | MQTT subscribe indicator   |
+| RX LED        |            | Pin 33      | GPIO40 | UART RX indicator          |
+| TX LED        |            | Pin 34      | GPIO41 | UART TX indicator          |
+| Camera SIOD   |            | —           | GPIO4  | OV5640 SCCB data           |
+| Camera SIOC   |            | —           | GPIO5  | OV5640 SCCB clock          |
+| Camera VSYNC  |            | —           | GPIO6  | Frame sync                 |
+| Camera HREF   |            | —           | GPIO7  | Line valid                 |
+| Camera PCLK   |            | —           | GPIO13 | Pixel clock                |
+| Camera D2     |            | —           | GPIO11 | Data bit 2 (LSB)           |
+| Camera D3     |            | —           | GPIO9  | Data bit 3                 |
+| Camera D4     |            | —           | GPIO8  | Data bit 4                 |
+| Camera D5     |            | —           | GPIO10 | Data bit 5                 |
+| Camera D6     |            | —           | GPIO12 | Data bit 6                 |
+| Camera D7     |            | —           | GPIO14 | Data bit 7                 |
+| Camera D8     |            | —           | GPIO47 | Data bit 8                 |
+| Camera D9     |            | —           | GPIO21 | Data bit 9 (MSB)           |
+| Camera RESET  |            | —           | GPIO48 | OV5640 reset               |
+| Camera PWDN   |            | —           | GPIO46 | OV5640 power down          |
+
 
 ### Pin Sufficiency Check
 
-Total pins required ≈ 12  
-Total available GPIO ≈ 30+  
+Total pins required ≈ 26  
+Total available GPIO ≈ 36+  
 
-There are no pin conflicts, and I double-checked all of them using the official pin definition table.
+There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 46, 47, 48) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.
 
 ---
 
 ## 6. Role Description
 
-I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, stream video from the onboard OV2640 camera, and provide local debug LED indicators. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.
+I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, stream live video from the onboard Adafruit OV5640 camera module (5MP, DVP interface), and provide local debug LED indicators for MQTT and UART activity. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.
 
 ---
 
 ## 7. Compatibility & Software Research
 
 ### Wi-Fi & MQTT
-- Fully supported in ESP-IDF and Arduino.
-- Stable networking stack.
-- Extensive documentation and examples.
+- Fully supported in ESP-IDF and Arduino frameworks.
+- Stable networking stack with reconnection handling.
+- Extensive documentation and community examples.
 
-### ESP32-CAM / OV2640
-- Official Espressif camera driver available.
-- Supported by ESP32 examples.
-- Requires sufficient memory allocation.
+### OV5640 Camera
+- OV5640 driver enabled via 'idf.py menuconfig' → Camera configuration → OV5640 Support.
+- Supported by the official Espressif 'esp32-camera' component.
+- Requires 8MB PSRAM for frame buffers, satisfied by N8R8 variant.
+- Adafruit OV5640 breakout (5839) has onboard oscillator, no XCLK circuit needed on host PCB.
 
 ### UART
 - Hardware UART with buffering.
 - Reliable for daisy-chain structured packets.
 
 ### Known Considerations
-- Wi-Fi transmission can cause current spikes.
-- Camera streaming increases RAM usage.
-- Proper decoupling and regulator sizing required.
+- Wi-Fi transmission causes current spikes, handled by AP63203WU-7 2A regulator with adequate headroom.
+- OV5640 at VGA resolution uses ~500KB per frame, PSRAM handles this comfortably.
+- PSRAM draws ~5mA additional current, negligible impact on power budget.
+- Proper decoupling on camera connector 3.3V supply required (10µF + 100nF).
 
 No major compatibility conflicts were identified.
 
@@ -190,11 +207,13 @@ No major compatibility conflicts were identified.
 
 ### Data-Driven Rationale
 
-- Only microcontroller that directly meets Wi-Fi and camera requirements.
-- Integrated antenna reduces RF layout risk.
-- Native USB simplifies programming.
-- Satisfies surface-mount requirement.
-- Exceeds GPIO and UART needs.
-- Strong ecosystem support lowers development risk.
+- Only microcontroller variant that directly meets Wi-Fi, camera, and PSRAM requirements simultaneously.
+- 8MB PSRAM is essential for OV5640 frame buffering, N4 variant cannot support this camera.
+- Integrated antenna reduces RF layout risk on first revision PCB.
+- Native USB simplifies firmware flashing without a separate USB-UART bridge chip.
+- Satisfies surface-mount requirement with same footprint as N4, no PCB layout changes needed.
+- Exceeds GPIO and UART requirements with room to spare.
+- Strong ESP-IDF ecosystem support lowers development and debugging risk.
+- ~$0.44 cost increase over N4 is justified by the full camera streaming capability gained.
 
-The ESP32-S3-WROOM-1-N4 is therefore the optimal and necessary microcontroller for this subsystem.
+The ESP32-S3-WROOM-1-N8R8 is therefore the optimal and necessary microcontroller for this subsystem.
