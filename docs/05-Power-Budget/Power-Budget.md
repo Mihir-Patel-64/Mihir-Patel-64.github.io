@@ -29,7 +29,7 @@ This subsystem operates entirely from a single regulated +3.3V rail derived from
 
 ### How the Power Budget Informed Design Choices
 
-- The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N4 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.
+- The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.
 
 - This requirement directly informed the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.
 

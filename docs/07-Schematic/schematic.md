@@ -6,7 +6,7 @@ tags:
 
 ## Individual Subsystem Schematic
 
-This schematic shows the complete design for my Wireless Communication subsystem. It includes the ESP32-S3-WROOM-1-N4 microcontroller module, switching 3.3V power supply (TPS62840 buck regulator), barrel jack input with fuse and reverse polarity protection, USB micro connector for programming, UART daisy-chain ribbon connectors, boot and enable circuitry, debug LEDs, and expansion headers.
+This schematic shows the complete design for my Wireless Communication subsystem. It includes the ESP32-S3-WROOM-1-N8R8 microcontroller module, switching 3.3V power supply (TPS62840 buck regulator), barrel jack input with fuse and reverse polarity protection, USB micro connector for programming, UART daisy-chain ribbon connectors, boot and enable circuitry, debug LEDs, and expansion headers.
 
 The schematic demonstrates all required power regulation, signal routing, protection circuitry, and communication interfaces necessary for reliable subsystem operation and integration within the team’s UART-based daisy-chain architecture.
 

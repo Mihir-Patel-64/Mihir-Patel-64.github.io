@@ -76,8 +76,8 @@ The adapter connects via a **DC barrel jack**, feeding an onboard:
 
 The regulator provides regulated 3.3V power to:
 
-- ESP32-S3-WROOM-1-N4 module  
-- ESP32-CAM module  
+- ESP32-S3-WROOM-1-N8R8 module  
+- ESP32-CAM module (Adafruit OV5640) 
 - Debug LEDs  
 - GPIO headers  
 - UART daisy-chain connectors  
