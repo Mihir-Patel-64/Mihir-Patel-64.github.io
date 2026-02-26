@@ -2114,9 +2114,9 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>ESP32-S3-WROOM-1-N4 Module with Integrated PCB Antenna</strong><br><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../ESP32.jpg" data-desc-position="bottom"><img alt="ESP32 Integrated Antenna" src="../ESP32.jpg"></a><br>Module variant with built-in PCB trace antenna<br>Price: Included in module cost<br><a href="https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N4/16163950?gclsrc=aw.ds&amp;gad_source=1&amp;gad_campaignid=20228387720&amp;gbraid=0AAAAADrbLljWmZW5sdxv23XwNjtDfhxpY&amp;gclid=Cj0KCQiAy6vMBhDCARIsAK8rOgljjTSGHmiFoA02kShDemJtp7KDTSQXbjnevbEdiL1UHyt1CLWwvw0aAoDtEALw_wcB">Product Page</a><br><a href="https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf">Datasheet</a></td>
-<td>- Simplest implementation (no extra antenna component)<br>- RF section pre-designed by manufacturer<br>- Reduces external BOM parts</td>
-<td>- Performance depends on host PCB placement<br>- Must strictly follow antenna clearance recommendations<br>- Slightly less flexible for tuning or upgrades</td>
+<td><strong>ESP32-S3-WROOM-1-N8R8 (SMD Module with Integrated PCB Antenna)</strong><br><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../ESP32.jpg" data-desc-position="bottom"><img alt="ESP32 Integrated Antenna" src="../ESP32.jpg"></a><br>Module variant with built-in PCB trace antenna, 8MB Flash, 8MB PSRAM<br>Price: ≈ $6.13/each<br><a href="https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N8R8/15295891">Product Page</a><br><a href="https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf">Datasheet</a></td>
+<td>- Simplest implementation — no extra antenna component<br>- RF section pre-designed and certified by Espressif<br>- 8MB PSRAM enables camera frame buffering for OV5640<br>- Same footprint as N4 variant — drop-in replacement<br>- Reduces external BOM parts</td>
+<td>- Performance depends on host PCB placement<br>- Must strictly follow antenna clearance recommendations<br>- Slightly higher cost than N4 variant (~$0.44 more)<br>- Slightly less flexible for tuning or upgrades</td>
 </tr>
 </tbody>
 </table>
@@ -2137,11 +2137,11 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Choice:</strong> Option 2 — ESP32-S3-WROOM Module with Integrated Antenna <br>
-<strong>Rationale:</strong> The integrated PCB antenna version of the ESP32-S3-WROOM module is selected because it provides the best balance between simplicity, reliability, and reduced design risk. Since the RF portion of the antenna is already designed and tuned by Espressif, it significantly reduces the likelihood of performance issues caused by improper impedance matching or layout mistakes.</p>
-<p>While a discrete chip antenna provides predictable and repeatable performance, it requires careful layout and a properly tuned matching network. For a first revision student PCB, minimizing RF tuning complexity reduces bring-up time and improves demo reliability.</p>
-<p>The u.FL connector option offers flexibility and extended range, but its mechanical fragility and added cost make it less suitable for repeated handling during testing and showcase demonstrations.</p>
-<p>Using the integrated antenna keeps the design compact, reliable, and aligned with the goal of achieving stable wireless communication with minimal RF debugging.</p>
+<p><strong>Choice: Option 2 — ESP32-S3-WROOM-1-N8R8 with Integrated PCB Antenna</strong></p>
+<p><strong>Rationale:</strong> I chose the ESP32-S3-WROOM-1-N8R8 specifically because it's the only variant in the WROOM-1 family that includes both 8MB of flash and 8MB of PSRAM in the same module footprint. The PSRAM is what makes the OV5640 camera integration possible — without it, there's nowhere to store camera frame buffers, and the esp_camera driver simply won't initialize at any useful resolution. Upgrading from the N4 to the N8R8 costs about $0.44 more per board, which is a completely worthwhile trade for gaining full camera functionality.</p>
+<p>Beyond the PSRAM advantage, the integrated PCB antenna version was chosen over the discrete chip antenna and u.FL connector options for the same reasons. Since the RF section is already designed, tuned, and pre-certified by Espressif, I don't need to worry about impedance matching, antenna keepout zones, or layout-induced RF performance issues on a first revision PCB. A discrete chip antenna would require a properly tuned matching network and strict ground plane management — that's extra design risk I don't need on a student board with a tight timeline.</p>
+<p>The u.FL connector option would allow swapping in a higher-gain external antenna, which sounds useful, but the connector itself is mechanically fragile and gets damaged easily with repeated plugging during lab testing and demo sessions. For a board that's going to be handled a lot during the Innovation Showcase, that's a real concern.</p>
+<p>The N8R8 with integrated antenna keeps the design compact, the BOM simple, and the RF bring-up risk low — while unlocking the full camera streaming capability the subsystem needs.</p>
 <hr>
 <h2 id="5-usb-uart-programming-interface-bring-up-ota">5. USB ↔ UART / Programming Interface <strong>(Bring-up / OTA)</strong></h2>
 <h3 id="option-1_4">Option 1</h3>

@@ -1152,13 +1152,13 @@
 <p>This subsystem operates entirely from a single regulated +3.3V rail derived from a 9V AC-DC wall adapter through an onboard switching buck regulator.</p>
 <hr>
 <h2 id="power-budget-table">Power Budget Table</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../PowerBudget_MP.png" data-desc-position="bottom"><img alt="Power Budget Table" src="../PowerBudget_MP.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="PowerBudget_MP.png" data-desc-position="bottom"><img alt="Power Budget Table" src="PowerBudget_MP.png"></a></p>
 <p><strong>Figure 01:</strong> ESP32 Wireless Communication Subsystem — Full Power Budget (Team 302, Version 1B)</p>
 <hr>
 <h3 id="how-the-power-budget-informed-design-choices">How the Power Budget Informed Design Choices</h3>
 <ul>
 <li>
-<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N4 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
+<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
 </li>
 <li>
 <p>This requirement directly informed the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.</p>
