@@ -338,7 +338,7 @@ This excludes passive components (resistors, capacitors, inductors) and standard
 | **Primary Power** | PJ-102A Barrel Jack | CUI Devices (Same Sky) | 5.5mm × 2.1mm DC input, through-hole, 9V supply | $0.59 | DigiKey |
 | **Secondary Power / Programming** | Micro USB SMD Connector | GCT | USB_B_Micro, VBUS backup power + native ESP32 USB flashing | ~$0.60 | DigiKey |
 | **RF Antenna** | Integrated PCB Antenna (Module) | Espressif Systems | 2.4 GHz Wi-Fi antenna built into WROOM module | Included | DigiKey |
-| **Input Protection** | Schottky Diode + 2.5A Polyfuse | onsemi + Littelfuse | Reverse polarity protection + resettable overcurrent fuse | ~$0.69 | DigiKey |
+| **Input Protection** | Schottky Diode + 2.5A Polyfuse | onsemi + Littelfuse(F1306CT-ND) | Reverse polarity protection + resettable overcurrent fuse | ~$0.69 | DigiKey |
 | **Bus Power Jumpers** | Wurth 732-13618-ND | Wurth Elektronik | 2-pos 2.54mm shorting jumper ×2 (bus + barrel jack isolation) | ~$0.35 ea | DigiKey |
 | **GPIO Headers** | Harwin M52-040023V2045 | Harwin Inc | 20-pin SMD, 1.27mm pitch, UART + GPIO breakout | ~$2.94 | DigiKey |
 | **Daisy Chain Connectors** | 2×4 IDC Female Header | Marutsuelec | 8-pin, 2.54mm pitch, ribbon cable compatible ×2 | ~$0.65 ea | DigiKey |
