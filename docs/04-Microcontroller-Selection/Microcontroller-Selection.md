@@ -109,7 +109,7 @@ These confirm:
 
 ## 4. Microcontroller Capability Comparison
 
-| Feature | PIC18F47Q10 | ESP32-S3-WROOM-1-N4 | Required? | Result |
+| Feature | PIC18F47Q10 | ESP32-S3-WROOM-1-N8R8 | Required? | Result |
 |----------|--------------|----------------------|------------|---------|
 | 32-bit CPU | No (8-bit) | Yes | Preferred | ESP32 |
 | Wi-Fi | No | Yes | Required | ESP32 |
@@ -142,21 +142,21 @@ The PIC18F47Q10 does not support Wi-Fi, camera streaming, or PSRAM without signi
 | MQTT LED 2    |            | Pin 31      | GPIO38 | MQTT subscribe indicator   |
 | RX LED        |            | Pin 33      | GPIO40 | UART RX indicator          |
 | TX LED        |            | Pin 34      | GPIO41 | UART TX indicator          |
-| Camera SIOD   |            | —           | GPIO4  | OV5640 SCCB data           |
-| Camera SIOC   |            | —           | GPIO5  | OV5640 SCCB clock          |
-| Camera VSYNC  |            | —           | GPIO6  | Frame sync                 |
-| Camera HREF   |            | —           | GPIO7  | Line valid                 |
-| Camera PCLK   |            | —           | GPIO13 | Pixel clock                |
-| Camera D2     |            | —           | GPIO11 | Data bit 2 (LSB)           |
-| Camera D3     |            | —           | GPIO9  | Data bit 3                 |
-| Camera D4     |            | —           | GPIO8  | Data bit 4                 |
-| Camera D5     |            | —           | GPIO10 | Data bit 5                 |
-| Camera D6     |            | —           | GPIO12 | Data bit 6                 |
-| Camera D7     |            | —           | GPIO14 | Data bit 7                 |
-| Camera D8     |            | —           | GPIO47 | Data bit 8                 |
-| Camera D9     |            | —           | GPIO21 | Data bit 9 (MSB)           |
-| Camera RESET  |            | —           | GPIO48 | OV5640 reset               |
-| Camera PWDN   |            | —           | GPIO46 | OV5640 power down          |
+| Camera SIOD/SDA   |            | Pin 4           | GPIO4  | OV5640 SCCB data           |
+| Camera SIOC/SCL   |            | Pin 22           | GPIO14  | OV5640 SCCB clock          |
+| Camera VSYNC  |            | Pin 21           | GPIO13  | Frame sync                 |
+| Camera HREF   |            | Pin 5           | GPIO5  | Line valid                 |
+| Camera PCLK   |            | Pin 20           | GPIO12 | Pixel clock                |
+| Camera D2     |            | Pin 9           | GPIO16 | Data bit 2 (LSB)           |
+| Camera D3     |            | Pin 12           | GPIO8  | Data bit 3                 |
+| Camera D4     |            | Pin 8           | GPIO15  | Data bit 4                 |
+| Camera D5     |            | Pin 17           | GPIO9 | Data bit 5                 |
+| Camera D6     |            | Pin 7           | GPIO7 | Data bit 6                 |
+| Camera D7     |            | Pin 18           | GPIO10 | Data bit 7                 |
+| Camera D8     |            | Pin 6           | GPIO6 | Data bit 8                 |
+| Camera D9     |            | Pin 19           | GPIO11 | Data bit 9 (MSB)           |
+| Camera RESET  |            | Pin 11           | GPIO18 | OV5640 reset               |
+| Camera PWDN   |            | Pin 10           | GPIO17 | OV5640 power down          |
 
 
 ### Pin Sufficiency Check
@@ -164,7 +164,7 @@ The PIC18F47Q10 does not support Wi-Fi, camera streaming, or PSRAM without signi
 Total pins required ≈ 26  
 Total available GPIO ≈ 36+  
 
-There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 46, 47, 48) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.
+There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.
 
 ---
 
@@ -185,7 +185,7 @@ I am responsible for the Wireless Communication subsystem. My board serves as th
 - OV5640 driver enabled via 'idf.py menuconfig' → Camera configuration → OV5640 Support.
 - Supported by the official Espressif 'esp32-camera' component.
 - Requires 8MB PSRAM for frame buffers, satisfied by N8R8 variant.
-- Adafruit OV5640 breakout (5839) has onboard oscillator, no XCLK circuit needed on host PCB.
+- Adafruit OV5640 breakout (5841) has onboard oscillator, no XCLK circuit needed on host PCB.
 
 ### UART
 - Hardware UART with buffering.
@@ -203,7 +203,7 @@ No major compatibility conflicts were identified.
 
 ## 8. Final Microcontroller Selection
 
-**Final Choice: ESP32-S3-WROOM-1-N4**
+**Final Choice: ESP32-S3-WROOM-1-N8R8**
 
 ### Data-Driven Rationale
 
@@ -214,6 +214,6 @@ No major compatibility conflicts were identified.
 - Satisfies surface-mount requirement with same footprint as N4, no PCB layout changes needed.
 - Exceeds GPIO and UART requirements with room to spare.
 - Strong ESP-IDF ecosystem support lowers development and debugging risk.
-- ~$0.44 cost increase over N4 is justified by the full camera streaming capability gained.
+- ~$1.07 cost increase over N4 is justified by the full camera streaming capability gained.
 
 The ESP32-S3-WROOM-1-N8R8 is therefore the optimal and necessary microcontroller for this subsystem.
