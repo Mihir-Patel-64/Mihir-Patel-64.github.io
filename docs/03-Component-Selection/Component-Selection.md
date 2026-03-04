@@ -12,7 +12,7 @@ tags:
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **ESP32-S3-WROOM-1-N4 (SMD module)**<br>![ESP32-S3-WROOM-1-N4](ESP32_S3_WROOM_1_N4.jpeg)<br>Surface-mount module with integrated RF, 4MB flash, dual-core CPU<br>Price: ≈ $5.06/each<br>[Product Page](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N4/16162639)<br>[Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | - Integrated Wi-Fi and Bluetooth<br>- Dual-core processor allows multitasking (MQTT + UART)<br>- Large community support and example libraries<br>- RF section already optimized inside module | - Slightly larger footprint than bare chip<br>- Requires antenna keepout area on PCB |
+| **ESP32-S3-WROOM-1-N8R8 (SMD module)**<br>![ESP32-S3-WROOM-1-N8R8](ESP32_S3_WROOM_1_N4.jpeg)<br>Surface-mount module with integrated RF, 8MB flash, 8MB PSRAM, dual-core CPU<br>Price: ≈ $6.13/each<br>[Product Page](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N8R8/15295891)<br>[Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | - Integrated Wi-Fi and Bluetooth<br>- 8MB PSRAM enables OV5640 camera frame buffering<br>- Dual-core allows multitasking (MQTT + UART + camera)<br>- Same footprint as N4, drop-in replacement<br>- RF section already optimized inside module | - Slightly larger footprint than bare chip<br>- Requires antenna keepout area on PCB<br>- ~$1.07 more than N4 variant |
 
 
 ### Option 2
@@ -30,9 +30,9 @@ tags:
 
 
 **Choice:** Option 1 — ESP32-S3-WROOM-1-N4
-**Rationale:** The ESP32-S3-WROOM-1-N4 module is selected because it provides the most reliable and low-risk solution for implementing Wi-Fi and MQTT communication in this subsystem. Since this board is responsible for two-way wireless communication, stable connectivity is critical. Using a pre-certified module significantly reduces RF design complexity compared to the bare QFN chip option.
+**Rationale:** The ESP32-S3-WROOM-1-N8R8 module is selected because it provides the most reliable and capable solution for implementing Wi-Fi, MQTT communication, and OV5640 camera streaming in this subsystem. The 8MB PSRAM is a hard requirement, without it, the `esp_camera` driver cannot allocate frame buffers at usable resolutions, and the camera integration would fail entirely. The $1.07 cost increase over the N4 variant is fully justified by this capability.
 
-The S3 version also provides improved performance and peripheral support compared to the classic ESP32-WROOM-32, while still remaining affordable. Its dual-core architecture allows separation of networking tasks (MQTT, telemetry, reconnection handling) from UART communication with the team daisy-chain system. Although the module has a slightly larger footprint than the bare chip, the reduction in RF tuning risk and faster bring-up time make it the optimal choice for this project.
+The S3 architecture also provides improved performance and peripheral support compared to the classic ESP32-WROOM-32, while still remaining affordable. Its dual-core design allows separation of networking tasks (MQTT publishing, reconnection handling) from UART daisy-chain communication and camera data processing simultaneously. The N8R8 uses the identical PCB footprint as the N4, meaning no layout changes were required when upgrading. Although the module has a slightly larger footprint than the bare QFN chip, the reduction in RF tuning risk, integrated PSRAM, and faster bring-up time make it the optimal choice for this project.
 
 ---
 
@@ -186,13 +186,13 @@ I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial 
 
 
 **Choice:** Option 2 — Schottky Diode (D_Shockley) + Polyfuse (F1)   
-**Rationale:** I went with a Schottky diode and polyfuse combination because it covers the two most likely failure scenarios during development, accidental reverse polarity and overcurrent from a short circuit, without overcomplicating the design. The Schottky diode on the barrel jack input (D1) blocks reverse voltage if the supply is plugged in backwards, which is an easy mistake to make in a busy lab. It also does the power-path OR-ing between the barrel jack and USB VBUS so both supplies can be connected at the same time without one backfeeding the other. The polyfuse F1 handles overcurrent, if something on the board shorts during bring-up, the fuse trips and resets itself once the fault is cleared, so I don't have to dig through a parts drawer to replace a blown fuse mid-session.
+**Rationale:** I went with a Schottky diode and polyfuse combination because it covers the two most likely failure scenarios during development, accidental reverse polarity and overcurrent from a short circuit, without overcomplicating the design. The Schottky diode on the barrel jack input (D1) blocks reverse voltage if the supply is plugged in backwards, which is an easy mistake to make in a busy lab. It also does the power-path OR-ing between the barrel jack and USB VBUS so both supplies can be connected at the same time without one backfeeding the other. The board mount fuse F1 (015402.5DRT) handles overcurrent, if something shorts during bring-up, the fuse blows and the holder allows easy replacement without soldering, so I can swap in a fresh fuse and get back to testing quickly.
 
 The TVS diode option is better for protecting against voltage spikes on long cable runs, which isn't really the concern here since we're running off a regulated bench supply. The common-mode choke would help with EMI, but for a 9V/3.3V low-frequency system it's completely unnecessary and adds cost and footprint. The Schottky + polyfuse approach is simple, proven, and practical for a student lab environment.
 
 ---
 
-## 6. Power Path Jumpers (Bus Power Control)
+## 7. Power Path Jumpers (Bus Power Control)
 
 ### Option 1
 
@@ -219,7 +219,7 @@ A slide switch would also work, but it takes up more PCB space and isn't the typ
 
 ---
 
-## 7. GPIO Headers & Expansion Pins (Connectivity)
+## 8. GPIO Headers & Expansion Pins (Connectivity)
 
 ### Option 1
 
@@ -246,7 +246,7 @@ Standard through-hole 0.1" headers would definitely be easier to plug jumper wir
 
 ---
 
-## 8. Daisy Chain Connectors (Upstream / Downstream)
+## 9. Daisy Chain Connectors (Upstream / Downstream)
 
 ### Option 1
 
@@ -272,7 +272,7 @@ JST connectors are nice for compact designs but they aren't IDC ribbon-compatibl
 
 ---
 
-## 9. Status & Debug LEDs (Testability)
+## 10. Status & Debug LEDs (Testability)
 
 ### Option 1
 
@@ -299,7 +299,7 @@ RGB LEDs would be cool for showing different states with different colors, but e
 
 ---
 
-## 10. Tactile Buttons (User Input)
+## 11. Tactile Buttons (User Input)
 
 ### Option 1
 
@@ -333,36 +333,40 @@ This excludes passive components (resistors, capacitors, inductors) and standard
 
 | Subsystem | Component | Manufacturer | Key Specs | Price | Source |
 |------------|------------|---------------|------------|--------|--------|
-| **Wireless MCU** | ESP32-S3-WROOM-1-N4 | Espressif Systems | Dual-core, 4MB Flash, Wi-Fi + BLE, native USB D+/D− | $5.06 | DigiKey |
-| **3.3V Regulation** | AP63203WU-7 | Diodes Incorporated | 600mA synchronous buck, SOT-23-6, fixed 3.3V output | $0.71 | DigiKey |
-| **Primary Power** | PJ-102A Barrel Jack | CUI Devices (Same Sky) | 5.5mm × 2.1mm DC input, through-hole, 9V supply | $0.59 | DigiKey |
-| **Secondary Power / Programming** | Micro USB SMD Connector | GCT | USB_B_Micro, VBUS backup power + native ESP32 USB flashing | ~$0.60 | DigiKey |
+| **Wireless MCU** | ESP32-S3-WROOM-1-N8R8 | Espressif Systems | Dual-core, 8MB Flash, 8MB PSRAM, Wi-Fi + BLE, native USB D+/D− | $6.13 | DigiKey |
+| **3.3V Regulation** | AP63203WU-7 | Diodes Incorporated | 2A synchronous buck, TSOT23-6, fixed 3.3V output | $0.71 | DigiKey |
+| **Primary Power** | PJ-102A Barrel Jack | Same Sky (CUI) | 5.5mm × 2.1mm DC input, through-hole, 9V supply | $0.59 | DigiKey |
+| **Secondary Power / Programming** | USB3131-30-0230-A Micro USB | GCT | USB_B_Micro vertical THT, VBUS backup power + native ESP32 USB flashing | $0.78 | DigiKey |
 | **RF Antenna** | Integrated PCB Antenna (Module) | Espressif Systems | 2.4 GHz Wi-Fi antenna built into WROOM module | Included | DigiKey |
-| **Input Protection** | Schottky Diode + 2.5A Polyfuse | onsemi + Littelfuse(F1306CT-ND) | Reverse polarity protection + resettable overcurrent fuse | ~$0.69 | DigiKey |
-| **Bus Power Jumpers** | Wurth 732-13618-ND | Wurth Elektronik | 2-pos 2.54mm shorting jumper ×2 (bus + barrel jack isolation) | ~$0.35 ea | DigiKey |
-| **GPIO Headers** | Harwin M52-040023V2045 | Harwin Inc | 20-pin SMD, 1.27mm pitch, UART + GPIO breakout | ~$2.94 | DigiKey |
-| **Daisy Chain Connectors** | 2×4 IDC Female Header | Marutsuelec | 8-pin, 2.54mm pitch, ribbon cable compatible ×2 | ~$0.65 ea | DigiKey |
-| **Status / Debug LEDs** | Green SMD LED 0805 (LG-R971) | ams-OSRAM | 0805, ~20mA, RX/TX indicators + GPIO status ×5 | ~$0.15 ea | DigiKey |
-| **Tactile Buttons** | CTS 222AMVBAR | CTS Electrocomponents | SPST-NO, 0.05A 12V, gull-wing SMD ×2 (BOOT + ENABLE) | ~$0.22 ea | DigiKey |
+| **Camera Module** | Adafruit OV5640 Breakout | Adafruit | 5MP, DVP interface, onboard oscillator, requires PSRAM for frame buffers | $17.50 | DigiKey |
+| **Input Protection** | MBRS340T3G + 015402.5DRT | onsemi + Littelfuse | Schottky 40V 3A reverse polarity + 2.5A board mount replaceable fuse SMD | $0.70 + $4.60 | DigiKey |
+| **Bus Power Jumpers** | HMSC-G Shunt Jumper | Adam Tech | 1.27mm pitch shorting jumper ×4 (bus + barrel jack isolation) | $0.16 ea | DigiKey |
+| **Daisy Chain Connectors** | 2×4 IDC Pin Header 2.54mm | Various | 8-pin, 2.54mm pitch, ribbon cable compatible ×2 | ~$0.00 | Peralta |
+| **Camera Connector** | 2×9 Pin Header 2.54mm | Various | 18-pin, 2.54mm pitch, DVP camera interface | ~$0.00 | Peralta |
+| **Status / Debug LEDs** | LG R971-KN-1-0-20-R18 | ams-OSRAM | 0805 SMD, ~20mA, RX/TX indicators + GPIO status ×5 | $0.15 ea | DigiKey |
+| **Tactile Buttons** | CTS 222AMVBAR | CTS Electrocomponents | SPST-NO, 0.05A 12V, gull-wing SMD ×2 (BOOT + ENABLE) | $0.22 ea | DigiKey |
 
 ---
 
 ## Estimated Total Core Component Cost
 
-**≈ 13 – 15 USD per board**  
+**≈ 35 – 37 USD per board**  
 *(Excluding passives, PCB fabrication, and shipping)*
 
 ---
 
 # Cost Discussion
 
-Overall, the total cost for this subsystem landed in a very reasonable range. The **ESP32-S3-WROOM-1-N4** is the largest single expense, but for a Wi-Fi-capable board there’s really no avoiding that. At roughly $5, it integrates a dual-core processor, RF front end, PCB antenna, BLE, Wi-Fi, and native USB, which significantly reduces external component count.
+Overall, the total cost for this subsystem is well justified given its capabilities. The **ESP32-S3-WROOM-1-N8R8** is the second largest single expense, but for a Wi-Fi-capable board with integrated PSRAM, there is no practical alternative. At $6.13, it integrates a dual-core processor, RF front end, PCB antenna, BLE, Wi-Fi, native USB, and 8MB PSRAM, the last of which is a hard requirement for the OV5640 camera driver to allocate frame buffers at usable resolutions.
 
-Two deliberate design decisions helped control cost:
+The **Adafruit OV5640 camera breakout** at $17.50 represents the largest line item, but is justified by the exploration device use case — visual data capture and streaming over MQTT is the defining function of this subsystem. Instructor written approval has been obtained for use of this daughter board per EGR314 requirements.
 
-- Switching to the **AP63203WU-7** instead of a higher-end regulator (such as TPS62840) saved over $1 per board while still comfortably meeting the ESP32’s current requirements.
-- Using the **ESP32-S3’s native USB interface** eliminated the need for a CP2102N USB-to-UART bridge chip, saving roughly $4 per board while maintaining full programming and debugging capability.
+Three deliberate design decisions helped control cost elsewhere:
 
-The protection components (Schottky diode + polyfuse) and debug hardware (LEDs and tactile switches) add minimal cost individually but significantly improve robustness, safety, and ease of verification during bring-up.
+- Upgrading from N4 to **N8R8** added only $1.07 while unlocking full camera functionality — without PSRAM the $17.50 camera investment would be unusable.
+- Switching to the **AP63203WU-7** instead of a higher-end regulator saved over $1 per board while still comfortably meeting the ESP32's 2A current requirements.
+- Using the **ESP32-S3's native USB interface** eliminated the need for a CP2102N USB-to-UART bridge chip, saving roughly $4 per board while maintaining full programming and debugging capability.
 
-Altogether, the board achieves strong functionality, compliance with EGR314 requirements, and good debug visibility while staying within a realistic student project budget.
+The protection components (Schottky diode + board mount fuse) and debug hardware (LEDs and tactile switches) add minimal cost individually but significantly improve robustness, safety, and ease of verification during bring-up.
+
+Altogether, the board achieves strong functionality, full camera integration, compliance with EGR314 requirements, and good debug visibility while staying within a realistic student project budget.
