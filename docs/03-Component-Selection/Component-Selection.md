@@ -123,13 +123,13 @@ By choosing the barrel jack, I ensure mechanical robustness, compliance with cou
 
 **Choice: Option 2 — ESP32-S3-WROOM-1-N8R8 with Integrated PCB Antenna**
 
-**Rationale:** I chose the ESP32-S3-WROOM-1-N8R8 specifically because it's the only variant in the WROOM-1 family that includes both 8MB of flash and 8MB of PSRAM in the same module footprint. The PSRAM is what makes the OV5640 camera integration possible — without it, there's nowhere to store camera frame buffers, and the esp_camera driver simply won't initialize at any useful resolution. Upgrading from the N4 to the N8R8 costs about $0.44 more per board, which is a completely worthwhile trade for gaining full camera functionality.
+**Rationale:** I chose the ESP32-S3-WROOM-1-N8R8 specifically because it's the only variant in the WROOM-1 family that includes both 8MB of flash and 8MB of PSRAM in the same module footprint. The PSRAM is what makes the OV5640 camera integration possible without it, there's nowhere to store camera frame buffers, and the esp_camera driver simply won't initialize at any useful resolution. Upgrading from the N4 to the N8R8 costs about $0.44 more per board, which is a completely worthwhile trade for gaining full camera functionality.
 
-Beyond the PSRAM advantage, the integrated PCB antenna version was chosen over the discrete chip antenna and u.FL connector options for the same reasons. Since the RF section is already designed, tuned, and pre-certified by Espressif, I don't need to worry about impedance matching, antenna keepout zones, or layout-induced RF performance issues on a first revision PCB. A discrete chip antenna would require a properly tuned matching network and strict ground plane management — that's extra design risk I don't need on a student board with a tight timeline.
+Beyond the PSRAM advantage, the integrated PCB antenna version was chosen over the discrete chip antenna and u.FL connector options for the same reasons. Since the RF section is already designed, tuned, and pre-certified by Espressif, I don't need to worry about impedance matching, antenna keepout zones, or layout-induced RF performance issues on a first revision PCB. A discrete chip antenna would require a properly tuned matching network and strict ground plane management, that's extra design risk I don't need on a student board with a tight timeline.
 
 The u.FL connector option would allow swapping in a higher-gain external antenna, which sounds useful, but the connector itself is mechanically fragile and gets damaged easily with repeated plugging during lab testing and demo sessions. For a board that's going to be handled a lot during the Innovation Showcase, that's a real concern.
 
-The N8R8 with integrated antenna keeps the design compact, the BOM simple, and the RF bring-up risk low — while unlocking the full camera streaming capability the subsystem needs.
+The N8R8 with integrated antenna keeps the design compact, the BOM simple, and the RF bring-up risk low, while unlocking the full camera streaming capability the subsystem needs.
 
 
 ---
@@ -158,7 +158,7 @@ The N8R8 with integrated antenna keeps the design compact, the BOM simple, and t
 **Choice:** Option 1 — Micro USB SMD Connector (Native USB)  
 **Rationale:** The Micro USB connector serves two purposes on my board, it acts as a secondary power input through VBUS (protected by a Schottky diode D7 so it doesn't fight with the barrel jack), and it's the primary way I'll be flashing firmware using the ESP32-S3's native USB pins. Because the S3 already has USB D+ and D− built in, I don't need a separate USB-to-UART chip at all. That saves me a chip, the routing that comes with it, and about $4 off the BOM.
 
-I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial ESP32 boards are designed, but it felt like overkill here. The CP2102N works great, but it adds another IC to place and route, and since the S3 natively supports USB, it's just extra complexity for no real benefit. The 2×5 header-only option was the other end of the spectrum -  cheaper, but requiring an external adapter every time I want to flash code is something I didn't want to deal with, especially during back-to-back verification sessions. Having the USB connector directly on the board is just much more convenient.
+I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial ESP32 boards are designed, but it felt like overkill here. The CP2102N works great, but it adds another IC to place and route, and since the S3 natively supports USB, it's just extra complexity for no real benefit. The 2×5 header-only option was the other end of the spectrum which is cheaper, but requiring an external adapter every time I want to flash code is something I didn't want to deal with, especially during back-to-back verification sessions. Having the USB connector directly on the board is just much more convenient.
 
 ---
 
@@ -266,7 +266,7 @@ Standard through-hole 0.1" headers would definitely be easier to plug jumper wir
 | **Screw Terminal Block (8-pin)**<br>Price: ~$1.00/each | - Very robust mechanical connection<br>- Easy wire attachment | - Very large PCB footprint<br>- Not IDC ribbon cable compatible<br>- Does not meet course connector standard |
 
 **Choice:** Option 1 — 2×4 IDC Female Header (8-pin)  
-**Rationale:** This one was basically decided by the course spec. EGR314 requires all boards to use an 8-wire ribbon cable with a 2×4 IDC female header for the daisy chain network, so using anything else would mean my board can't physically connect to my teammates' boards. I have two of these, one for the upstream connection (Connector In) and one for the downstream connection (Connector Out) — which matches the layout shown in the class daisy chain diagram.
+**Rationale:** This one was basically decided by the course spec. EGR314 requires all boards to use an 8-wire ribbon cable with a 2×4 IDC female header for the daisy chain network, so using anything else would mean my board can't physically connect to my teammates' boards. I have two of these, one for the upstream connection (Connector In) and one for the downstream connection (Connector Out), which matches the layout shown in the class daisy chain diagram.
 
 JST connectors are nice for compact designs but they aren't IDC ribbon-compatible, so the whole team would need custom cables just for my board, which isn't practical. Screw terminals are extremely bulky and also incompatible with ribbon cables. There really wasn't a decision to make here, the 2×4 IDC header is the only option that keeps my board compatible with the rest of the system.
 
@@ -359,11 +359,11 @@ This excludes passive components (resistors, capacitors, inductors) and standard
 
 Overall, the total cost for this subsystem is well justified given its capabilities. The **ESP32-S3-WROOM-1-N8R8** is the second largest single expense, but for a Wi-Fi-capable board with integrated PSRAM, there is no practical alternative. At $6.13, it integrates a dual-core processor, RF front end, PCB antenna, BLE, Wi-Fi, native USB, and 8MB PSRAM, the last of which is a hard requirement for the OV5640 camera driver to allocate frame buffers at usable resolutions.
 
-The **Adafruit OV5640 camera breakout** at $17.50 represents the largest line item, but is justified by the exploration device use case — visual data capture and streaming over MQTT is the defining function of this subsystem. Instructor written approval has been obtained for use of this daughter board per EGR314 requirements.
+The **Adafruit OV5640 camera breakout** at $17.50 represents the largest line item, but is justified by the exploration device use case, visual data capture and streaming over MQTT is the defining function of this subsystem. Instructor written approval has been obtained for use of this daughter board per EGR314 requirements.
 
 Three deliberate design decisions helped control cost elsewhere:
 
-- Upgrading from N4 to **N8R8** added only $1.07 while unlocking full camera functionality — without PSRAM the $17.50 camera investment would be unusable.
+- Upgrading from N4 to **N8R8** added only 1.07 USD while unlocking full camera functionality, without PSRAM the 17.50 USD camera investment would be unusable.
 - Switching to the **AP63203WU-7** instead of a higher-end regulator saved over $1 per board while still comfortably meeting the ESP32's 2A current requirements.
 - Using the **ESP32-S3's native USB interface** eliminated the need for a CP2102N USB-to-UART bridge chip, saving roughly $4 per board while maintaining full programming and debugging capability.
 
