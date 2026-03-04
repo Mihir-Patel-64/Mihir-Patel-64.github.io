@@ -31,7 +31,7 @@ Spare quantities are included where necessary to ensure reliability during assem
 | Micro USB Type-B Vertical THT Connector | 1 | $0.78 | $0.78 | GCT | USB3131-30-0230-A | Digi-Key | [Datasheet](https://gct.co/files/specs/usb3131-spec.pdf) | J1 |
 | 2.1mm x 5.5mm Barrel Jack (THT) | 1 | $0.59 | $0.59 | Same Sky (CUI) | PJ-102A | Digi-Key | [Datasheet](https://www.sameskydevices.com/product/resource/pj-102a.pdf) | J2 |
 | Schottky Diode 40V 3A (SMC SMD) | 4 | $0.70 | $2.80 | onsemi | MBRS340T3G | Digi-Key | [Datasheet](https://www.onsemi.com/pdf/datasheet/mbrs340t3-d.pdf) | D4, D8 |
-| Polyfuse PTC 2.6A Hold 16V (1812 SMD) | 3 | $0.45 | $1.35 | Littelfuse | 1812L260/16MR | Digi-Key | [Datasheet](https://www.littelfuse.com/assetdocs/littelfuse-fuse-154-series-data-sheet) | F1 |
+| Polyfuse PTC 2.6A Hold 16V (1812 SMD) | 3 | $4.6 | $13.80 | Littelfuse | 1812L260/16MR | Digi-Key | [Datasheet](https://www.littelfuse.com/assetdocs/littelfuse-fuse-154-series-data-sheet) | F1 |
 | Fixed Inductor 6.8µH 285mA 1.2Ω (1812 SMD) | 2 | $0.28 | $0.56 | Bourns | PM1812-6R8J-RC | Digi-Key | [Datasheet](https://www.bourns.com/docs/Product-Datasheets/pm1812_series.pdf) | L1 |
 | 22µF 25V X5R Ceramic Capacitor (1812 SMD) | 2 | $1.09 | $2.18 | TDK | C4532X5R1E226M250KA | Digi-Key | [Datasheet](https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_commercial_general_en.pdf) | C5, C6 |
 | 10µF 25V X5R Ceramic Capacitor (1812 SMD) | 3 | $1.12 | $3.36 | TDK | C4532X5R1E106M250KA | Digi-Key | [Datasheet](https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_commercial_general_en.pdf) | C2, C7, C9 |
@@ -48,4 +48,8 @@ Spare quantities are included where necessary to ensure reliability during assem
 | Test Point | 8 | $0.00 | $0.00 | Various | Test Point | Peralta | — | T1, T2, T3, T4, T5, T6, T7, T8 |
 
 |  |  |  |  |  |  |  |  |  |
-| **Estimated TOTAL Cost** |  |  | **$44.60** |  |  |  |  |  |
+| **Estimated Total Cost** |  |  | **$57.05** |  |  |  |  |  |
+| **Tax** |  |  | **$4.71** |  |  |  |  |  |
+| **Shipping Charges** |  |  | **$6.99** |  |  |  |  |  |
+| **Tariff** |  |  | **~$1.07** |  |  |  |  |  |
+| **Final TOTAL Cost** |  |  | **$69.82** |  |  |  |  |  |
