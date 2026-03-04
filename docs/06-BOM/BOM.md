@@ -46,8 +46,6 @@ Spare quantities are included where necessary to ensure reliability during assem
 | 2×4 Pin Header 2.54mm THT | 4 | $0.00 | $0.00 | Various | PinHeader_2x04_2.54mm | Peralta | — | J5, J7, J8, J9 |
 | 2×9 Pin Header 2.54mm THT (Camera Connector) | 1 | $0.00 | $0.00 | Various | PinHeader_2x09_2.54mm | Peralta | — | J6 Header |
 | Test Point | 8 | $0.00 | $0.00 | Various | Test Point | Peralta | — | T1, T2, T3, T4, T5, T6, T7, T8 |
-
-|  |  |  |  |  |  |  |  |  |
 | **Estimated Total Cost** |  |  | **$57.05** |  |  |  |  |  |
 | **Tax** |  |  | **$4.71** |  |  |  |  |  |
 | **Shipping Charges** |  |  | **$6.99** |  |  |  |  |  |
