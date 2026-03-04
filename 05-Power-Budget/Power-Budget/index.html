@@ -1149,25 +1149,25 @@
 <li>Regulator selection verification confirming adequate current headroom</li>
 <li>External power source selection confirming the supply can drive all regulators simultaneously</li>
 </ul>
-<p>This subsystem operates entirely from a single regulated +3.3V rail derived from a 9V AC-DC wall adapter through an onboard switching buck regulator.</p>
+<p>This subsystem operates entirely from a single regulated +3.3V rail. The +3.3V rail can be sourced from either a 9V AC-DC wall adapter or the team's shared 12V battery, both feeding the onboard AP63203WU-7 switching buck regulator through protection diodes.</p>
 <hr>
 <h2 id="power-budget-table">Power Budget Table</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="PowerBudget_MP.png" data-desc-position="bottom"><img alt="Power Budget Table" src="PowerBudget_MP.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../PowerBudget_MP.jpg" data-desc-position="bottom"><img alt="Power Budget Table" src="../PowerBudget_MP.jpg"></a></p>
 <p><strong>Figure 01:</strong> ESP32 Wireless Communication Subsystem — Full Power Budget (Team 302, Version 1B)</p>
 <hr>
 <h3 id="how-the-power-budget-informed-design-choices">How the Power Budget Informed Design Choices</h3>
 <ul>
 <li>
-<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV2640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
+<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV5640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
 </li>
 <li>
 <p>This requirement directly informed the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.</p>
 </li>
 <li>
-<p>The same budget was used to verify the external power source. The WSU090-2500 9V AC-DC wall adapter, rated at 2500 mA, was selected to supply the regulator. Since the regulator draws at most 2000 mA from the 9V input, this leaves 500 mA of headroom on the supply, confirming no risk of overloading the wall adapter during normal or peak operation.</p>
+<p>The same budget was used to verify both external power sources. The primary standalone source is the WSU090-2500 9V AC-DC wall adapter, rated at 2500 mA. The secondary source is the team's shared 12V battery (B09ZTKTLGW), rated at 7000 mA. Both sources feed the AP63203WU-7 through onboard protection diodes (MBRS340T3G), and either source alone is sufficient to power the entire +3.3V rail. With the 9V adapter, 500 mA of headroom remains on the supply after accounting for the regulator's maximum draw. With the 12V battery, 5000 mA of headroom remains.</p>
 </li>
 <li>
-<p>The key conclusion from this analysis is that a single +3.3V regulated rail powered from a 9V wall adapter through the AP63203WU-7 is sufficient for all wireless, camera, and communication functions in this subsystem. No additional voltage rails or battery supply are required.</p>
+<p>The key conclusion from this analysis is that a single +3.3V regulated rail, supplied by either the 9V wall adapter or the 12V shared battery through the AP63203WU-7, is sufficient for all wireless, camera, and communication functions in this subsystem. No additional voltage rails are required.</p>
 </li>
 </ul>
 <hr>
@@ -1235,17 +1235,25 @@
 <td>+3.3V [AP63203WU-7]</td>
 <td>500</td>
 </tr>
+<tr>
+<td>12V Battery (Shared Team Source)</td>
+<td>B09ZTKTLGW</td>
+<td>12V DC</td>
+<td>7000</td>
+<td>+3.3V [AP63203WU-7]</td>
+<td>5000</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
-<p>The WSU090-2500 9V wall adapter feeds the AP63203WU-7 buck regulator, which supplies the entire +3.3V rail. The 9V output is well above the regulator's minimum input voltage of 3.8V, providing adequate dropout margin.</p>
-<p>No battery supply is required for this subsystem.</p>
+<p>The WSU090-2500 9V wall adapter is the primary standalone power source. It feeds the AP63203WU-7 buck regulator through an onboard protection diode (MBRS340T3G, ~0.45V drop), delivering approximately 8.55V to the regulator input, well above the 3.8V minimum. The 9V adapter alone is fully sufficient to regulate down to 3.3V for all components on the board.</p>
+<p>The 12V battery is the team's shared power source (Raunak's subsystem). It also connects to the same AP63203WU-7 through a protection diode, and can serve as an alternative or simultaneous supply. Either source alone is sufficient, both are within the regulator's 3.8V–32V input range.</p>
 </blockquote>
 <hr>
 <h3 id="power-budget-summary">Power Budget Summary</h3>
 <p>This power budget accounts for the electrical demands of all active components in the ESP32 wireless communication subsystem, assigning each to a single +3.3V logic rail. Current estimates are based on worst-case peak consumption with a 25% safety margin applied.</p>
-<p>The selected AP63203WU-7 regulator (2A rated) exceeds the required 1152.5 mA with 847.5 mA of regulator headroom, and the WSU090-2500 9V wall adapter provides 500 mA of supply headroom above the regulator's maximum draw. Both margins are positive, confirming the power architecture is sound.</p>
-<p>No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and camera streaming.</p>
+<p>The selected AP63203WU-7 regulator (2A variant, 2000 mA rated) exceeds the required 1152.5 mA with 847.5 mA of regulator headroom. Two external power sources are verified: the WSU090-2500 9V wall adapter (500 mA headroom) and the shared 12V team battery (5000 mA headroom). Both margins are positive, and either source alone is sufficient to drive the regulator.</p>
+<p>No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and OV5640 camera streaming.</p>
 
 
 

@@ -1555,7 +1555,7 @@
 <tr>
 <th>Feature</th>
 <th>PIC18F47Q10</th>
-<th>ESP32-S3-WROOM-1-N4</th>
+<th>ESP32-S3-WROOM-1-N8R8</th>
 <th>Required?</th>
 <th>Result</th>
 </tr>
@@ -1719,108 +1719,108 @@
 <td>UART TX indicator</td>
 </tr>
 <tr>
-<td>Camera SIOD</td>
+<td>Camera SIOD/SDA</td>
 <td></td>
-<td>—</td>
+<td>Pin 4</td>
 <td>GPIO4</td>
 <td>OV5640 SCCB data</td>
 </tr>
 <tr>
-<td>Camera SIOC</td>
+<td>Camera SIOC/SCL</td>
 <td></td>
-<td>—</td>
-<td>GPIO5</td>
+<td>Pin 22</td>
+<td>GPIO14</td>
 <td>OV5640 SCCB clock</td>
 </tr>
 <tr>
 <td>Camera VSYNC</td>
 <td></td>
-<td>—</td>
-<td>GPIO6</td>
+<td>Pin 21</td>
+<td>GPIO13</td>
 <td>Frame sync</td>
 </tr>
 <tr>
 <td>Camera HREF</td>
 <td></td>
-<td>—</td>
-<td>GPIO7</td>
+<td>Pin 5</td>
+<td>GPIO5</td>
 <td>Line valid</td>
 </tr>
 <tr>
 <td>Camera PCLK</td>
 <td></td>
-<td>—</td>
-<td>GPIO13</td>
+<td>Pin 20</td>
+<td>GPIO12</td>
 <td>Pixel clock</td>
 </tr>
 <tr>
 <td>Camera D2</td>
 <td></td>
-<td>—</td>
-<td>GPIO11</td>
+<td>Pin 9</td>
+<td>GPIO16</td>
 <td>Data bit 2 (LSB)</td>
 </tr>
 <tr>
 <td>Camera D3</td>
 <td></td>
-<td>—</td>
-<td>GPIO9</td>
+<td>Pin 12</td>
+<td>GPIO8</td>
 <td>Data bit 3</td>
 </tr>
 <tr>
 <td>Camera D4</td>
 <td></td>
-<td>—</td>
-<td>GPIO8</td>
+<td>Pin 8</td>
+<td>GPIO15</td>
 <td>Data bit 4</td>
 </tr>
 <tr>
 <td>Camera D5</td>
 <td></td>
-<td>—</td>
-<td>GPIO10</td>
+<td>Pin 17</td>
+<td>GPIO9</td>
 <td>Data bit 5</td>
 </tr>
 <tr>
 <td>Camera D6</td>
 <td></td>
-<td>—</td>
-<td>GPIO12</td>
+<td>Pin 7</td>
+<td>GPIO7</td>
 <td>Data bit 6</td>
 </tr>
 <tr>
 <td>Camera D7</td>
 <td></td>
-<td>—</td>
-<td>GPIO14</td>
+<td>Pin 18</td>
+<td>GPIO10</td>
 <td>Data bit 7</td>
 </tr>
 <tr>
 <td>Camera D8</td>
 <td></td>
-<td>—</td>
-<td>GPIO47</td>
+<td>Pin 6</td>
+<td>GPIO6</td>
 <td>Data bit 8</td>
 </tr>
 <tr>
 <td>Camera D9</td>
 <td></td>
-<td>—</td>
-<td>GPIO21</td>
+<td>Pin 19</td>
+<td>GPIO11</td>
 <td>Data bit 9 (MSB)</td>
 </tr>
 <tr>
 <td>Camera RESET</td>
 <td></td>
-<td>—</td>
-<td>GPIO48</td>
+<td>Pin 11</td>
+<td>GPIO18</td>
 <td>OV5640 reset</td>
 </tr>
 <tr>
 <td>Camera PWDN</td>
 <td></td>
-<td>—</td>
-<td>GPIO46</td>
+<td>Pin 10</td>
+<td>GPIO17</td>
 <td>OV5640 power down</td>
 </tr>
 </tbody>
@@ -1828,7 +1828,7 @@
 <h3 id="pin-sufficiency-check">Pin Sufficiency Check</h3>
 <p>Total pins required ≈ 26<br>
 Total available GPIO ≈ 36+  </p>
-<p>There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 46, 47, 48) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.</p>
+<p>There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.</p>
 <hr>
 <h2 id="6-role-description">6. Role Description</h2>
 <p>I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, stream live video from the onboard Adafruit OV5640 camera module (5MP, DVP interface), and provide local debug LED indicators for MQTT and UART activity. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.</p>
@@ -1845,7 +1845,7 @@ Total available GPIO ≈ 36+  </p>
 <li>OV5640 driver enabled via 'idf.py menuconfig' → Camera configuration → OV5640 Support.</li>
 <li>Supported by the official Espressif 'esp32-camera' component.</li>
 <li>Requires 8MB PSRAM for frame buffers, satisfied by N8R8 variant.</li>
-<li>Adafruit OV5640 breakout (5839) has onboard oscillator, no XCLK circuit needed on host PCB.</li>
+<li>Adafruit OV5640 breakout (5841) has onboard oscillator, no XCLK circuit needed on host PCB.</li>
 </ul>
 <h3 id="uart">UART</h3>
 <ul>
@@ -1862,7 +1862,7 @@ Total available GPIO ≈ 36+  </p>
 <p>No major compatibility conflicts were identified.</p>
 <hr>
 <h2 id="8-final-microcontroller-selection">8. Final Microcontroller Selection</h2>
-<p><strong>Final Choice: ESP32-S3-WROOM-1-N4</strong></p>
+<p><strong>Final Choice: ESP32-S3-WROOM-1-N8R8</strong></p>
 <h3 id="data-driven-rationale">Data-Driven Rationale</h3>
 <ul>
 <li>Only microcontroller variant that directly meets Wi-Fi, camera, and PSRAM requirements simultaneously.</li>
@@ -1872,7 +1872,7 @@ Total available GPIO ≈ 36+  </p>
 <li>Satisfies surface-mount requirement with same footprint as N4, no PCB layout changes needed.</li>
 <li>Exceeds GPIO and UART requirements with room to spare.</li>
 <li>Strong ESP-IDF ecosystem support lowers development and debugging risk.</li>
-<li>~$0.44 cost increase over N4 is justified by the full camera streaming capability gained.</li>
+<li>~$1.07 cost increase over N4 is justified by the full camera streaming capability gained.</li>
 </ul>
 <p>The ESP32-S3-WROOM-1-N8R8 is therefore the optimal and necessary microcontroller for this subsystem.</p>
 
