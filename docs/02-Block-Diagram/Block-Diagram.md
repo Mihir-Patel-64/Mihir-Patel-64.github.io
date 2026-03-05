@@ -86,10 +86,10 @@ The regulator provides regulated 3.3V power to:
 
 Two jumpers are placed directly before the regulator input to allow selectable power sourcing:
 
-1. **Jumper 1 — 9V Supply → Regulator Input**  
+1. **9V Supply → Regulator Input**  
    Allows the onboard 9V barrel jack supply to power the regulator.
 
-2. **Jumper 2 — Shared Bus Power (from IDC connector) → Regulator Input**  
+2. **Jumper 1 — Shared Bus Power (from IDC connector) → Regulator Input**  
    Allows the shared system power rail from the 2×4 IDC connector to power the regulator.
 
 Only one source should be connected at a time. These jumpers allow the subsystem to:
