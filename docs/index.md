@@ -47,14 +47,20 @@ You can navigate the main sections of this individual datasheet using the top me
 
 - **[Project Requirements](01-Requirements/Requirements.md)** – Module-level requirements, thresholds, target goals, and stretch objectives  
 
-- **[Block Diagram](02-Block-Diagram/Block-Diagram.md)** – Subsystem-level block diagram showing power domains, UART daisy-chain connections, ESP32 peripherals, and external interfaces  
+- **[Block Diagram](02-Block-Diagram/02-Block-Diagram.md)** – Subsystem-level block diagram showing power domains, UART daisy-chain connections, ESP32 peripherals, and external interfaces.
 
-- **[Component Selection](03-Component-Selection/Component-Selection.md)** – Selected components and design rationale for the ESP32 wireless gateway  
+- **[Component Selection](03-Component-Selection/03-Component-Selection.md)** – Selected components and design rationale for the ESP32 wireless gateway.
 
-- **[Bill of Materials (BOM)](04-BOM/BOM.md)** – Manufacturer part numbers, footprints, quantities, and estimated costs  
+- **[Microcontroller Selection](04-Microcontroller-Selection/04-Microcontroller-Selection.md)** – ESP32 microcontroller selection criteria, comparisons, and rationale.
 
-- **[Schematic](05-Schematic/schematic.md)** – Electrical schematics for the wireless communication module  
+- **[Power Budget](05-Power-Budget/05-Power-Budget.md)** – Power consumption analysis, supply requirements, and power domain design.
 
-- **[PCB Layout](06-PCB/pcb.txt)** – PCB layout, routing decisions, and design considerations  
+- **[Bill of Materials (BOM)](06-BOM/06-BOM.md)** – Manufacturer part numbers, footprints, quantities, and estimated costs.
 
-- **[Reflection](07-Reflection/Reflection.txt)** – Lessons learned, challenges faced, and design insights from this subsystem
+- **[Schematic](07-Schematic/07-Schematic.md)** – Electrical schematics for the wireless communication module.
+
+- **[PCB Layout](08-PCB/08-PCB.md)** – PCB layout, routing decisions, and design considerations.
+
+- **[API](09-API/api.md)** – API documentation for the subsystem interface and communication details.
+
+- **[Reflection](10-Reflection/10-Reflection.md)** – Lessons learned, challenges faced, and design insights from this subsystem.
