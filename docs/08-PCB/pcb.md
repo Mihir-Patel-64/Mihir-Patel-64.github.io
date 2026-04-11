@@ -30,10 +30,10 @@ The system integrates an ESP32-S3-WROOM-1 Wi-Fi module, OV5640 camera module, AP
 ### Downloadable Files
 
 - **Project ZIP:**  
-  [Download KiCad Project ZIP](Patel_EGR314_projectzip_3_3.zip)
+  [Download KiCad Project ZIP](Patel_EGR314_projectzip_4_11.zip)
 
 - **PCB Gerber Files ZIP:**  
-  [Download PCB Gerber Files ZIP](Gerber_Files_3_3_26.zip)
+  [Download PCB Gerber Files ZIP](Gerber_Files_4_10_26.zip)
 
 - **PCB Footprints Library ZIP:**
   [Download PCB Footprints Library ZIP](pcb_footprints.pretty.zip)

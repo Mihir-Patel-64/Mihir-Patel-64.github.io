@@ -10,7 +10,7 @@ This schematic shows the complete design for my Wireless Communication subsystem
 
 The schematic demonstrates all required power regulation, signal routing, protection circuitry, and communication interfaces necessary for reliable subsystem operation and integration within the team’s UART-based daisy-chain architecture.
 
-![Wireless Communication Schematic](Patel_EGR314_Schematic_MP_3_6.jpg)
+![Wireless Communication Schematic](Patel_EGR314_Schematic_MP_4_11.jpg)
 
 **Figure 01:** Wireless Communication Subsystem Schematic
 
@@ -19,13 +19,13 @@ The schematic demonstrates all required power regulation, signal routing, protec
 ### Downloadable Files
 
 - **Project ZIP:**  
-  [Download KiCad Project ZIP](Patel_EGR314_projectzip_3_3.zip)
+  [Download KiCad Project ZIP](Patel_EGR314_projectzip_4_11.zip)
 
 - **Symbol Library ZIP:**  
   [Download Symbol Library ZIP](Patel_314_symbols.zip)
 
 - **Schematic Image:**  
-  [Wireless Communication Schematic](Patel_EGR314_Schematic_MP_3_6.jpg "Wireless Communication Schematic")
+  [Wireless Communication Schematic](Patel_EGR314_Schematic_MP_4_11.jpg "Wireless Communication Schematic")
 
 - **Schematic PDF:**  
-  [Download High-Resolution Schematic PDF](Patel_EGR314_Schematic_MP_3_6.pdf)
+  [Download High-Resolution Schematic PDF](Patel_EGR314_Schematic_MP_4_11.pdf)
