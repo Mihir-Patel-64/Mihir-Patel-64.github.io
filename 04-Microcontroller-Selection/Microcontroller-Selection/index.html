@@ -9,7 +9,7 @@
       
       
       
-        <link rel="canonical" href="https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-Microcontroller-Selection/Microcontroller-Selection/">
+        <link rel="canonical" href="https://mihir-patel-64.github.io/04-Microcontroller-Selection/Microcontroller-Selection/">
       
       
         <link rel="prev" href="../../03-Component-Selection/Component-Selection/">
@@ -26,7 +26,7 @@
 
     
       
-        <title>Module's Microntroller Selection - EGR 314 Mihir Data Sheet</title>
+        <title>Module's Microcontroller Selection - Mihir Patel — EGR314 Individual Datasheet</title>
       
     
     
@@ -47,8 +47,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -78,10 +78,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#esp32-wireless-communication-microntroller-selection" class="md-skip">
+        <a href="#esp32-wireless-communication-microcontroller-selection" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +108,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="EGR 314 Mihir Data Sheet" class="md-header__button md-logo" aria-label="EGR 314 Mihir Data Sheet" data-md-component="logo">
+    <a href="../.." title="Mihir Patel — EGR314 Individual Datasheet" class="md-header__button md-logo" aria-label="Mihir Patel — EGR314 Individual Datasheet" data-md-component="logo">
       
   <img src="../../static/logo314.svg" alt="logo">
 
@@ -119,13 +121,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            EGR 314 Mihir Data Sheet
+            Mihir Patel — EGR314 Individual Datasheet
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module's Microntroller Selection
+              Module's Microcontroller Selection
             
           </span>
         </div>
@@ -133,7 +135,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -176,7 +204,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
@@ -401,12 +429,52 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Appendix/" class="md-tabs__link">
+        <a href="../../10-Hardware-v2/hardwarev2/" class="md-tabs__link">
           
   
     
   
-  Appendix
+  10 Hardware v2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../11-Resources/resources/" class="md-tabs__link">
+          
+  
+    
+  
+  11 Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../12-Reflection/Reflection/" class="md-tabs__link">
+          
+  
+    
+  
+  12 Reflection
 
         </a>
       </li>
@@ -442,16 +510,16 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="EGR 314 Mihir Data Sheet" class="md-nav__button md-logo" aria-label="EGR 314 Mihir Data Sheet" data-md-component="logo">
+    <a href="../.." title="Mihir Patel — EGR314 Individual Datasheet" class="md-nav__button md-logo" aria-label="Mihir Patel — EGR314 Individual Datasheet" data-md-component="logo">
       
   <img src="../../static/logo314.svg" alt="logo">
 
     </a>
-    EGR 314 Mihir Data Sheet
+    Mihir Patel — EGR314 Individual Datasheet
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
@@ -691,7 +759,7 @@
           
   
   <span class="md-ellipsis">
-    Module's Microntroller Selection
+    Module's Microcontroller Selection
   </span>
   
 
@@ -702,7 +770,7 @@
         
   
   <span class="md-ellipsis">
-    Module's Microntroller Selection
+    Module's Microcontroller Selection
   </span>
   
 
@@ -820,13 +888,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-pin-allocation-table-verified-against-datasheet" class="md-nav__link">
+  <a href="#5-pin-allocation-table-verified-against-datasheet-and-firmware" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Pin Allocation Table (Verified Against Datasheet)
+      5. Pin Allocation Table (Verified Against Datasheet and Firmware)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. Pin Allocation Table (Verified Against Datasheet)">
+    <nav class="md-nav" aria-label="5. Pin Allocation Table (Verified Against Datasheet and Firmware)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1183,14 +1251,50 @@
     
       
         
-          
-        
+      
+    
+    
+      
+      
+    
+    
       
         
-      
         
       
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
         
+  
+  
+    <a href="../../10-Hardware-v2/hardwarev2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    10 Hardware v2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
       
         
       
@@ -1210,11 +1314,57 @@
         
   
   
-    <a href="../../Appendix/" class="md-nav__link">
+    <a href="../../11-Resources/resources/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
-    Appendix
+    11 Resources
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../12-Reflection/Reflection/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    12 Reflection
   </span>
   
 
@@ -1352,13 +1502,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-pin-allocation-table-verified-against-datasheet" class="md-nav__link">
+  <a href="#5-pin-allocation-table-verified-against-datasheet-and-firmware" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Pin Allocation Table (Verified Against Datasheet)
+      5. Pin Allocation Table (Verified Against Datasheet and Firmware)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. Pin Allocation Table (Verified Against Datasheet)">
+    <nav class="md-nav" aria-label="5. Pin Allocation Table (Verified Against Datasheet and Firmware)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1474,7 +1624,7 @@
                   
 
   
-    <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate/edit/main/docs/04-Microcontroller-Selection/Microcontroller-Selection.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io/edit/main/docs/04-Microcontroller-Selection/Microcontroller-Selection.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"></path></svg>
     </a>
@@ -1482,7 +1632,7 @@
   
 
 
-<h1 id="esp32-wireless-communication-microntroller-selection">ESP32 Wireless Communication — Microntroller Selection</h1>
+<h1 id="esp32-wireless-communication-microcontroller-selection">ESP32 Wireless Communication — Microcontroller Selection</h1>
 <h2 id="1-microcontroller-selection">1. Microcontroller Selection</h2>
 <p>Based on team subsystem planning:</p>
 <ul>
@@ -1665,7 +1815,7 @@
 <tr>
 <td>PSRAM</td>
 <td>No</td>
-<td>Yes(8MB)</td>
+<td>Yes (8MB)</td>
 <td>Required for OV5640</td>
 <td>ESP32</td>
 </tr>
@@ -1688,7 +1838,7 @@
 <h3 id="evaluation">Evaluation</h3>
 <p>The PIC18F47Q10 does not support Wi-Fi, camera streaming, or PSRAM without significant additional hardware. The ESP32-S3-WROOM-1-N8R8 directly satisfies all wireless, streaming, and memory requirements. No critical requirements are unmet by the ESP32.</p>
 <hr>
-<h2 id="5-pin-allocation-table-verified-against-datasheet">5. Pin Allocation Table (Verified Against Datasheet)</h2>
+<h2 id="5-pin-allocation-table-verified-against-datasheet-and-firmware">5. Pin Allocation Table (Verified Against Datasheet and Firmware)</h2>
 <table>
 <thead>
 <tr>
@@ -1747,41 +1897,41 @@
 <td></td>
 <td>Pin 13</td>
 <td>GPIO19</td>
-<td>Native USB programming</td>
+<td>Native USB programming (USB_N in schematic)</td>
 </tr>
 <tr>
 <td>USB D+</td>
 <td></td>
 <td>Pin 14</td>
 <td>GPIO20</td>
-<td>Native USB programming</td>
+<td>Native USB programming (USB_P in schematic)</td>
 </tr>
 <tr>
-<td>MQTT LED 1</td>
+<td>MQTT LED</td>
 <td></td>
-<td>Pin 32</td>
-<td>GPIO39</td>
-<td>MQTT publish indicator</td>
+<td>Pin 29</td>
+<td>GPIO36</td>
+<td>MQTT activity indicator</td>
 </tr>
 <tr>
-<td>MQTT LED 2</td>
+<td>WiFi LED</td>
 <td></td>
-<td>Pin 31</td>
-<td>GPIO38</td>
-<td>MQTT subscribe indicator</td>
+<td>Pin 28</td>
+<td>GPIO35</td>
+<td>WiFi connected/disconnected indicator</td>
 </tr>
 <tr>
 <td>RX LED</td>
 <td></td>
-<td>Pin 33</td>
-<td>GPIO40</td>
+<td>Pin 34</td>
+<td>GPIO41</td>
 <td>UART RX indicator</td>
 </tr>
 <tr>
 <td>TX LED</td>
 <td></td>
-<td>Pin 34</td>
-<td>GPIO41</td>
+<td>Pin 33</td>
+<td>GPIO40</td>
 <td>UART TX indicator</td>
 </tr>
 <tr>
@@ -1894,29 +2044,30 @@
 <h3 id="pin-sufficiency-check">Pin Sufficiency Check</h3>
 <p>Total pins required ≈ 26<br>
 Total available GPIO ≈ 36+  </p>
-<p>There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO38–41) assignments.</p>
+<p>There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18) are fully clear of UART (GPIO43/44), USB (GPIO19/20), and debug LED (GPIO35–36, GPIO40–41) assignments.</p>
 <hr>
 <h2 id="6-role-description">6. Role Description</h2>
-<p>I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, stream live video from the onboard Adafruit OV5640 camera module (5MP, DVP interface), and provide local debug LED indicators for MQTT and UART activity. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.</p>
+<p>I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, provide local debug LED indicators for MQTT, WiFi, and UART activity, and designed the subsystem to support live video streaming via the onboard Adafruit OV5640 camera module (5MP, DVP interface). The camera software infrastructure — including frame capture, chunked MQTT publishing, and a laptop-side viewer — was fully implemented, though end-to-end hardware demonstration was not completed within the project timeline. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.</p>
 <hr>
 <h2 id="7-compatibility-software-research">7. Compatibility &amp; Software Research</h2>
 <h3 id="wi-fi-mqtt">Wi-Fi &amp; MQTT</h3>
 <ul>
-<li>Fully supported in ESP-IDF and Arduino frameworks.</li>
-<li>Stable networking stack with reconnection handling.</li>
-<li>Extensive documentation and community examples.</li>
+<li>Fully supported in MicroPython using the <code>mqtt_as</code> async library.</li>
+<li>Stable networking stack with automatic reconnection handling via <code>wifi_coro</code> callback.</li>
+<li>WiFi connection loss triggers an emergency stop broadcast over UART as a hardware failsafe.</li>
 </ul>
 <h3 id="ov5640-camera">OV5640 Camera</h3>
 <ul>
-<li>OV5640 driver enabled via 'idf.py menuconfig' → Camera configuration → OV5640 Support.</li>
-<li>Supported by the official Espressif 'esp32-camera' component.</li>
+<li>OV5640 driver requires MicroPython firmware compiled with <code>esp32-camera</code> support enabled.</li>
 <li>Requires 8MB PSRAM for frame buffers, satisfied by N8R8 variant.</li>
 <li>Adafruit OV5640 breakout (5841) has onboard oscillator, no XCLK circuit needed on host PCB.</li>
+<li>Camera commands (<code>capture</code>, <code>stream on</code>, <code>stream off</code>) are handled via both MQTT subscription and UART button events.</li>
 </ul>
 <h3 id="uart">UART</h3>
 <ul>
-<li>Hardware UART with buffering.</li>
-<li>Reliable for daisy-chain structured packets.</li>
+<li>Hardware UART2 used at 9600 baud, TX on GPIO43, RX on GPIO44.</li>
+<li>64-byte structured packet format with <code>AZ</code>/<code>YB</code> header/footer framing.</li>
+<li>Rate-limited transmission with 500ms minimum interval between packets.</li>
 </ul>
 <h3 id="known-considerations">Known Considerations</h3>
 <ul>
@@ -1924,6 +2075,7 @@ Total available GPIO ≈ 36+  </p>
 <li>OV5640 at VGA resolution uses ~500KB per frame, PSRAM handles this comfortably.</li>
 <li>PSRAM draws ~5mA additional current, negligible impact on power budget.</li>
 <li>Proper decoupling on camera connector 3.3V supply required (10µF + 100nF).</li>
+<li>MicroPython <code>esp32-camera</code> module requires custom firmware build — not available in standard MicroPython releases.</li>
 </ul>
 <p>No major compatibility conflicts were identified.</p>
 <hr>
@@ -1932,12 +2084,12 @@ Total available GPIO ≈ 36+  </p>
 <h3 id="data-driven-rationale">Data-Driven Rationale</h3>
 <ul>
 <li>Only microcontroller variant that directly meets Wi-Fi, camera, and PSRAM requirements simultaneously.</li>
-<li>8MB PSRAM is essential for OV5640 frame buffering, N4 variant cannot support this camera.</li>
+<li>8MB PSRAM is essential for OV5640 frame buffering; N4 variant cannot support this camera.</li>
 <li>Integrated antenna reduces RF layout risk on first revision PCB.</li>
 <li>Native USB simplifies firmware flashing without a separate USB-UART bridge chip.</li>
 <li>Satisfies surface-mount requirement with same footprint as N4, no PCB layout changes needed.</li>
 <li>Exceeds GPIO and UART requirements with room to spare.</li>
-<li>Strong ESP-IDF ecosystem support lowers development and debugging risk.</li>
+<li>Strong MicroPython and ESP-IDF ecosystem support lowers development and debugging risk.</li>
 <li>~$1.07 cost increase over N4 is justified by the full camera streaming capability gained.</li>
 </ul>
 <p>The ESP32-S3-WROOM-1-N8R8 is therefore the optimal and necessary microcontroller for this subsystem.</p>
@@ -2019,7 +2171,7 @@ Total available GPIO ≈ 36+  </p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright © 2026 team-name-here
+      Copyright © 2026 Mihir Patel — Team 302 EGR314
     </div>
   
   
@@ -2031,8 +2183,8 @@ Total available GPIO ≈ 36+  </p>
     
     
     
-    <a href="/2026_spring" target="_blank" rel="noopener" title="2023 Site" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h160v80c0 17.7 14.3 32 32 32h80v288c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3l-90.6-90.5C262.7 6.7 246.5 0 229.5 0H64zm97 289c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L79 303c-9.4 9.4-9.4 24.6 0 33.9l48 48c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-31-31 31-31zm96-34c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l48-48c9.4-9.4 9.4-24.6 0-33.9l-48-48z"></path></svg>
+    <a href="https://github.com/Mihir-Patel-64" target="_blank" rel="noopener" title="Mihir Patel on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
     </a>
   
 </div>

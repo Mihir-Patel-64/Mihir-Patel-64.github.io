@@ -9,13 +9,13 @@
       
       
       
-        <link rel="canonical" href="https://embedded-systems-design.github.io/EGR314DataSheetTemplate/09-API/api/">
+        <link rel="canonical" href="https://mihir-patel-64.github.io/09-API/api/">
       
       
         <link rel="prev" href="../../08-PCB/pcb/">
       
       
-        <link rel="next" href="../../Appendix/">
+        <link rel="next" href="../../10-Hardware-v2/hardwarev2/">
       
       
       <link rel="icon" href="../../static/logo314.png">
@@ -26,7 +26,7 @@
 
     
       
-        <title>API - Firmware Behavior &amp; UART Message Specification - EGR 314 Mihir Data Sheet</title>
+        <title>API - Firmware Behavior &amp; UART Message Specification - Mihir Patel — EGR314 Individual Datasheet</title>
       
     
     
@@ -47,8 +47,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -78,10 +78,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -106,7 +108,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="EGR 314 Mihir Data Sheet" class="md-header__button md-logo" aria-label="EGR 314 Mihir Data Sheet" data-md-component="logo">
+    <a href="../.." title="Mihir Patel — EGR314 Individual Datasheet" class="md-header__button md-logo" aria-label="Mihir Patel — EGR314 Individual Datasheet" data-md-component="logo">
       
   <img src="../../static/logo314.svg" alt="logo">
 
@@ -119,7 +121,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            EGR 314 Mihir Data Sheet
+            Mihir Patel — EGR314 Individual Datasheet
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -133,7 +135,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -176,7 +204,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
@@ -401,12 +429,52 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Appendix/" class="md-tabs__link">
+        <a href="../../10-Hardware-v2/hardwarev2/" class="md-tabs__link">
           
   
     
   
-  Appendix
+  10 Hardware v2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../11-Resources/resources/" class="md-tabs__link">
+          
+  
+    
+  
+  11 Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../12-Reflection/Reflection/" class="md-tabs__link">
+          
+  
+    
+  
+  12 Reflection
 
         </a>
       </li>
@@ -442,16 +510,16 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="EGR 314 Mihir Data Sheet" class="md-nav__button md-logo" aria-label="EGR 314 Mihir Data Sheet" data-md-component="logo">
+    <a href="../.." title="Mihir Patel — EGR314 Individual Datasheet" class="md-nav__button md-logo" aria-label="Mihir Patel — EGR314 Individual Datasheet" data-md-component="logo">
       
   <img src="../../static/logo314.svg" alt="logo">
 
     </a>
-    EGR 314 Mihir Data Sheet
+    Mihir Patel — EGR314 Individual Datasheet
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
@@ -1047,6 +1115,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mqtt-subscribe-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Subscribe Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-mqtt-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera MQTT Topics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera MQTT Topics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#camera-frame-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Frame Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-event-camera-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Button Event Camera Mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#message-specifications" class="md-nav__link">
     <span class="md-ellipsis">
       Message Specifications
@@ -1179,6 +1289,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wifi-failsafe-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      WiFi Failsafe Behavior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       Notes
@@ -1222,14 +1341,50 @@
     
       
         
-          
-        
+      
+    
+    
+      
+      
+    
+    
       
         
-      
         
       
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
         
+  
+  
+    <a href="../../10-Hardware-v2/hardwarev2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    10 Hardware v2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
       
         
       
@@ -1249,11 +1404,57 @@
         
   
   
-    <a href="../../Appendix/" class="md-nav__link">
+    <a href="../../11-Resources/resources/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
-    Appendix
+    11 Resources
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../12-Reflection/Reflection/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    12 Reflection
   </span>
   
 
@@ -1388,6 +1589,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mqtt-subscribe-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Subscribe Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-mqtt-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera MQTT Topics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera MQTT Topics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#camera-frame-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Frame Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-event-camera-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Button Event Camera Mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#message-specifications" class="md-nav__link">
     <span class="md-ellipsis">
       Message Specifications
@@ -1520,6 +1763,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wifi-failsafe-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      WiFi Failsafe Behavior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       Notes
@@ -1552,7 +1804,7 @@
                   
 
   
-    <a href="https://github.com/embedded-systems-design/EGR314DataSheetTemplate/edit/main/docs/09-API/api.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io/edit/main/docs/09-API/api.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"></path></svg>
     </a>
@@ -1562,25 +1814,12 @@
 
 <h1 id="api-firmware-behavior-uart-message-specification">API — Firmware Behavior &amp; UART Message Specification</h1>
 <p><strong>Subsystem:</strong> ESP32-S3 Wireless Communication Gateway<br>
-<strong>Board ID:</strong> <code>0x01</code><br>
+<strong>Board ID:</strong> <code>'M'</code> (ASCII 0x4D)<br>
 <strong>Team:</strong> 302 - R6 Recon Amphibot  </p>
 <hr>
 <h2 id="packet-frame-all-messages">Packet Frame (All Messages)</h2>
-<p>All messages follow the standardized 64-byte UART packet:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">config</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">packet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">bitsPerRow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
-<span class="w">    </span><span class="nt">bitWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span>
-<span class="l l-Scalar l-Scalar-Plain">packet-beta</span>
-<span class="l l-Scalar l-Scalar-Plain">title Message</span>
-<span class="nt">0</span><span class="p">:</span><span class="w">  </span><span class="s">"0x41"</span>
-<span class="nt">1</span><span class="p">:</span><span class="w">  </span><span class="s">"0x5A"</span>
-<span class="nt">2</span><span class="p">:</span><span class="w">  </span><span class="s">"Source</span><span class="nv"> </span><span class="s">ID"</span>
-<span class="nt">3</span><span class="p">:</span><span class="w">  </span><span class="s">"Dest</span><span class="nv"> </span><span class="s">ID"</span>
-<span class="nt">4-61</span><span class="p">:</span><span class="w">  </span><span class="s">"Message</span><span class="nv"> </span><span class="s">(Variable</span><span class="nv"> </span><span class="s">Length</span><span class="nv"> </span><span class="s">≤</span><span class="nv"> </span><span class="s">58</span><span class="nv"> </span><span class="s">Bytes)"</span>
-<span class="nt">62</span><span class="p">:</span><span class="w"> </span><span class="s">"0x59"</span>
-<span class="nt">63</span><span class="p">:</span><span class="w"> </span><span class="s">"0x42"</span>
-</code></pre></div>
+<p>All messages follow the standardized 64-byte UART packet:
+[ 0x41 | 0x5A | Source ID | Dest ID | Message (58 Bytes) | 0x59 | 0x42 ]</p>
 <p><strong>All multi-byte values are transmitted in big-endian format.</strong></p>
 <h3 id="board-ids">Board IDs</h3>
 <table>
@@ -1588,24 +1827,29 @@
 <tr>
 <th>Board</th>
 <th>Source / Dest ID</th>
+<th>ASCII</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ESP32 Wireless Gateway</td>
-<td><code>0x01</code></td>
+<td>ESP32 Wireless Gateway (Mihir)</td>
+<td><code>'M'</code></td>
+<td>0x4D</td>
 </tr>
 <tr>
-<td>Sensor + HMI PIC</td>
-<td><code>0x02</code></td>
+<td>Sensor + HMI PIC (Laksh)</td>
+<td><code>'L'</code></td>
+<td>0x4C</td>
 </tr>
 <tr>
-<td>Actuator PIC</td>
-<td><code>0x03</code></td>
+<td>Actuator PIC (Raunak)</td>
+<td><code>'R'</code></td>
+<td>0x52</td>
 </tr>
 <tr>
-<td>Broadcast</td>
-<td><code>0xFF</code></td>
+<td>Broadcast (all boards)</td>
+<td><code>'*'</code></td>
+<td>0x2A</td>
 </tr>
 </tbody>
 </table>
@@ -1629,41 +1873,49 @@
 </ul>
 <h3 id="broadcast-messages-handled">Broadcast Messages Handled</h3>
 <ul>
-<li><code>0x0005</code> Emergency Stop → immediate safe-stop</li>
-<li><code>0x0008</code> System Status → logged + forwarded</li>
+<li><code>0x0005</code> Emergency Stop → immediate safe-stop + camera stream stop</li>
+<li><code>0x0008</code> System Status → logged + forwarded to MQTT</li>
 </ul>
 <hr>
 <h2 id="firmware-overview">Firmware Overview</h2>
 <p>The ESP32 firmware performs:</p>
 <ol>
-<li>Periodic sensor polling (UART)</li>
-<li>UART message reception and forwarding</li>
-<li>MQTT publish (telemetry, status, errors)</li>
+<li>Periodic sensor polling via UART every 15 seconds</li>
+<li>Periodic system status broadcast every 15 seconds</li>
+<li>UART message reception, routing, and forwarding</li>
+<li>MQTT publish (telemetry, status, errors, heartbeat)</li>
 <li>MQTT subscribe → UART command translation</li>
-<li>System failsafe (WiFi loss → emergency stop)</li>
+<li>Camera command handling (capture, stream on/off)</li>
+<li>System failsafe (WiFi loss → emergency stop broadcast over UART)</li>
 </ol>
 <hr>
 <h2 id="firmware-constants">Firmware Constants</h2>
-<div class="highlight"><pre><span></span><code><span class="n">MY_ID</span> <span class="o">=</span> <span class="mh">0x01</span>
-<span class="n">SENSOR_ID</span> <span class="o">=</span> <span class="mh">0x02</span>
-<span class="n">ACTUATOR_ID</span> <span class="o">=</span> <span class="mh">0x03</span>
-<span class="n">BROADCAST_ID</span> <span class="o">=</span> <span class="mh">0xFF</span>
+<div class="highlight"><pre><span></span><code><span class="n">MY_ID</span>        <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'M'</span><span class="p">)</span>   <span class="c1"># 0x4D</span>
+<span class="n">SENSOR_ID</span>    <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'L'</span><span class="p">)</span>   <span class="c1"># 0x4C</span>
+<span class="n">ACTUATOR_ID</span>  <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'R'</span><span class="p">)</span>   <span class="c1"># 0x52</span>
+<span class="n">BROADCAST_ID</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'*'</span><span class="p">)</span>   <span class="c1"># 0x2A</span>
 
-<span class="n">HEADER</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x5A</span><span class="p">])</span>
-<span class="n">FOOTER</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">])</span>
+<span class="n">HEADER</span>     <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x5A</span><span class="p">])</span>   <span class="c1"># 'A' 'Z'</span>
+<span class="n">FOOTER</span>     <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">])</span>   <span class="c1"># 'Y' 'B'</span>
 <span class="n">PACKET_LEN</span> <span class="o">=</span> <span class="mi">64</span>
-
-<span class="n">SEND_INTERVAL_MS</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">SEND_INTERVAL_MS</span> <span class="o">=</span> <span class="mi">500</span>             <span class="c1"># minimum ms between UART transmissions</span>
 
 <span class="k">def</span> <span class="nf">build_packet</span><span class="p">(</span><span class="n">dest_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Build a valid UART packet."""</span>
+<span class="w">    </span><span class="sd">"""Build a valid 64-byte UART packet."""</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">56</span><span class="p">,</span> <span class="s2">"Payload too long"</span>
-    <span class="k">assert</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x41\x5A</span><span class="s1">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x59\x42</span><span class="s1">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">msg_type</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">msg_type</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">])</span> <span class="o">+</span> <span class="n">data</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">58</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x00</span><span class="s1">'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">HEADER</span> <span class="o">+</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">MY_ID</span><span class="p">,</span> <span class="n">dest_id</span><span class="p">])</span> <span class="o">+</span> <span class="n">payload</span> <span class="o">+</span> <span class="n">FOOTER</span>
+    <span class="c1"># Sanitize payload to prevent accidental header/footer sequences</span>
+    <span class="n">clean</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">clean</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x41\x5A</span><span class="s1">'</span> <span class="ow">or</span> <span class="n">clean</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x59\x42</span><span class="s1">'</span><span class="p">:</span>
+            <span class="n">clean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">([</span><span class="n">msg_type</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">msg_type</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">])</span>
+    <span class="n">payload</span> <span class="o">+=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">58</span><span class="p">:</span>
+        <span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x00</span><span class="s1">'</span>
+    <span class="k">return</span> <span class="n">HEADER</span> <span class="o">+</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">MY_ID</span><span class="p">,</span> <span class="n">dest_id</span><span class="p">])</span> <span class="o">+</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="n">FOOTER</span>
 
 <span class="k">def</span> <span class="nf">uart_send</span><span class="p">(</span><span class="n">packet</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Rate-limited UART transmit — enforces 500ms minimum interval."""</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span> <span class="o">==</span> <span class="n">PACKET_LEN</span>
     <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
 
@@ -1687,52 +1939,186 @@
 </thead>
 <tbody>
 <tr>
-<td><code>0x0001 → actuator</code></td>
+<td><code>0x0001 → 'R'</code></td>
 <td>Set motor speed</td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
-<td><code>0x0002 → sensor</code></td>
+<td><code>0x0002 → 'L'</code></td>
 <td>Request sensor data</td>
 <td>—</td>
 <td>—</td>
 </tr>
 <tr>
-<td><code>0x0005 broadcast</code></td>
-<td>Emergency stop</td>
-<td><code>status</code></td>
+<td><code>0x0005 → '*'</code></td>
+<td>Emergency stop broadcast</td>
+<td><code>TOPIC_STATUS</code></td>
 <td><code>"ESTOP"</code></td>
 </tr>
 <tr>
-<td><code>0x0008 broadcast</code></td>
-<td>Status update</td>
-<td><code>status</code></td>
+<td><code>0x0008 → '*'</code></td>
+<td>Status update broadcast</td>
+<td><code>TOPIC_STATUS</code></td>
 <td>status string</td>
 </tr>
 <tr>
-<td><code>0x0003</code></td>
+<td><code>0x0003</code> received</td>
 <td>Sensor data</td>
-<td><code>telemetry</code></td>
+<td><code>TOPIC_TELEMETRY</code></td>
 <td>JSON</td>
 </tr>
 <tr>
-<td><code>0x0004</code></td>
+<td><code>0x0004</code> received</td>
 <td>Motor telemetry</td>
-<td><code>telemetry</code></td>
+<td><code>TOPIC_TELEMETRY</code></td>
 <td>JSON</td>
 </tr>
 <tr>
-<td><code>0x0006/0x0007</code></td>
-<td>Errors</td>
-<td><code>error</code></td>
-<td>code/string</td>
+<td><code>0x0006</code> received</td>
+<td>Error code</td>
+<td><code>TOPIC_ERROR</code></td>
+<td>JSON</td>
 </tr>
 <tr>
-<td><code>0x0043</code></td>
+<td><code>0x0007</code> received</td>
+<td>Error message</td>
+<td><code>TOPIC_ERROR</code></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>0x0043</code> received</td>
 <td>Button press</td>
+<td><code>TOPIC_STATUS</code></td>
+<td><code>camera_capture btn=N</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="mqtt-subscribe-commands">MQTT Subscribe Commands</h2>
+<p>Commands received on <code>TOPIC_SUB</code> are translated into UART packets or camera actions:</p>
+<table>
+<thead>
+<tr>
+<th>MQTT Command</th>
+<th>Example</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>forward &lt;rpm&gt;</code></td>
+<td><code>forward 500</code></td>
+<td>Sends <code>0x0001</code> to actuator, direction=1, rpm=500</td>
+</tr>
+<tr>
+<td><code>reverse &lt;rpm&gt;</code></td>
+<td><code>reverse 300</code></td>
+<td>Sends <code>0x0001</code> to actuator, direction=2, rpm=300</td>
+</tr>
+<tr>
+<td><code>stop</code> / <code>estop</code></td>
+<td><code>stop</code></td>
+<td>Broadcasts <code>0x0005</code> ESTOP, stops camera stream</td>
+</tr>
+<tr>
+<td><code>setpoint &lt;rpm&gt;</code></td>
+<td><code>setpoint 400</code></td>
+<td>Sends <code>0x0001</code>, positive=forward, negative=reverse</td>
+</tr>
+<tr>
+<td><code>sensor &lt;id&gt;</code></td>
+<td><code>sensor 1</code></td>
+<td>Sends <code>0x0002</code> sensor request to Sensor board</td>
+</tr>
+<tr>
 <td><code>status</code></td>
-<td>button #</td>
+<td><code>status</code></td>
+<td>Broadcasts <code>0x0008</code> system status</td>
+</tr>
+<tr>
+<td><code>capture</code></td>
+<td><code>capture</code></td>
+<td>Triggers single OV5640 JPEG capture → MQTT</td>
+</tr>
+<tr>
+<td><code>stream on</code></td>
+<td><code>stream on</code></td>
+<td>Starts continuous JPEG stream → MQTT</td>
+</tr>
+<tr>
+<td><code>stream off</code></td>
+<td><code>stream off</code></td>
+<td>Stops continuous JPEG stream</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="camera-mqtt-topics">Camera MQTT Topics</h2>
+<p>The camera subsystem uses three dedicated MQTT topics, separate from the main
+telemetry topics. These are defined in <code>config.py</code> via <code>config_additions.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TOPIC_CAM_CMD</code></td>
+<td>Subscribe (inbound)</td>
+<td>Receives camera commands: <code>capture</code>, <code>stream on</code>, <code>stream off</code></td>
+</tr>
+<tr>
+<td><code>TOPIC_CAM_FRAME</code></td>
+<td>Publish (outbound)</td>
+<td>Chunked base64 JPEG frames, QoS 0</td>
+</tr>
+<tr>
+<td><code>TOPIC_CAM_STATUS</code></td>
+<td>Publish (outbound)</td>
+<td>Camera health and frame metadata, QoS 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="camera-frame-format">Camera Frame Format</h3>
+<p>Each MQTT message on <code>TOPIC_CAM_FRAME</code> is a JSON object:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"seq"</span><span class="p">:</span><span class="w">   </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"chunk"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w">  </span><span class="s2">"&lt;base64-encoded JPEG bytes&gt;"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The receiver reassembles chunks in order using <code>seq</code> and <code>chunk</code> indices.
+Chunk size is 4096 bytes of raw JPEG per message (~5460 base64 characters).</p>
+<h3 id="button-event-camera-mapping">Button Event Camera Mapping</h3>
+<p>Button events received over UART (<code>0x0043</code>) are mapped to camera commands:</p>
+<table>
+<thead>
+<tr>
+<th>Button Number</th>
+<th>Camera Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Single capture</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Stream on</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Stream off</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Publishes <code>camera_capture btn=N</code> to <code>TOPIC_STATUS</code></td>
 </tr>
 </tbody>
 </table>
@@ -1761,22 +2147,23 @@
 </tr>
 <tr>
 <td>6</td>
-<td>motor_id</td>
+<td>direction</td>
 <td><code>uint8_t</code></td>
-<td>1</td>
-<td>4</td>
+<td>0</td>
+<td>2</td>
 <td>1</td>
 </tr>
 <tr>
 <td>7–8</td>
-<td>motor_speed</td>
-<td><code>int16_t</code></td>
-<td>-500</td>
+<td>rpm</td>
+<td><code>uint16_t</code></td>
+<td>0</td>
+<td>2300</td>
 <td>500</td>
-<td>200</td>
 </tr>
 </tbody>
 </table>
+<p><em>Direction: 0=STOP, 1=FORWARD, 2=REVERSE. RPM range: 0–2300.</em></p>
 <h3 id="0x0002-sensor-request-send"><code>0x0002</code> — Sensor Request (SEND)</h3>
 <table>
 <thead>
@@ -1887,7 +2274,7 @@
 </tr>
 <tr>
 <td>6</td>
-<td>motor_state</td>
+<td>direction</td>
 <td><code>uint8_t</code></td>
 <td>0</td>
 <td>2</td>
@@ -1895,14 +2282,15 @@
 </tr>
 <tr>
 <td>7–8</td>
-<td>current_speed</td>
-<td><code>int16_t</code></td>
-<td>-500</td>
-<td>500</td>
+<td>current_rpm</td>
+<td><code>uint16_t</code></td>
+<td>0</td>
+<td>2300</td>
 <td>180</td>
 </tr>
 </tbody>
 </table>
+<p><em>Direction: 0=STOPPED, 1=FORWARD, 2=REVERSE.</em></p>
 <h3 id="0x0005-emergency-stop-send-receive-broadcast"><code>0x0005</code> — Emergency Stop (SEND + RECEIVE + BROADCAST)</h3>
 <table>
 <thead>
@@ -1928,12 +2316,13 @@
 <td>6</td>
 <td>stop_source</td>
 <td><code>uint8_t</code></td>
-<td>1</td>
-<td>3</td>
-<td>3</td>
+<td>—</td>
+<td>—</td>
+<td><code>'M'</code></td>
 </tr>
 </tbody>
 </table>
+<p><em>stop_source is the ASCII board ID of the board initiating the stop.</em></p>
 <h3 id="0x0006-error-code-receive"><code>0x0006</code> — Error Code (RECEIVE)</h3>
 <table>
 <thead>
@@ -1959,9 +2348,9 @@
 <td>6</td>
 <td>subsystem_id</td>
 <td><code>uint8_t</code></td>
-<td>1</td>
-<td>3</td>
-<td>2</td>
+<td>—</td>
+<td>—</td>
+<td><code>'L'</code></td>
 </tr>
 <tr>
 <td>7</td>
@@ -2043,6 +2432,7 @@
 </tr>
 </tbody>
 </table>
+<p><em>Status codes: 0=IDLE, 1=RUNNING, 2=WARNING, 3=ERROR, 4=ESTOP.</em></p>
 <h3 id="0x0043-button-event-receive"><code>0x0043</code> — Button Event (RECEIVE)</h3>
 <table>
 <thead>
@@ -2107,53 +2497,70 @@
 </table>
 <hr>
 <h2 id="receiver-implementation">Receiver Implementation</h2>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">PACKET_LEN</span><span class="p">:</span>
-    <span class="k">continue</span>
-
-<span class="k">if</span> <span class="n">src</span> <span class="o">==</span> <span class="n">MY_ID</span><span class="p">:</span>
-    <span class="k">continue</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">src</span> <span class="o">==</span> <span class="n">MY_ID</span><span class="p">:</span>
+    <span class="k">continue</span>   <span class="c1"># drop looped-back own packets</span>
 
 <span class="k">if</span> <span class="n">dest</span> <span class="o">!=</span> <span class="n">MY_ID</span> <span class="ow">and</span> <span class="n">dest</span> <span class="o">!=</span> <span class="n">BROADCAST_ID</span><span class="p">:</span>
-    <span class="n">uart_send</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>   <span class="c1"># forward — not addressed to us</span>
+    <span class="k">return</span>
 </code></pre></div>
 <hr>
 <h2 id="sender-implementation">Sender Implementation</h2>
 <ul>
 <li>Always send valid 64-byte packets.</li>
-<li>Respect prefix/suffix.</li>
-<li>Prevent invalid payload content.</li>
-<li>Rate-limit transmission.</li>
-<li>Prioritize forwarding messages.</li>
+<li>Respect <code>AZ</code> prefix and <code>YB</code> suffix.</li>
+<li>Sanitize payload to prevent accidental header/footer byte sequences.</li>
+<li>Rate-limit transmission — minimum 500ms between UART sends.</li>
+<li>Prioritize forwarding packets not addressed to this board.</li>
 </ul>
 <hr>
 <h2 id="acknowledgement-behavior">Acknowledgement Behavior</h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">send_ack</span><span class="p">(</span><span class="n">dest_id</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">send_ack</span><span class="p">(</span><span class="n">dest_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">msg_type</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">msg_type</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">])</span>
-    <span class="n">ack</span> <span class="o">=</span> <span class="n">build_packet</span><span class="p">(</span><span class="n">dest_id</span><span class="p">,</span> <span class="mh">0x00FF</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">ack</span> <span class="o">=</span> <span class="n">build_packet</span><span class="p">(</span><span class="n">dest_id</span><span class="p">,</span> <span class="n">MSG_ACK</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">uart_send</span><span class="p">(</span><span class="n">ack</span><span class="p">)</span>
+</code></pre></div>
+<p>ACKs are sent in response to: <code>0x0003</code>, <code>0x0004</code>, <code>0x0005</code>, <code>0x0006</code>,
+<code>0x0007</code>, and <code>0x0043</code>.</p>
+<hr>
+<h2 id="wifi-failsafe-behavior">WiFi Failsafe Behavior</h2>
+<p>When the WiFi connection is lost, the firmware automatically:</p>
+<ol>
+<li>Sets the WiFi LED (GPIO35) to OFF</li>
+<li>Stops any active camera stream</li>
+<li>Broadcasts an emergency stop packet (<code>0x0005</code>) over UART to all boards</li>
+<li>Flashes all four LEDs three times to indicate the fault condition</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">wifi_han</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">led_wifi</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">state</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="p">:</span>
+        <span class="n">cam</span><span class="o">.</span><span class="n">stream_stop</span><span class="p">()</span>
+        <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">build_packet</span><span class="p">(</span><span class="n">BROADCAST_ID</span><span class="p">,</span> <span class="n">MSG_EMERGENCY_STOP</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">MY_ID</span><span class="p">])))</span>
 </code></pre></div>
 <hr>
 <h2 id="notes">Notes</h2>
 <ul>
-<li>Payload must not contain header/footer patterns.</li>
-<li>Messages must not exceed 64 bytes.</li>
-<li>System enters safe-stop on WiFi loss.</li>
-<li>UART forwarding has priority.</li>
+<li>Payload must not contain header (<code>0x41 0x5A</code>) or footer (<code>0x59 0x42</code>) byte sequences.</li>
+<li>All packets must be exactly 64 bytes.</li>
+<li>System enters safe-stop on WiFi loss automatically.</li>
+<li>UART forwarding takes priority over local processing.</li>
+<li>Heartbeat published to <code>TOPIC_HB</code> every 5 seconds to confirm broker connectivity.</li>
 </ul>
 <hr>
 <h2 id="example-frame">Example Frame</h2>
-<p>ESP32 (<code>Source ID = 0x01</code>) requests sensor data from the Sensor board (<code>Dest ID = 0x02</code>):</p>
+<p>ESP32 (<code>Source ID = 'M'</code>) requests sensor data from the Sensor board
+(<code>Dest ID = 'L'</code>):</p>
 <ul>
-<li>Byte 0: <code>0x41</code></li>
-<li>Byte 1: <code>0x5A</code></li>
-<li>Byte 2: <code>0x01</code> (Source ID = ESP32)</li>
-<li>Byte 3: <code>0x02</code> (Dest ID = Sensor board)</li>
+<li>Byte 0: <code>0x41</code> (header 'A')</li>
+<li>Byte 1: <code>0x5A</code> (header 'Z')</li>
+<li>Byte 2: <code>0x4D</code> (Source ID = 'M', ESP32)</li>
+<li>Byte 3: <code>0x4C</code> (Dest ID = 'L', Sensor board)</li>
 <li>Byte 4: <code>0x00</code> (Message Type high byte)</li>
 <li>Byte 5: <code>0x02</code> (Message Type low byte → <code>0x0002</code> Request Sensor Data)</li>
 <li>Byte 6: <code>0x01</code> (Sensor ID)</li>
 <li>Byte 7–61: zero-filled/reserved</li>
-<li>Byte 62: <code>0x59</code></li>
-<li>Byte 63: <code>0x42</code></li>
+<li>Byte 62: <code>0x59</code> (footer 'Y')</li>
+<li>Byte 63: <code>0x42</code> (footer 'B')</li>
 </ul>
 
 
@@ -2210,13 +2617,13 @@
         
         
           
-          <a href="../../Appendix/" class="md-footer__link md-footer__link--next" aria-label="Next: Appendix - Main Page">
+          <a href="../../10-Hardware-v2/hardwarev2/" class="md-footer__link md-footer__link--next" aria-label="Next: Hardware V2.0">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Appendix - Main Page
+                Hardware V2.0
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2233,7 +2640,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright © 2026 team-name-here
+      Copyright © 2026 Mihir Patel — Team 302 EGR314
     </div>
   
   
@@ -2245,8 +2652,8 @@
     
     
     
-    <a href="/2026_spring" target="_blank" rel="noopener" title="2023 Site" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h160v80c0 17.7 14.3 32 32 32h80v288c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3l-90.6-90.5C262.7 6.7 246.5 0 229.5 0H64zm97 289c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L79 303c-9.4 9.4-9.4 24.6 0 33.9l48 48c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-31-31 31-31zm96-34c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l48-48c9.4-9.4 9.4-24.6 0-33.9l-48-48z"></path></svg>
+    <a href="https://github.com/Mihir-Patel-64" target="_blank" rel="noopener" title="Mihir Patel on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
     </a>
   
 </div>
