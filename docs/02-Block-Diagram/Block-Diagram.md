@@ -6,9 +6,21 @@ tags:
 
 ## Overview
 
-This block diagram represents the **ESP32-based Internet Two-way Wireless Communication subsystem** developed by **Mihir Patel** for **Team 302 – R6 Recon Amphibot**. The purpose of this subsystem is to act as the team’s wireless gateway, enabling remote communication with the operator while coordinating data exchange between onboard subsystems through a **UART daisy-chain architecture**.
+This block diagram represents the **ESP32-based Internet Two-way Wireless Communication subsystem** developed by **Mihir Patel** for **Team 302 – R6 Recon Amphibot**. The purpose of this subsystem is to act as the team's wireless gateway, enabling remote communication with the operator while coordinating data exchange between onboard subsystems through a **UART daisy-chain architecture**.
 
 The diagram follows the **EGR314 block diagram standard** and clearly separates this individual subsystem from the rest of the system using a defined subsystem boundary. All major electrical components, communication interfaces, and power paths are shown with labeled signal directions, specific GPIO pin numbers, and voltage levels.
+
+---
+
+## Decision-Making Process and Requirements Alignment
+
+The block diagram was structured around three guiding principles: functional isolation, signal clarity, and EGR314 compliance. The most important early decision was to separate the wireless communication path (Wi-Fi/MQTT) from the wired system communication path (UART daisy-chain) at the block level. This isolation prevents RF interference from coupling into the UART signal lines and makes each communication domain independently verifiable during bring-up.
+
+The subsystem boundary was drawn to include only the components directly owned and operated by this module — the ESP32-S3 module, the OV5640 camera, the AP63203WU-7 regulator, the protection circuitry, and the debug hardware. The two 2×4 IDC ribbon connectors sit at the boundary edge, representing the interface points with the rest of the team's daisy-chain network. This boundary definition directly satisfies the product requirement for modular subsystem isolation: any board in the chain can be disconnected via its jumpers and tested independently without affecting other boards.
+
+The decision to show GPIO numbers explicitly on the diagram (rather than just signal names) was made to support direct schematic cross-referencing. During integration testing, teammates needed to know exactly which physical pins carried UART TX, UART RX, and shared power, so labeling at the GPIO level rather than the peripheral level reduced ambiguity. The power jumper structure was included in the diagram because it represents an active design decision that affects how the board is powered in different test scenarios — showing it in the block diagram communicates that behavior to anyone reading the datasheet without requiring them to trace through the schematic.
+
+The camera block is shown within the subsystem boundary because it communicates exclusively through the ESP32's internal camera interface and does not interact with any shared system bus. Placing it inside the boundary reflects the actual hardware topology and satisfies the product requirement for wireless video transmission without adding complexity to the inter-board protocol.
 
 ---
 
@@ -31,15 +43,15 @@ This satisfies the EGR314 team requirement for **bidirectional wireless communic
 
 The ESP32 interfaces with neighboring subsystems through a standardized **UART daisy-chain**:
 
-- **RX → GPIO18**
-- **TX → GPIO17**
+- **RX → GPIO44**
+- **TX → GPIO43**
 
 Signals are routed through:
 
 - **Upstream Connector In** (2×4 IDC, 8-pin)
 - **Downstream Connector Out** (2×4 IDC, 8-pin)
 
-This architecture allows structured messages to pass safely across all boards in the team’s daisy-chain network while maintaining modular isolation between subsystems.
+This architecture allows structured messages to pass safely across all boards in the team's daisy-chain network while maintaining modular isolation between subsystems.
 
 ---
 
@@ -48,7 +60,7 @@ This architecture allows structured messages to pass safely across all boards in
 Multiple GPIO-driven debug LEDs provide real-time visual feedback during operation:
 
 | LED | GPIO | Purpose |
-|-----|------|----------|
+|-----|------|---------|
 | Power LED | 3.3V Rail | Indicates onboard 3.3V power is active |
 | MQTT Debug LED 1 | GPIO38 | MQTT publish activity indicator |
 | MQTT Debug LED 2 | GPIO39 | MQTT subscribe activity indicator |
@@ -77,7 +89,7 @@ The adapter connects via a **DC barrel jack**, feeding an onboard:
 The regulator provides regulated 3.3V power to:
 
 - ESP32-S3-WROOM-1-N8R8 module  
-- ESP32-CAM module (Adafruit OV5640) 
+- Adafruit OV5640 camera module  
 - Debug LEDs  
 - GPIO headers  
 - UART daisy-chain connectors  
@@ -95,7 +107,7 @@ Two jumpers are placed directly before the regulator input to allow selectable p
 Only one source should be connected at a time. These jumpers allow the subsystem to:
 
 - Be powered independently from its own 9V adapter  
-- Be powered from the team’s shared bus  
+- Be powered from the team's shared bus  
 - Be safely isolated during debugging and verification  
 
 This configuration fully satisfies the EGR314 requirement for jumper-controlled power path selection and subsystem isolation.
@@ -106,10 +118,10 @@ This configuration fully satisfies the EGR314 requirement for jumper-controlled 
 
 The ESP32-S3 is programmed using its **native USB interface**:
 
-- **USB D− → GPIO19**
-- **USB D+ → GPIO20**
+- **USB_N (USB D−) → GPIO19**
+- **USB_P (USB D+) → GPIO20**
 
-These signals connect to an onboard **Micro USB connector**, enabling:
+These net labels (USB_N and USB_P) are used in the schematic and correspond directly to the ESP32-S3's native USB differential pair pins. These signals connect to an onboard **Micro USB connector**, enabling:
 
 - Direct firmware flashing  
 - Serial monitoring  
@@ -126,13 +138,13 @@ The USB interface is intentionally kept separate from the UART daisy-chain bus t
 
 ## Camera Integration
 
-An **ESP32-CAM / OV2640 camera module** is included within the subsystem boundary.
+An **Adafruit OV5640 camera module** (5MP, DVP interface) is included within the subsystem boundary.
 
-- Communicates internally using the ESP32’s native camera interface  
+- Communicates internally using the ESP32's native parallel camera interface (DVP)  
 - Does **not** share UART, SPI, or I²C system buses  
-- Streams video wirelessly over Wi-Fi  
+- Streams JPEG frames wirelessly over Wi-Fi via chunked MQTT messages  
 
-This enables live reconnaissance capability without interfering with inter-board UART communication.
+This enables live reconnaissance capability without interfering with inter-board UART communication. The camera interface uses a dedicated 2×9 pin header (J6) on the PCB, keeping camera signals fully isolated from the daisy-chain connectors.
 
 ---
 
@@ -141,7 +153,7 @@ This enables live reconnaissance capability without interfering with inter-board
 This block diagram satisfies EGR314 requirements by:
 
 - Clearly identifying the **individual subsystem boundary**
-- Showing all utilized ESP32 peripherals (UART, GPIO, USB, Wi-Fi)
+- Showing all utilized ESP32 peripherals (UART, GPIO, USB, Wi-Fi, Camera)
 - Labeling **signal directions, GPIO numbers, and voltage levels**
 - Including both **upstream and downstream 2×4 IDC connectors**
 - Separating wireless networking from wired system communication

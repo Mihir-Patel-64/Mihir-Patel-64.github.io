@@ -1,15 +1,26 @@
-site_name: EGR 314 Mihir Data Sheet
-site_url: https://embedded-systems-design.github.io/EGR314DataSheetTemplate
-repo_url: https://github.com/embedded-systems-design/EGR314DataSheetTemplate
+site_name: Mihir Patel — EGR314 Individual Datasheet
+site_url: https://mihir-patel-64.github.io
+repo_url: https://github.com/Mihir-Patel-64/Mihir-Patel-64.github.io
 edit_uri: edit/main/docs/
 theme:
   name: material
   custom_dir: custom_theme/
   palette:
-    primary: blue
-    accent: indigo
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
-    text: Roboto
+    text: Inter
+    code: Roboto Mono
   logo: static/logo314.svg
   favicon: static/logo314.png
 
@@ -23,13 +34,10 @@ theme:
     - navigation.prune
     - content.action.edit
     - navigation.footer
-#    - navigation.sections
-#    - navigation.expand
-#    - navigation.instant # doesn't work that well
 
 markdown_extensions:
-  - attr_list #add attributes using curly brackets to images, see https://squidfunk.github.io/mkdocs-material/reference/images/
-  - md_in_html # see https://squidfunk.github.io/mkdocs-material/reference/images/
+  - attr_list
+  - md_in_html
   - footnotes
   - pymdownx.arithmatex:
       generic: true
@@ -47,7 +55,7 @@ draft_docs: |
   
 plugins:
   - search
-  - glightbox # allow resize images, see https://squidfunk.github.io/mkdocs-material/reference/images/
+  - glightbox
 
 extra_css:
   - stylesheets/extra.css  
@@ -59,11 +67,11 @@ extra_javascript:
 not_in_nav: |
   static
   
-copyright: "Copyright &copy; 2026 team-name-here"
+copyright: "Copyright &copy; 2026 Mihir Patel — Team 302 EGR314"
 
 extra:
   generator: false
   social:
-    - icon: fontawesome/regular/file-code
-      link: /2026_spring
-      name: 2023 Site    
+    - icon: fontawesome/brands/github
+      link: https://github.com/Mihir-Patel-64
+      name: Mihir Patel on GitHub

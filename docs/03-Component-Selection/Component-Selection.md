@@ -29,7 +29,7 @@ tags:
 | **ESP32-S3 (bare QFN chip)**<br>![ESP32-S3](esp32_qfn.jpeg)<br>Price: ≈ $2.13/each<br>[Datasheet](https://documentation.espressif.com/esp32-s3_datasheet_en.pdf)<br>Standalone MCU without integrated RF module packaging | - Lowest cost per unit<br>- Smallest PCB footprint<br>- Maximum control over layout and antenna design | - Requires custom RF layout and impedance matching<br>- Higher assembly difficulty (QFN package)<br>- Increased design risk for first PCB revision |
 
 
-**Choice:** Option 1 — ESP32-S3-WROOM-1-N4
+**Choice:** Option 1 — ESP32-S3-WROOM-1-N8R8
 **Rationale:** The ESP32-S3-WROOM-1-N8R8 module is selected because it provides the most reliable and capable solution for implementing Wi-Fi, MQTT communication, and OV5640 camera streaming in this subsystem. The 8MB PSRAM is a hard requirement, without it, the `esp_camera` driver cannot allocate frame buffers at usable resolutions, and the camera integration would fail entirely. The $1.07 cost increase over the N4 variant is fully justified by this capability.
 
 The S3 architecture also provides improved performance and peripheral support compared to the classic ESP32-WROOM-32, while still remaining affordable. Its dual-core design allows separation of networking tasks (MQTT publishing, reconnection handling) from UART daisy-chain communication and camera data processing simultaneously. The N8R8 uses the identical PCB footprint as the N4, meaning no layout changes were required when upgrading. Although the module has a slightly larger footprint than the bare QFN chip, the reduction in RF tuning risk, integrated PSRAM, and faster bring-up time make it the optimal choice for this project.
@@ -70,7 +70,7 @@ I did consider the TPS62840 for its higher efficiency, but after looking at the 
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **CUI Devices PJ-102A DC Barrel Jack (2.1mm)**<br>![PJ-102A](PJ_102A.jpeg)<br>Through-hole DC barrel jack connector, 5.5mm OD / 2.1mm ID, widely used in lab power supplies<br>Price: $0.59/each<br>[Product Page](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102A/275425)<br>[Datasheet](https://www.sameskydevices.com/product/resource/pj-102a.pdf) | - Mechanically strong and reliable<br>- Standard lab power connector<br>- Compatible with common 9V wall adapters<br>- Easy to solder and secure to PCB | - Larger footprint than USB-C<br>- Requires external wall adapter |j
+| **CUI Devices PJ-102A DC Barrel Jack (2.1mm)**<br>![PJ-102A](PJ_102A.jpeg)<br>Through-hole DC barrel jack connector, 5.5mm OD / 2.1mm ID, widely used in lab power supplies<br>Price: $0.59/each<br>[Product Page](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102A/275425)<br>[Datasheet](https://www.sameskydevices.com/product/resource/pj-102a.pdf) | - Mechanically strong and reliable<br>- Standard lab power connector<br>- Compatible with common 9V wall adapters<br>- Easy to solder and secure to PCB | - Larger footprint than USB-C<br>- Requires external wall adapter |
 
 ### Option 2
 
@@ -140,7 +140,7 @@ The N8R8 with integrated antenna keeps the design compact, the BOM simple, and t
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **Native USB (ESP32-S3 USB D+/D− Pins)**<br>![ESP32 USB](ESP32_USB.jpeg)<br>Utilizing the ESP32-S3’s built-in USB interface for programming and serial communication<br>Price: Included in MCU cost<br>[Product Page](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N4/16162639)<br>[Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | - No additional USB-UART chip required<br>- Simplest hardware design<br>- Supports direct flashing and serial monitor<br>- Reduces BOM cost and PCB area | - Requires correct routing of USB differential pair<br>- Must follow USB layout guidelines carefully<br>- Not all module variants expose USB pins |
+| **Native USB (ESP32-S3 USB D+/D− Pins)**<br>![ESP32 USB](ESP32_USB.jpeg)<br>Utilizing the ESP32-S3's built-in USB interface for programming and serial communication<br>Price: Included in MCU cost<br>[Product Page](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1-N4/16162639)<br>[Datasheet](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | - No additional USB-UART chip required<br>- Simplest hardware design<br>- Supports direct flashing and serial monitor<br>- Reduces BOM cost and PCB area | - Requires correct routing of USB differential pair<br>- Must follow USB layout guidelines carefully<br>- Not all module variants expose USB pins |
 
 
 ### Option 2
@@ -153,7 +153,7 @@ The N8R8 with integrated antenna keeps the design compact, the BOM simple, and t
 
 | Solution | Pros | Cons |
 |----------|------|------|
-| **2×5 Programming Header (Tag-Connect / 0.1” Header)**<br>![Programming Header](PTH.jpeg)<br>Standard programming/debug header for external USB-to-serial adapter<br>Price: $1.80/each<br>[Product Page](https://www.sparkfun.com/shrouded-header-pth-0-1in-2x5-pin.html)<br>[Datasheet](https://cdn.sparkfun.com/assets/2/e/c/e/1/Shrouded-10pin.pdf) | - Very low cost<br>- Minimal onboard components<br>- Useful for low-level debugging | - Requires external USB-to-serial adapter<br>- Less convenient during demos<br>- Extra cables increase setup complexity |
+| **2×5 Programming Header (Tag-Connect / 0.1" Header)**<br>![Programming Header](PTH.jpeg)<br>Standard programming/debug header for external USB-to-serial adapter<br>Price: $1.80/each<br>[Product Page](https://www.sparkfun.com/shrouded-header-pth-0-1in-2x5-pin.html)<br>[Datasheet](https://cdn.sparkfun.com/assets/2/e/c/e/1/Shrouded-10pin.pdf) | - Very low cost<br>- Minimal onboard components<br>- Useful for low-level debugging | - Requires external USB-to-serial adapter<br>- Less convenient during demos<br>- Extra cables increase setup complexity |
 
 **Choice:** Option 1 — Micro USB SMD Connector (Native USB)  
 **Rationale:** The Micro USB connector serves two purposes on my board, it acts as a secondary power input through VBUS (protected by a Schottky diode D7 so it doesn't fight with the barrel jack), and it's the primary way I'll be flashing firmware using the ESP32-S3's native USB pins. Because the S3 already has USB D+ and D− built in, I don't need a separate USB-to-UART chip at all. That saves me a chip, the routing that comes with it, and about $4 off the BOM.
@@ -253,6 +253,7 @@ Standard through-hole 0.1" headers would definitely be easier to plug jumper wir
 | Solution | Pros | Cons |
 |----------|------|------|
 | **2×4 IDC Female Header (8-pin, 2.54mm pitch)**<br>Standard 8-wire ribbon cable IDC connector for EGR314 daisy chain bus<br>Price: ~$0.50–$0.80/each<br>[Product Page](https://www.digikey.com/en/products/detail/marutsuelec/21602X40GSE/21669085)<br>[Datasheet](https://www.marutsu.co.jp/contents/shop/marutsu/datasheet/2160.pdf) | - Directly specified by EGR314 project requirements<br>- Keyed IDC connector prevents incorrect insertion<br>- Compatible with standard ribbon cable assemblies<br>- Provides all required pins: VCC, GND, UART TX/RX, and extra GPIO | - Through-hole mounting required<br>- Slightly larger footprint than custom connectors |
+
 ### Option 2
 
 | Solution | Pros | Cons |

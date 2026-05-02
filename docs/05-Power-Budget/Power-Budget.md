@@ -81,4 +81,4 @@ This power budget accounts for the electrical demands of all active components i
 
 The selected AP63203WU-7 regulator (2A variant, 2000 mA rated) exceeds the required 1152.5 mA with 847.5 mA of regulator headroom. Two external power sources are verified: the WSU090-2500 9V wall adapter (500 mA headroom) and the shared 12V team battery (5000 mA headroom). Both margins are positive, and either source alone is sufficient to drive the regulator.
 
-No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and OV5640 camera streaming.
+No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and the OV5640 camera interface should streaming be enabled in a future hardware revision.
