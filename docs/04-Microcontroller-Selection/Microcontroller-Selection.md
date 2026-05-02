@@ -4,7 +4,7 @@ tags:
 - Mihir's Individual Datasheet - Microcontroller Selection
 ---
 
-# ESP32 Wireless Communication — Microcontroller Selection
+# ESP32 Wireless Communication - Microcontroller Selection
 
 ## 1. Microcontroller Selection
 

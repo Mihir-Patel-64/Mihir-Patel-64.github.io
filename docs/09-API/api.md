@@ -8,7 +8,7 @@ tags:
 - EGR314
 ---
 
-# API — Firmware Behavior & UART Message Specification
+# API - Firmware Behavior & UART Message Specification
 
 **Subsystem:** ESP32-S3 Wireless Communication Gateway  
 **Board ID:** `'M'` (ASCII 0x4D)  

@@ -4,7 +4,7 @@ tags:
 - Mihir's Individual Datasheet - Component Selection
 ---
 
-# ESP32 Wireless Communication — Component Selection  
+# ESP32 Wireless Communication - Component Selection  
 
 ## 1. Wireless MCU / Wi-Fi Module **(Core Subsystem)**
 

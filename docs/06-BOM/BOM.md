@@ -5,6 +5,8 @@ tags:
 - Team 302 
 ---
 
+# Module's Bill of Materials
+
 ## Overview
 
 This Bill of Materials (BOM) lists every electronic component required for Mihir Patel’s ESP32-S3 Vision & Wireless Communication Subsystem for the R6 Recon Amphibot (Team 302, EGR314 Spring 2026).

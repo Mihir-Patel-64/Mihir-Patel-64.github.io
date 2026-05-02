@@ -4,6 +4,8 @@ tags:
 - Mihir's Individual Datasheet - Power Budget
 ---
 
+# Module's Power Budget
+
 # Overview
 
 This page presents the power budget for Mihir Patel's ESP32 Wireless Communication subsystem, verifying that all voltage rails, regulators, and the selected external power supply can reliably meet the total current demand of every major active component in the design.

@@ -4,13 +4,13 @@ tags:
 - Mihir's Individual Datasheet - Welcome Page
 ---
 <center>
-<font size= "6"> Mihir Patel — Individual Datasheet </font><br>
+<font size= "6"> Mihir Patel - Individual Datasheet </font><br>
 as part of<br>
 <font size= "8"> R6 Recon Amphibot (Amphibot V1) </font><br>
 for<br>
 <font size= "5"> Team 302 </font><br>
 
-**Submission: May 02, 2026**
+**Submission: May 04, 2026**
 </center>
 
 ## Introduction
