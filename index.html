@@ -588,27 +588,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-summary" class="md-nav__link">
+  <a href="#project-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Summary
+      Project Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#my-contribution" class="md-nav__link">
+  <a href="#my-contributions" class="md-nav__link">
     <span class="md-ellipsis">
-      My Contribution
+      My Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="My Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Design
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#firmware-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#project-sections" class="md-nav__link">
+  <a href="#documentation-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Sections
+      Documentation Overview
     </span>
   </a>
   
@@ -1208,27 +1259,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-summary" class="md-nav__link">
+  <a href="#project-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Summary
+      Project Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#my-contribution" class="md-nav__link">
+  <a href="#my-contributions" class="md-nav__link">
     <span class="md-ellipsis">
-      My Contribution
+      My Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="My Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Design
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#firmware-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#project-sections" class="md-nav__link">
+  <a href="#documentation-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Sections
+      Documentation Overview
     </span>
   </a>
   
@@ -1259,113 +1361,128 @@
 
   <h1>Welcome</h1>
 
-<p></p><center>
-<font size="6"> Mihir Patel - Individual Datasheet </font><br>
-as part of<br>
-<font size="8"> R6 Recon Amphibot (Amphibot V1) </font><br>
-for<br>
-<font size="5"> Team 302 </font><br><p></p>
-<p><strong>Submission: May 04, 2026</strong>
-</p></center><p></p>
+<p></p><center><p></p>
+<p><font size="6">ESP32 Wireless Communication Gateway</font><br></p>
+<p><strong>Mihir Patel</strong><br><br></p>
+<p><font size="8">Team XPED - R6 Recon Amphibot (Amphibot V1)</font><br></p>
+<p><font size="5">EGR314 Embedded Systems Design • Team 302</font></p>
+<p></p></center><p></p>
 <h2 id="introduction">Introduction</h2>
-<p>This datasheet documents the hardware and firmware design for my individual 
-subsystem: the <strong>Internet-based Two-way Wireless Communication module</strong> 
-(ESP32 Gateway) for the Amphibot V1. Its purpose is to record clear, testable 
-requirements, show the block-level hardware layout, list parts and interfaces, 
-and explain how my work plugs into the team-level system (UART daisy-chain, 
-power bus, and MQTT/Wi-Fi). This page is intended for teammates, instructors, 
-and graders so they can quickly understand what I built and how it integrates 
-into the overall project.</p>
+<p>This documentation presents the design and implementation of my <strong>ESP32 Wireless Communication Gateway</strong> for the Team XPED R6 Recon Amphibot. The gateway enables reliable wireless communication between the robot and a remote operator while integrating with the robot's modular UART-based architecture.</p>
+<p>The documentation covers subsystem requirements, hardware architecture, component selection, firmware implementation, PCB design, communication interfaces, verification, and engineering decisions. It also explains how the subsystem integrates with the overall robotic platform and supports reliable operation during remote exploration missions.</p>
 <hr>
-<h2 id="project-summary">Project Summary</h2>
-<p>The Amphibot V1 is a small, throwable amphibious exploration robot that streams 
-live FPV video and telemetry to a remote operator while reporting a consolidated 
-hazard score. My module provides the bi-directional Wi-Fi gateway between the 
-robot and the operator's device. It:</p>
+<h2 id="project-overview">Project Overview</h2>
+<p>The <strong>R6 Recon Amphibot</strong> is a compact amphibious exploration robot designed for remote reconnaissance in challenging environments. The system streams live FPV video, transmits sensor telemetry, and allows an operator to remotely monitor and control the robot while evaluating environmental hazards.</p>
+<p>The <strong>ESP32 Wireless Communication Gateway</strong> serves as the primary communication bridge between the robot and the operator. Its responsibilities include:</p>
 <ul>
-<li>Hosts a reliable Wi-Fi connection and communicates with an external MQTT broker.</li>
-<li>Translates UART traffic from the onboard modular bus into MQTT topics (and vice versa).</li>
-<li>Implements safe fallback behaviors on connection loss — broadcasting a motor 
-  safe-stop command over UART when WiFi is lost.</li>
-<li>Was designed to support live FPV video streaming via the OV5640 camera module, 
-  with full software infrastructure implemented.</li>
+<li>Maintaining a reliable Wi-Fi connection with an external MQTT broker.</li>
+<li>Translating UART packets from the modular communication bus into MQTT topics and vice versa.</li>
+<li>Broadcasting a motor safe-stop command over the UART bus whenever wireless communication is lost.</li>
+<li>Providing the software infrastructure required for live FPV video streaming using the OV5640 camera module.</li>
+<li>Supporting real-time telemetry, command routing, and remote system monitoring.</li>
 </ul>
-<p>This gateway is crucial for remote control, live telemetry, and demo display 
-functions of the Amphibot. For the full team-level context, visit the 
-<a href="https://egr314-s-2026-302.github.io/EGR314-Team302.github.io/">Team 302 Report Website</a>.</p>
+<p>The gateway provides the communication backbone that enables remote operation and coordination between every subsystem in the Amphibot.</p>
+<p>For additional system-level documentation, visit the <strong>Team XPED Project Website</strong>:</p>
+<p><strong>https://egr314-s-2026-302.github.io/EGR314-Team302.github.io/</strong></p>
 <hr>
-<h2 id="my-contribution">My Contribution</h2>
-<p>I (Mihir Patel) own the Wireless Communication subsystem (ESP32). My responsibilities were:</p>
+<h2 id="my-contributions">My Contributions</h2>
+<p>I was responsible for the design and implementation of the <strong>ESP32 Wireless Communication Gateway</strong> subsystem.</p>
+<p>My responsibilities included:</p>
+<h3 id="hardware-design">Hardware Design</h3>
 <ul>
-<li><strong>Hardware:</strong> Selected and integrated the ESP32-S3-WROOM-1-N8R8 module, the 
-  AP63203WU-7 3.3V switching regulator, barrel jack and power-jumper circuitry, 
-  and the 2×4 IDC ribbon connector interface.</li>
-<li><strong>Firmware:</strong> Implemented Wi-Fi + MQTT client using the <code>mqtt_as</code> async library, 
-  MQTT↔UART packet bridge, reconnection and WiFi-loss failsafe behaviors.</li>
-<li><strong>Camera infrastructure:</strong> Designed and implemented <code>camera_module.py</code> for OV5640 
-  frame capture and chunked MQTT publishing, and <code>viewer.py</code> for laptop-side 
-  frame reassembly and display.</li>
-<li><strong>System integration:</strong> Defined and implemented the 64-byte UART packet format, 
-  board ID routing, and inter-board message handling across the daisy-chain.</li>
-<li><strong>Documentation:</strong> Supplied the module datasheet, BOM, block diagram, schematic, 
-  PCB design, and API specification.</li>
+<li>Designed the subsystem around the <strong>ESP32-S3-WROOM-1-N8R8</strong> microcontroller.</li>
+<li>Selected and integrated the <strong>AP63203WU-7</strong> 3.3 V switching regulator.</li>
+<li>Designed the barrel-jack power input and power-jumper circuitry.</li>
+<li>Integrated the <strong>2×4 IDC ribbon connector</strong> for the modular UART communication bus.</li>
+</ul>
+<h3 id="firmware-development">Firmware Development</h3>
+<ul>
+<li>Implemented Wi-Fi connectivity and MQTT communication using the <strong>mqtt_as</strong> asynchronous library.</li>
+<li>Developed the MQTT-to-UART communication bridge.</li>
+<li>Implemented automatic reconnection logic and Wi-Fi loss failsafe behavior.</li>
+<li>Developed UART packet routing and subsystem message handling.</li>
+</ul>
+<h3 id="camera-infrastructure">Camera Infrastructure</h3>
+<ul>
+<li>Developed <code>camera_module.py</code> for OV5640 image capture and MQTT-based frame transmission.</li>
+<li>Developed <code>viewer.py</code> for frame reconstruction and live image display on the operator's computer.</li>
+</ul>
+<h3 id="system-integration">System Integration</h3>
+<ul>
+<li>Designed the 64-byte UART communication protocol.</li>
+<li>Implemented board identification and packet routing across the UART daisy-chain.</li>
+<li>Integrated the wireless gateway with the complete Team XPED communication architecture.</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>Produced subsystem requirements.</li>
+<li>Created hardware block diagrams.</li>
+<li>Documented component selection decisions.</li>
+<li>Developed schematic and PCB documentation.</li>
+<li>Documented firmware APIs and communication interfaces.</li>
+<li>Performed subsystem verification and validation.</li>
 </ul>
 <hr>
-<h2 id="project-sections">Project Sections</h2>
-<p>You can navigate the main sections of this individual datasheet using the top 
-menu or the links below. Each section documents a specific stage of the design 
-and implementation of the <strong>Wireless Communication (ESP32) subsystem</strong>.</p>
-<ul>
-<li>
-<p><strong><a href="01-Requirements/Requirements/">Project Requirements</a></strong> – Module-level 
-  requirements, thresholds, target goals, and final results</p>
-</li>
-<li>
-<p><strong><a href="02-Block-Diagram/Block-Diagram/">Block Diagram</a></strong> – Subsystem-level block 
-  diagram showing power domains, UART daisy-chain connections, ESP32 peripherals, 
-  and external interfaces</p>
-</li>
-<li>
-<p><strong><a href="03-Component-Selection/Component-Selection/">Component Selection</a></strong> – 
-  Selected components and design rationale for the ESP32 wireless gateway</p>
-</li>
-<li>
-<p><strong><a href="04-Microcontroller-Selection/Microcontroller-Selection/">Microcontroller Selection</a></strong> – 
-  ESP32 microcontroller selection criteria, comparisons, and rationale</p>
-</li>
-<li>
-<p><strong><a href="05-Power-Budget/Power-Budget/">Power Budget</a></strong> – Power consumption analysis, 
-  supply requirements, and power domain design</p>
-</li>
-<li>
-<p><strong><a href="06-BOM/BOM/">Bill of Materials (BOM)</a></strong> – Manufacturer part numbers, 
-  footprints, quantities, and estimated costs</p>
-</li>
-<li>
-<p><strong><a href="07-Schematic/schematic/">Schematic</a></strong> – Electrical schematics for the 
-  wireless communication module</p>
-</li>
-<li>
-<p><strong><a href="08-PCB/pcb/">PCB Layout</a></strong> – PCB layout, routing decisions, and design 
-  considerations</p>
-</li>
-<li>
-<p><strong><a href="09-API/api/">API</a></strong> – Firmware behavior, UART message specification, and 
-  MQTT topic documentation</p>
-</li>
-<li>
-<p><strong><a href="10-Hardware-v2/hardwarev2/">Hardware V2.0</a></strong> – What I would improve in 
-  a second hardware revision</p>
-</li>
-<li>
-<p><strong><a href="11-Resources/resources/">Resources</a></strong> – Final code, downloadable files, 
-  and project videos</p>
-</li>
-<li>
-<p><strong><a href="12-Reflection/reflection.md">Reflection</a></strong> – Lessons learned, startup tips, 
-  and recommendations for future students</p>
-</li>
-</ul>
+<h2 id="documentation-overview">Documentation Overview</h2>
+<p>The following sections describe each stage of the subsystem design and implementation.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="01-Requirements/Requirements/">Requirements</a></strong></td>
+<td>Functional and performance requirements, design objectives, and verification results.</td>
+</tr>
+<tr>
+<td><strong><a href="02-Block-Diagram/Block-Diagram/">Block Diagram</a></strong></td>
+<td>Hardware architecture showing power domains, UART interfaces, ESP32 peripherals, and external connections.</td>
+</tr>
+<tr>
+<td><strong><a href="03-Component-Selection/Component-Selection/">Component Selection</a></strong></td>
+<td>Component evaluation and selection rationale for the wireless communication subsystem.</td>
+</tr>
+<tr>
+<td><strong><a href="04-Microcontroller-Selection/Microcontroller-Selection/">Microcontroller Selection</a></strong></td>
+<td>Comparison of candidate microcontrollers and justification for selecting the ESP32-S3.</td>
+</tr>
+<tr>
+<td><strong><a href="05-Power-Budget/Power-Budget/">Power Budget</a></strong></td>
+<td>Power consumption analysis, regulator selection, and power distribution.</td>
+</tr>
+<tr>
+<td><strong><a href="06-BOM/BOM/">Bill of Materials</a></strong></td>
+<td>Complete list of components, manufacturers, footprints, quantities, and estimated costs.</td>
+</tr>
+<tr>
+<td><strong><a href="07-Schematic/schematic/">Schematic</a></strong></td>
+<td>Electrical schematic of the ESP32 Wireless Communication Gateway.</td>
+</tr>
+<tr>
+<td><strong><a href="08-PCB/pcb/">PCB Layout</a></strong></td>
+<td>PCB layout, routing decisions, and hardware design considerations.</td>
+</tr>
+<tr>
+<td><strong><a href="09-API/api/">API Documentation</a></strong></td>
+<td>UART protocol, MQTT topics, firmware interfaces, and software architecture.</td>
+</tr>
+<tr>
+<td><strong><a href="10-Hardware-v2/hardwarev2/">Hardware Revision 2.0</a></strong></td>
+<td>Proposed improvements for a future hardware revision.</td>
+</tr>
+<tr>
+<td><strong><a href="11-Resources/resources/">Resources</a></strong></td>
+<td>Source code, downloadable project files, and demonstration videos.</td>
+</tr>
+<tr>
+<td><strong><a href="12-Reflection/reflection.md">Reflection</a></strong></td>
+<td>Engineering lessons learned, design reflections, and recommendations for future development.</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1405,13 +1522,13 @@ and implementation of the <strong>Wireless Communication (ESP32) subsystem</stro
         
         
           
-          <a href="01-Requirements/Requirements/" class="md-footer__link md-footer__link--next" aria-label="Next: Module's Requirements">
+          <a href="01-Requirements/Requirements/" class="md-footer__link md-footer__link--next" aria-label="Next: Module Requirements">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module's Requirements
+                Module Requirements
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -26,7 +26,7 @@
 
     
       
-        <title>Module's Block Diagram - Mihir Patel - EGR314 Individual Datasheet</title>
+        <title>Block Diagram - Mihir Patel - EGR314 Individual Datasheet</title>
       
     
     
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module's Block Diagram
+              Block Diagram
             
           </span>
         </div>
@@ -665,7 +665,7 @@
           
   
   <span class="md-ellipsis">
-    Module's Block Diagram
+    Block Diagram
   </span>
   
 
@@ -676,7 +676,7 @@
         
   
   <span class="md-ellipsis">
-    Module's Block Diagram
+    Block Diagram
   </span>
   
 
@@ -705,22 +705,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision-making-process-and-requirements-alignment" class="md-nav__link">
+  <a href="#decision-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      Decision-Making Process and Requirements Alignment
+      Decision Objectives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#subsystem-functionality" class="md-nav__link">
+  <a href="#functional-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Subsystem Functionality
+      Functional Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Subsystem Functionality">
+    <nav class="md-nav" aria-label="Functional Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -766,9 +766,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#required-egr314-power-jumpers" class="md-nav__link">
+  <a href="#power-source-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      Required EGR314 Power Jumpers
+      Power Source Selection
     </span>
   </a>
   
@@ -780,27 +780,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#programming-and-development-interface" class="md-nav__link">
+  <a href="#programming-interface" class="md-nav__link">
     <span class="md-ellipsis">
-      Programming and Development Interface
+      Programming Interface
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#camera-integration" class="md-nav__link">
+  <a href="#camera-interface" class="md-nav__link">
     <span class="md-ellipsis">
-      Camera Integration
+      Camera Interface
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#design-rationale-and-standards-compliance" class="md-nav__link">
+  <a href="#standards-compliance" class="md-nav__link">
     <span class="md-ellipsis">
-      Design Rationale and Standards Compliance
+      Standards Compliance
     </span>
   </a>
   
@@ -1325,22 +1325,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision-making-process-and-requirements-alignment" class="md-nav__link">
+  <a href="#decision-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      Decision-Making Process and Requirements Alignment
+      Decision Objectives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#subsystem-functionality" class="md-nav__link">
+  <a href="#functional-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Subsystem Functionality
+      Functional Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Subsystem Functionality">
+    <nav class="md-nav" aria-label="Functional Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1386,9 +1386,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#required-egr314-power-jumpers" class="md-nav__link">
+  <a href="#power-source-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      Required EGR314 Power Jumpers
+      Power Source Selection
     </span>
   </a>
   
@@ -1400,27 +1400,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#programming-and-development-interface" class="md-nav__link">
+  <a href="#programming-interface" class="md-nav__link">
     <span class="md-ellipsis">
-      Programming and Development Interface
+      Programming Interface
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#camera-integration" class="md-nav__link">
+  <a href="#camera-interface" class="md-nav__link">
     <span class="md-ellipsis">
-      Camera Integration
+      Camera Interface
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#design-rationale-and-standards-compliance" class="md-nav__link">
+  <a href="#standards-compliance" class="md-nav__link">
     <span class="md-ellipsis">
-      Design Rationale and Standards Compliance
+      Standards Compliance
     </span>
   </a>
   
@@ -1458,19 +1458,19 @@
   
 
 
-  <h1>Module's Block Diagram</h1>
+  <h1>Block Diagram</h1>
 
 <h2 id="overview">Overview</h2>
 <p>This block diagram represents the <strong>ESP32-based Internet Two-way Wireless Communication subsystem</strong> developed by <strong>Mihir Patel</strong> for <strong>Team 302 – R6 Recon Amphibot</strong>. The purpose of this subsystem is to act as the team's wireless gateway, enabling remote communication with the operator while coordinating data exchange between onboard subsystems through a <strong>UART daisy-chain architecture</strong>.</p>
 <p>The diagram follows the <strong>EGR314 block diagram standard</strong> and clearly separates this individual subsystem from the rest of the system using a defined subsystem boundary. All major electrical components, communication interfaces, and power paths are shown with labeled signal directions, specific GPIO pin numbers, and voltage levels.</p>
 <hr>
-<h2 id="decision-making-process-and-requirements-alignment">Decision-Making Process and Requirements Alignment</h2>
+<h2 id="decision-objectives">Decision Objectives</h2>
 <p>The block diagram was structured around three guiding principles: functional isolation, signal clarity, and EGR314 compliance. The most important early decision was to separate the wireless communication path (Wi-Fi/MQTT) from the wired system communication path (UART daisy-chain) at the block level. This isolation prevents RF interference from coupling into the UART signal lines and makes each communication domain independently verifiable during bring-up.</p>
 <p>The subsystem boundary was drawn to include only the components directly owned and operated by this module — the ESP32-S3 module, the OV5640 camera, the AP63203WU-7 regulator, the protection circuitry, and the debug hardware. The two 2×4 IDC ribbon connectors sit at the boundary edge, representing the interface points with the rest of the team's daisy-chain network. This boundary definition directly satisfies the product requirement for modular subsystem isolation: any board in the chain can be disconnected via its jumpers and tested independently without affecting other boards.</p>
 <p>The decision to show GPIO numbers explicitly on the diagram (rather than just signal names) was made to support direct schematic cross-referencing. During integration testing, teammates needed to know exactly which physical pins carried UART TX, UART RX, and shared power, so labeling at the GPIO level rather than the peripheral level reduced ambiguity. The power jumper structure was included in the diagram because it represents an active design decision that affects how the board is powered in different test scenarios — showing it in the block diagram communicates that behavior to anyone reading the datasheet without requiring them to trace through the schematic.</p>
 <p>The camera block is shown within the subsystem boundary because it communicates exclusively through the ESP32's internal camera interface and does not interact with any shared system bus. Placing it inside the boundary reflects the actual hardware topology and satisfies the product requirement for wireless video transmission without adding complexity to the inter-board protocol.</p>
 <hr>
-<h2 id="subsystem-functionality">Subsystem Functionality</h2>
+<h2 id="functional-overview">Functional Overview</h2>
 <p>The ESP32 Wireless Gateway performs three primary functions within the overall exploration device:</p>
 <h3 id="1-two-way-wireless-communication">1. Two-Way Wireless Communication</h3>
 <p>The ESP32 connects to an external <strong>MQTT Server</strong> over Wi-Fi.</p>
@@ -1552,7 +1552,7 @@
 <li>GPIO headers  </li>
 <li>UART daisy-chain connectors  </li>
 </ul>
-<h3 id="required-egr314-power-jumpers">Required EGR314 Power Jumpers</h3>
+<h3 id="power-source-selection">Power Source Selection</h3>
 <p>Two jumpers are placed directly before the regulator input to allow selectable power sourcing:</p>
 <ol>
 <li>
@@ -1572,7 +1572,7 @@
 </ul>
 <p>This configuration fully satisfies the EGR314 requirement for jumper-controlled power path selection and subsystem isolation.</p>
 <hr>
-<h2 id="programming-and-development-interface">Programming and Development Interface</h2>
+<h2 id="programming-interface">Programming Interface</h2>
 <p>The ESP32-S3 is programmed using its <strong>native USB interface</strong>:</p>
 <ul>
 <li><strong>USB_N (USB D−) → GPIO19</strong></li>
@@ -1591,7 +1591,7 @@
 </ul>
 <p>The USB interface is intentionally kept separate from the UART daisy-chain bus to prevent signal interference.</p>
 <hr>
-<h2 id="camera-integration">Camera Integration</h2>
+<h2 id="camera-interface">Camera Interface</h2>
 <p>An <strong>Adafruit OV5640 camera module</strong> (5MP, DVP interface) is included within the subsystem boundary.</p>
 <ul>
 <li>Communicates internally using the ESP32's native parallel camera interface (DVP)  </li>
@@ -1600,7 +1600,7 @@
 </ul>
 <p>This enables live reconnaissance capability without interfering with inter-board UART communication. The camera interface uses a dedicated 2×9 pin header (J6) on the PCB, keeping camera signals fully isolated from the daisy-chain connectors.</p>
 <hr>
-<h2 id="design-rationale-and-standards-compliance">Design Rationale and Standards Compliance</h2>
+<h2 id="standards-compliance">Standards Compliance</h2>
 <p>This block diagram satisfies EGR314 requirements by:</p>
 <ul>
 <li>Clearly identifying the <strong>individual subsystem boundary</strong></li>
@@ -1652,7 +1652,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../../01-Requirements/Requirements/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Module's Requirements">
+          <a href="../../01-Requirements/Requirements/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Module Requirements">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
@@ -1662,20 +1662,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Module's Requirements
+                Module Requirements
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../03-Component-Selection/Component-Selection/" class="md-footer__link md-footer__link--next" aria-label="Next: Module's Selected Major Components">
+          <a href="../../03-Component-Selection/Component-Selection/" class="md-footer__link md-footer__link--next" aria-label="Next: Component Selection">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module's Selected Major Components
+                Component Selection
               </div>
             </div>
             <div class="md-footer__button md-icon">

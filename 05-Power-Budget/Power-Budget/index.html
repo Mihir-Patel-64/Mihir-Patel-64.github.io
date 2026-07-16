@@ -26,7 +26,7 @@
 
     
       
-        <title>Module's Power Budget - Mihir Patel - EGR314 Individual Datasheet</title>
+        <title>Power Budget - Mihir Patel - EGR314 Individual Datasheet</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modules-power-budget" class="md-skip">
+        <a href="#esp32-wireless-communication-gateway-power-budget" class="md-skip">
           Skip to content
         </a>
       
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module's Power Budget
+              Power Budget
             
           </span>
         </div>
@@ -801,15 +801,120 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Power Budget
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Module's Power Budget
+    Power Budget
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-budget-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Budget Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Budget Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-power-budget-informed-design-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Power Budget Informed Design Choices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supporting-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supporting Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-rails-and-regulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Rails and Regulators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-source-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Source Verification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Source Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-budget-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Budget Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1165,6 +1270,89 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-budget-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Budget Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Budget Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-power-budget-informed-design-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Power Budget Informed Design Choices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supporting-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supporting Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-rails-and-regulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Rails and Regulators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-source-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Source Verification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Source Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-budget-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Budget Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1186,9 +1374,9 @@
   
 
 
-<h1 id="modules-power-budget">Module's Power Budget</h1>
-<h1 id="overview">Overview</h1>
-<p>This page presents the power budget for Mihir Patel's ESP32 Wireless Communication subsystem, verifying that all voltage rails, regulators, and the selected external power supply can reliably meet the total current demand of every major active component in the design.</p>
+<h1 id="esp32-wireless-communication-gateway-power-budget">ESP32 Wireless Communication Gateway Power Budget</h1>
+<h2 id="overview">Overview</h2>
+<p>This section presents the power budget for the <strong>ESP32 Wireless Communication Gateway</strong>, verifying that the selected voltage rail, regulator, and external power sources can reliably supply the total current required by every major active component in the subsystem.</p>
 <p>The power budget covers:</p>
 <ul>
 <li>Peak current requirements of all major active components on the +3.3V rail</li>
@@ -1205,20 +1393,20 @@
 <h3 id="how-the-power-budget-informed-design-choices">How the Power Budget Informed Design Choices</h3>
 <ul>
 <li>
-<p>The power budget was used to total the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV5640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
+<p>The power analysis determined the worst-case current draw of all major active components on the +3.3V rail. This includes the ESP32-S3-WROOM-1-N8R8 Wi-Fi module, OV5640 camera module, five debug LEDs, two tactile switches, USB VBUS sense logic, and a miscellaneous overhead margin. Summing each device's peak current gives a subtotal of 922 mA, and applying the required 25% safety margin brings the total current required on the +3.3V rail to 1152.5 mA.</p>
 </li>
 <li>
-<p>This requirement directly informed the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.</p>
+<p>The calculated current requirement directly guided the regulator selection. The AP63203WU-7 synchronous buck regulator, rated for 2A continuous output, was selected to provide adequate overhead above the 1152.5 mA requirement. With 847.5 mA of headroom remaining, the regulator comfortably handles Wi-Fi transmission spikes and simultaneous camera streaming without approaching its current limit.</p>
 </li>
 <li>
-<p>The same budget was used to verify both external power sources. The primary standalone source is the WSU090-2500 9V AC-DC wall adapter, rated at 2500 mA. The secondary source is the team's shared 12V battery (B09ZTKTLGW), rated at 7000 mA. Both sources feed the AP63203WU-7 through onboard protection diodes (MBRS340T3G), and either source alone is sufficient to power the entire +3.3V rail. With the 9V adapter, 500 mA of headroom remains on the supply after accounting for the regulator's maximum draw. With the 12V battery, 5000 mA of headroom remains.</p>
+<p>The same analysis was used to verify both external power sources. The primary standalone source is the WSU090-2500 9V AC-DC wall adapter, rated at 2500 mA. The secondary source is the shared 12V system battery (B09ZTKTLGW), rated at 7000 mA. Both sources feed the AP63203WU-7 through onboard protection diodes (MBRS340T3G), and either source alone is sufficient to power the entire +3.3V rail. With the 9V adapter, 500 mA of headroom remains on the supply after accounting for the regulator's maximum draw. With the 12V battery, 5000 mA of headroom remains.</p>
 </li>
 <li>
 <p>The key conclusion from this analysis is that a single +3.3V regulated rail, supplied by either the 9V wall adapter or the 12V shared battery through the AP63203WU-7, is sufficient for all wireless, camera, and communication functions in this subsystem. No additional voltage rails are required.</p>
 </li>
 </ul>
 <hr>
-<h3 id="downloadable-files">Downloadable Files</h3>
+<h3 id="supporting-files">Supporting Files</h3>
 <ul>
 <li>
 <p><strong>Power Budget EXCEL:</strong><br>
@@ -1294,13 +1482,13 @@
 </table>
 <blockquote>
 <p>The WSU090-2500 9V wall adapter is the primary standalone power source. It feeds the AP63203WU-7 buck regulator through an onboard protection diode (MBRS340T3G, ~0.45V drop), delivering approximately 8.55V to the regulator input, well above the 3.8V minimum. The 9V adapter alone is fully sufficient to regulate down to 3.3V for all components on the board.</p>
-<p>The 12V battery is the team's shared power source (Raunak's subsystem). It also connects to the same AP63203WU-7 through a protection diode, and can serve as an alternative or simultaneous supply. Either source alone is sufficient, both are within the regulator's 3.8V–32V input range.</p>
+<p>The 12V battery is the shared power source. It also connects to the same AP63203WU-7 through a protection diode, and can serve as an alternative or simultaneous supply. Either source alone is sufficient, both are within the regulator's 3.8V–32V input range.</p>
 </blockquote>
 <hr>
 <h3 id="power-budget-summary">Power Budget Summary</h3>
-<p>This power budget accounts for the electrical demands of all active components in the ESP32 wireless communication subsystem, assigning each to a single +3.3V logic rail. Current estimates are based on worst-case peak consumption with a 25% safety margin applied.</p>
+<p>This power budget accounts for the electrical demands of all active components in the <strong>ESP32 Wireless Communication Gateway</strong>, assigning each to a single regulated +3.3V power rail. Current estimates are based on worst-case peak consumption with a 25% safety margin applied.</p>
 <p>The selected AP63203WU-7 regulator (2A variant, 2000 mA rated) exceeds the required 1152.5 mA with 847.5 mA of regulator headroom. Two external power sources are verified: the WSU090-2500 9V wall adapter (500 mA headroom) and the shared 12V team battery (5000 mA headroom). Both margins are positive, and either source alone is sufficient to drive the regulator.</p>
-<p>No additional voltage rails are necessary. The chosen single-rail design simplifies the system while maintaining appropriate electrical headroom for continuous Wi-Fi operation, MQTT communication, and the OV5640 camera interface should streaming be enabled in a future hardware revision.</p>
+<p>No additional regulated voltage rails are required. The selected single-rail architecture simplifies power distribution while maintaining sufficient electrical headroom for continuous Wi-Fi operation, MQTT communication, and future OV5640 camera streaming.</p>
 
 
 
@@ -1339,7 +1527,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../../04-Microcontroller-Selection/Microcontroller-Selection/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Module's Microcontroller Selection">
+          <a href="../../04-Microcontroller-Selection/Microcontroller-Selection/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Microcontroller Selection">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
@@ -1349,20 +1537,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Module's Microcontroller Selection
+                Microcontroller Selection
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../06-BOM/BOM/" class="md-footer__link md-footer__link--next" aria-label="Next: Module Bill of Materials">
+          <a href="../../06-BOM/BOM/" class="md-footer__link md-footer__link--next" aria-label="Next: Bill of Materials">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module Bill of Materials
+                Bill of Materials
               </div>
             </div>
             <div class="md-footer__button md-icon">

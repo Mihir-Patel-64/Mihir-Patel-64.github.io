@@ -26,7 +26,7 @@
 
     
       
-        <title>Module's Requirements - Mihir Patel - EGR314 Individual Datasheet</title>
+        <title>Module Requirements - Mihir Patel - EGR314 Individual Datasheet</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-requirements" class="md-skip">
+        <a href="#esp32-wireless-communication-gateway-requirements" class="md-skip">
           Skip to content
         </a>
       
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module's Requirements
+              Module Requirements
             
           </span>
         </div>
@@ -621,7 +621,7 @@
           
   
   <span class="md-ellipsis">
-    Module's Requirements
+    Module Requirements
   </span>
   
 
@@ -632,7 +632,7 @@
         
   
   <span class="md-ellipsis">
-    Module's Requirements
+    Module Requirements
   </span>
   
 
@@ -654,51 +654,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#module-requirements-wireless-communication-esp32" class="md-nav__link">
+  <a href="#module-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      Module Requirements — Wireless Communication (ESP32)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requirement-review" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirement Review
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Requirement Review">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements-successfully-met" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements Successfully Met
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stretch-goal-video-data-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stretch Goal: Video Data Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature-to-requirement-rationale" class="md-nav__link">
-    <span class="md-ellipsis">
-      Feature-to-Requirement Rationale
+      Module Requirements
     </span>
   </a>
   
@@ -1253,51 +1211,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#module-requirements-wireless-communication-esp32" class="md-nav__link">
+  <a href="#module-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      Module Requirements — Wireless Communication (ESP32)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requirement-review" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirement Review
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Requirement Review">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements-successfully-met" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements Successfully Met
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stretch-goal-video-data-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stretch Goal: Video Data Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature-to-requirement-rationale" class="md-nav__link">
-    <span class="md-ellipsis">
-      Feature-to-Requirement Rationale
+      Module Requirements
     </span>
   </a>
   
@@ -1326,18 +1242,19 @@
   
 
 
-<h1 id="project-requirements">Project Requirements</h1>
-<p>The purpose of this section is to define the engineering requirements for the <strong>Wireless Communication subsystem (ESP32)</strong>. This module is responsible for enabling remote control of the exploration device, transmitting telemetry and video data to the user, and ensuring safe system behavior if the wireless connection is lost. Each requirement below describes the minimum functionality required for the module to be considered operational, along with target performance goals and optional stretch objectives.</p>
+<h1 id="esp32-wireless-communication-gateway-requirements">ESP32 Wireless Communication Gateway Requirements</h1>
+<p>This section defines the functional and performance requirements for the <strong>ESP32 Wireless Communication Gateway</strong> subsystem. The gateway enables remote robot control, MQTT communication, telemetry transmission, and safe system operation during wireless communication failures. Each requirement includes threshold and target objectives together with the final implementation outcome.</p>
 <hr>
-<h2 id="module-requirements-wireless-communication-esp32">Module Requirements — Wireless Communication (ESP32)</h2>
-<p><strong>Teammate: Mihir Patel</strong></p>
+<h2 id="module-requirements">Module Requirements</h2>
+<p><strong>Subsystem:</strong> ESP32 Wireless Communication Gateway</p>
+<p><strong>Engineer:</strong> Mihir Patel</p>
 <table>
 <thead>
 <tr>
 <th>Requirement Description</th>
-<th>Measure of Threshold</th>
-<th>Target Measure</th>
-<th>Stretch (Yes/No)</th>
+<th>Threshold</th>
+<th>Target</th>
+<th>Stretch</th>
 <th>Final Result</th>
 </tr>
 </thead>
@@ -1347,58 +1264,108 @@
 <td>Output ≥ 3.2 V</td>
 <td>Stable 3.3 V output</td>
 <td>No</td>
-<td>Met — AP63203WU-7 produced stable 3.3 V under full load</td>
+<td><strong>Met</strong> — AP63203WU-7 provided a stable 3.3 V supply under full system load</td>
 </tr>
 <tr>
 <td>ESP32 microcontroller operation</td>
-<td>Boots successfully</td>
-<td>Runs Wi-Fi and MQTT</td>
+<td>Successful boot</td>
+<td>Reliable Wi-Fi and MQTT operation</td>
 <td>No</td>
-<td>Met — ESP32-S3 booted reliably and connected to MQTT broker</td>
+<td><strong>Met</strong> — ESP32-S3 booted consistently and maintained reliable MQTT connectivity</td>
 </tr>
 <tr>
 <td>Wireless communication</td>
-<td>One-way data transfer</td>
-<td>Two-way MQTT messaging</td>
+<td>Basic one-way communication</td>
+<td>Full two-way MQTT messaging</td>
 <td>No</td>
-<td>Met — Full publish/subscribe MQTT messaging achieved</td>
+<td><strong>Met</strong> — Complete publish/subscribe MQTT communication implemented</td>
 </tr>
 <tr>
 <td>UART communication with system bus</td>
 <td>Basic TX/RX</td>
 <td>Structured packets with CRC</td>
 <td>No</td>
-<td>Met — 64-byte structured UART packets implemented and forwarded</td>
+<td><strong>Met</strong> — 64-byte UART packet protocol implemented and successfully forwarded between subsystems</td>
 </tr>
 <tr>
 <td>Video data handling</td>
-<td>Video stream present</td>
-<td>Stable low-latency stream</td>
+<td>Image acquisition</td>
+<td>Stable low-latency video streaming</td>
 <td>Yes</td>
-<td>Partially Met — Camera firmware (<code>camera_module.py</code>) and laptop viewer (<code>viewer.py</code>) were fully implemented with chunked MQTT frame delivery, but live streaming was not demonstrated on final hardware</td>
+<td><strong>Partially Met</strong> — Camera firmware (<code>camera_module.py</code>) and laptop viewer (<code>viewer.py</code>) were fully implemented with chunked MQTT frame transmission, but live streaming was not demonstrated on the final hardware</td>
 </tr>
 <tr>
 <td>Connection loss handling</td>
-<td>Detect disconnection</td>
-<td>Trigger safe-stop behavior</td>
+<td>Detect wireless disconnection</td>
+<td>Automatic safe-stop behavior</td>
 <td>Yes</td>
-<td>Met — WiFi failsafe implemented; emergency stop packet broadcast over UART on connection loss</td>
+<td><strong>Met</strong> — Wi-Fi failsafe implemented; emergency stop packet broadcast over UART whenever the wireless connection was lost</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h2 id="requirement-review">Requirement Review</h2>
-<h3 id="requirements-successfully-met">Requirements Successfully Met</h3>
-<p>The four core requirements were all achieved. The AP63203WU-7 switching regulator provided stable 3.3 V output throughout testing, with 847.5 mA of headroom remaining above the calculated worst-case load. The ESP32-S3-WROOM-1-N8R8 booted reliably and maintained a persistent Wi-Fi and MQTT connection across all test sessions. Two-way MQTT messaging was fully operational, with telemetry published to the broker and motor commands received and forwarded over UART. The 64-byte structured UART packet format was implemented as specified in the API, with correct header/footer framing, board ID routing, and message type handling.</p>
-<p>The WiFi connection-loss failsafe, listed as a stretch goal, was also successfully implemented. When the MQTT broker connection dropped, the firmware detected the disconnection and broadcast an emergency stop packet (message type <code>0x0005</code>) over UART to halt the actuator subsystem, satisfying the safe-stop behavior requirement.</p>
-<h3 id="stretch-goal-video-data-handling">Stretch Goal: Video Data Handling</h3>
-<p>The video streaming requirement was the one area where software completion outpaced hardware verification. The full software stack was built: <code>camera_module.py</code> implements OV5640 initialization, JPEG capture, and chunked base64 MQTT frame publishing; <code>viewer.py</code> provides a laptop-side OpenCV viewer that reassembles and displays frames in real time; and <code>config_additions.py</code> defines the three camera MQTT topics (<code>TOPIC_CAM_CMD</code>, <code>TOPIC_CAM_FRAME</code>, <code>TOPIC_CAM_STATUS</code>). The architecture supports on-demand capture, continuous streaming at a configurable frame rate, and graceful stream start/stop via MQTT commands.</p>
-<p>However, live end-to-end camera streaming was not demonstrated on the final populated PCB. The primary constraint was time available for hardware bring-up after board assembly. The OV5640 camera interface requires careful pin-by-pin verification against the schematic, and the MicroPython <code>esp32-camera</code> module requires firmware compiled with camera support enabled, both of which were not completed within the project timeline. This is discussed further in the <a href="../../10-Hardware-v2/hardwarev2/">Hardware V2.0</a> and <a href="../../12-Reflection/Reflection/">Reflection</a> pages.</p>
+<h1 id="requirement-review">Requirement Review</h1>
+<h2 id="successfully-implemented-requirements">Successfully Implemented Requirements</h2>
+<p>The five primary subsystem requirements were successfully implemented and verified.</p>
+<p>The <strong>AP63203WU-7</strong> switching regulator delivered a stable <strong>3.3 V</strong> output throughout testing while maintaining approximately <strong>847.5 mA</strong> of available current headroom beyond the calculated worst-case system load.</p>
+<p>The <strong>ESP32-S3-WROOM-1-N8R8</strong> booted reliably and maintained stable Wi-Fi and MQTT connectivity throughout subsystem testing.</p>
+<p>Two-way MQTT communication operated as intended, allowing telemetry to be published to the MQTT broker while receiving remote control commands that were forwarded across the UART daisy-chain.</p>
+<p>The structured <strong>64-byte UART communication protocol</strong> was implemented according to the subsystem API specification, including packet framing, board identification, routing, and message-type handling.</p>
+<p>The Wi-Fi connection-loss failsafe, originally identified as a stretch objective, was also fully implemented. Whenever the MQTT connection was interrupted, the firmware detected the failure and immediately broadcast an emergency stop packet (<code>0x0005</code>) across the UART network to safely halt the actuator subsystem.</p>
 <hr>
-<h2 id="feature-to-requirement-rationale">Feature-to-Requirement Rationale</h2>
-<p>Wireless communication is a critical part of the exploration device because it allows the robot to be operated from a safe distance while providing real-time situational awareness. Features such as remote driving, live video feedback, and telemetry monitoring directly resulted in requirements for reliable two-way Wi-Fi communication and structured UART messaging with the rest of the system.</p>
-<p>Power-related requirements were included to ensure stable operation of the ESP32 and prevent communication failures caused by voltage drops. Connection-loss handling was added as a safety measure so the system can respond predictably if wireless control is interrupted. Together, these requirements ensure that the wireless module reliably supports the overall exploration device while operating safely within the system architecture.</p>
-<p>The video streaming requirement originated from the core mission of the Amphibot: providing a live FPV feed for remote reconnaissance. Although this stretch goal was not fully demonstrated on hardware, its implementation informed several hardware decisions, most notably the selection of the ESP32-S3-WROOM-1-N8R8 over the N4 variant, as the 8 MB PSRAM is a hard dependency of the OV5640 camera driver and cannot be worked around in software.</p>
+<h2 id="stretch-goal-video-data-handling">Stretch Goal: Video Data Handling</h2>
+<p>Video streaming was the only requirement that reached software completion without full hardware verification.</p>
+<p>The complete software infrastructure was implemented, including:</p>
+<ul>
+<li><code>camera_module.py</code> for OV5640 initialization, image capture, and chunked Base64 MQTT frame publishing.</li>
+<li><code>viewer.py</code> for laptop-side frame reconstruction and real-time OpenCV display.</li>
+<li><code>config_additions.py</code> defining the camera MQTT topics (<code>TOPIC_CAM_CMD</code>, <code>TOPIC_CAM_FRAME</code>, and <code>TOPIC_CAM_STATUS</code>).</li>
+</ul>
+<p>The architecture supports:</p>
+<ul>
+<li>On-demand image capture</li>
+<li>Continuous video streaming</li>
+<li>Configurable frame rates</li>
+<li>Remote stream start and stop using MQTT commands</li>
+</ul>
+<p>Although the software implementation was completed, live end-to-end camera streaming was not demonstrated on the final assembled hardware.</p>
+<p>The primary limitation was the time available for complete hardware bring-up following PCB assembly. The OV5640 interface requires careful hardware verification, and the MicroPython <code>esp32-camera</code> library requires firmware compiled with camera support enabled. These final validation steps were not completed within the project timeline.</p>
+<p>Additional discussion is provided in the <strong>Hardware V2.0</strong> and <strong>Reflection</strong> sections.</p>
+<hr>
+<h1 id="feature-to-requirement-rationale">Feature-to-Requirement Rationale</h1>
+<p>The ESP32 Wireless Communication Gateway is a critical subsystem because it provides the communication interface between the operator and every onboard subsystem.</p>
+<p>Reliable wireless communication enables:</p>
+<ul>
+<li>Remote driving</li>
+<li>Real-time telemetry monitoring</li>
+<li>MQTT-based command and control</li>
+<li>System status reporting</li>
+<li>Safe operation during communication failures</li>
+</ul>
+<p>These system-level responsibilities directly resulted in requirements for reliable bidirectional Wi-Fi communication, structured UART messaging, and automatic failsafe behavior.</p>
+<p>Power-related requirements ensure stable ESP32 operation while preventing communication failures caused by voltage instability.</p>
+<p>The video-streaming requirement originated from the Amphibot's primary reconnaissance mission, where a live FPV feed provides the operator with situational awareness during exploration.</p>
+<p>Although this stretch objective was not fully demonstrated on hardware, it directly influenced several hardware design decisions. Most notably, it justified selecting the <strong>ESP32-S3-WROOM-1-N8R8</strong> instead of the N4 variant because the additional <strong>8 MB PSRAM</strong> is required by the OV5640 camera driver and cannot be replaced through software optimization alone.</p>
+<hr>
+<h1 id="requirement-verification-summary">Requirement Verification Summary</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Total Requirements</th>
+<th style="text-align: right;">Fully Met</th>
+<th style="text-align: right;">Partially Met</th>
+<th style="text-align: right;">Not Met</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1454,13 +1421,13 @@
         
         
           
-          <a href="../../02-Block-Diagram/Block-Diagram/" class="md-footer__link md-footer__link--next" aria-label="Next: Module's Block Diagram">
+          <a href="../../02-Block-Diagram/Block-Diagram/" class="md-footer__link md-footer__link--next" aria-label="Next: Block Diagram">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module's Block Diagram
+                Block Diagram
               </div>
             </div>
             <div class="md-footer__button md-icon">
