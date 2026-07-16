@@ -1,50 +1,102 @@
 ---
-title: Module's Requirements
+title: Module Requirements
 tags:
-- EGR314
-- Team 302
+  - EGR314
+  - Team 302
+  - ESP32
+  - Wireless Communication
 ---
 
-# Project Requirements
+# ESP32 Wireless Communication Gateway Requirements
 
-The purpose of this section is to define the engineering requirements for the **Wireless Communication subsystem (ESP32)**. This module is responsible for enabling remote control of the exploration device, transmitting telemetry and video data to the user, and ensuring safe system behavior if the wireless connection is lost. Each requirement below describes the minimum functionality required for the module to be considered operational, along with target performance goals and optional stretch objectives.
-
----
-
-## Module Requirements — Wireless Communication (ESP32)  
-**Teammate: Mihir Patel**
-
-| Requirement Description | Measure of Threshold | Target Measure | Stretch (Yes/No) | Final Result |
-|------------------------|----------------------|----------------|------------------|--------------|
-| Surface-mounted 3.3 V switching regulator | Output ≥ 3.2 V | Stable 3.3 V output | No | Met — AP63203WU-7 produced stable 3.3 V under full load |
-| ESP32 microcontroller operation | Boots successfully | Runs Wi-Fi and MQTT | No | Met — ESP32-S3 booted reliably and connected to MQTT broker |
-| Wireless communication | One-way data transfer | Two-way MQTT messaging | No | Met — Full publish/subscribe MQTT messaging achieved |
-| UART communication with system bus | Basic TX/RX | Structured packets with CRC | No | Met — 64-byte structured UART packets implemented and forwarded |
-| Video data handling | Video stream present | Stable low-latency stream | Yes | Partially Met — Camera firmware (`camera_module.py`) and laptop viewer (`viewer.py`) were fully implemented with chunked MQTT frame delivery, but live streaming was not demonstrated on final hardware |
-| Connection loss handling | Detect disconnection | Trigger safe-stop behavior | Yes | Met — WiFi failsafe implemented; emergency stop packet broadcast over UART on connection loss |
+This section defines the functional and performance requirements for the **ESP32 Wireless Communication Gateway** subsystem. The gateway enables remote robot control, MQTT communication, telemetry transmission, and safe system operation during wireless communication failures. Each requirement includes threshold and target objectives together with the final implementation outcome.
 
 ---
 
-## Requirement Review
+## Module Requirements
 
-### Requirements Successfully Met
+**Subsystem:** ESP32 Wireless Communication Gateway
 
-The four core requirements were all achieved. The AP63203WU-7 switching regulator provided stable 3.3 V output throughout testing, with 847.5 mA of headroom remaining above the calculated worst-case load. The ESP32-S3-WROOM-1-N8R8 booted reliably and maintained a persistent Wi-Fi and MQTT connection across all test sessions. Two-way MQTT messaging was fully operational, with telemetry published to the broker and motor commands received and forwarded over UART. The 64-byte structured UART packet format was implemented as specified in the API, with correct header/footer framing, board ID routing, and message type handling.
+**Engineer:** Mihir Patel
 
-The WiFi connection-loss failsafe, listed as a stretch goal, was also successfully implemented. When the MQTT broker connection dropped, the firmware detected the disconnection and broadcast an emergency stop packet (message type `0x0005`) over UART to halt the actuator subsystem, satisfying the safe-stop behavior requirement.
-
-### Stretch Goal: Video Data Handling
-
-The video streaming requirement was the one area where software completion outpaced hardware verification. The full software stack was built: `camera_module.py` implements OV5640 initialization, JPEG capture, and chunked base64 MQTT frame publishing; `viewer.py` provides a laptop-side OpenCV viewer that reassembles and displays frames in real time; and `config_additions.py` defines the three camera MQTT topics (`TOPIC_CAM_CMD`, `TOPIC_CAM_FRAME`, `TOPIC_CAM_STATUS`). The architecture supports on-demand capture, continuous streaming at a configurable frame rate, and graceful stream start/stop via MQTT commands.
-
-However, live end-to-end camera streaming was not demonstrated on the final populated PCB. The primary constraint was time available for hardware bring-up after board assembly. The OV5640 camera interface requires careful pin-by-pin verification against the schematic, and the MicroPython `esp32-camera` module requires firmware compiled with camera support enabled, both of which were not completed within the project timeline. This is discussed further in the [Hardware V2.0](../10-Hardware-v2/hardwarev2.md) and [Reflection](../12-Reflection/Reflection.md) pages.
+| Requirement Description | Threshold | Target | Stretch | Final Result |
+|-------------------------|-----------|--------|----------|--------------|
+| Surface-mounted 3.3 V switching regulator | Output ≥ 3.2 V | Stable 3.3 V output | No | **Met** — AP63203WU-7 provided a stable 3.3 V supply under full system load |
+| ESP32 microcontroller operation | Successful boot | Reliable Wi-Fi and MQTT operation | No | **Met** — ESP32-S3 booted consistently and maintained reliable MQTT connectivity |
+| Wireless communication | Basic one-way communication | Full two-way MQTT messaging | No | **Met** — Complete publish/subscribe MQTT communication implemented |
+| UART communication with system bus | Basic TX/RX | Structured packets with CRC | No | **Met** — 64-byte UART packet protocol implemented and successfully forwarded between subsystems |
+| Video data handling | Image acquisition | Stable low-latency video streaming | Yes | **Partially Met** — Camera firmware (`camera_module.py`) and laptop viewer (`viewer.py`) were fully implemented with chunked MQTT frame transmission, but live streaming was not demonstrated on the final hardware |
+| Connection loss handling | Detect wireless disconnection | Automatic safe-stop behavior | Yes | **Met** — Wi-Fi failsafe implemented; emergency stop packet broadcast over UART whenever the wireless connection was lost |
 
 ---
 
-## Feature-to-Requirement Rationale
+# Requirement Review
 
-Wireless communication is a critical part of the exploration device because it allows the robot to be operated from a safe distance while providing real-time situational awareness. Features such as remote driving, live video feedback, and telemetry monitoring directly resulted in requirements for reliable two-way Wi-Fi communication and structured UART messaging with the rest of the system.
+## Successfully Implemented Requirements
 
-Power-related requirements were included to ensure stable operation of the ESP32 and prevent communication failures caused by voltage drops. Connection-loss handling was added as a safety measure so the system can respond predictably if wireless control is interrupted. Together, these requirements ensure that the wireless module reliably supports the overall exploration device while operating safely within the system architecture.
+The five primary subsystem requirements were successfully implemented and verified.
 
-The video streaming requirement originated from the core mission of the Amphibot: providing a live FPV feed for remote reconnaissance. Although this stretch goal was not fully demonstrated on hardware, its implementation informed several hardware decisions, most notably the selection of the ESP32-S3-WROOM-1-N8R8 over the N4 variant, as the 8 MB PSRAM is a hard dependency of the OV5640 camera driver and cannot be worked around in software.
+The **AP63203WU-7** switching regulator delivered a stable **3.3 V** output throughout testing while maintaining approximately **847.5 mA** of available current headroom beyond the calculated worst-case system load.
+
+The **ESP32-S3-WROOM-1-N8R8** booted reliably and maintained stable Wi-Fi and MQTT connectivity throughout subsystem testing.
+
+Two-way MQTT communication operated as intended, allowing telemetry to be published to the MQTT broker while receiving remote control commands that were forwarded across the UART daisy-chain.
+
+The structured **64-byte UART communication protocol** was implemented according to the subsystem API specification, including packet framing, board identification, routing, and message-type handling.
+
+The Wi-Fi connection-loss failsafe, originally identified as a stretch objective, was also fully implemented. Whenever the MQTT connection was interrupted, the firmware detected the failure and immediately broadcast an emergency stop packet (`0x0005`) across the UART network to safely halt the actuator subsystem.
+
+---
+
+## Stretch Goal: Video Data Handling
+
+Video streaming was the only requirement that reached software completion without full hardware verification.
+
+The complete software infrastructure was implemented, including:
+
+- `camera_module.py` for OV5640 initialization, image capture, and chunked Base64 MQTT frame publishing.
+- `viewer.py` for laptop-side frame reconstruction and real-time OpenCV display.
+- `config_additions.py` defining the camera MQTT topics (`TOPIC_CAM_CMD`, `TOPIC_CAM_FRAME`, and `TOPIC_CAM_STATUS`).
+
+The architecture supports:
+
+- On-demand image capture
+- Continuous video streaming
+- Configurable frame rates
+- Remote stream start and stop using MQTT commands
+
+Although the software implementation was completed, live end-to-end camera streaming was not demonstrated on the final assembled hardware.
+
+The primary limitation was the time available for complete hardware bring-up following PCB assembly. The OV5640 interface requires careful hardware verification, and the MicroPython `esp32-camera` library requires firmware compiled with camera support enabled. These final validation steps were not completed within the project timeline.
+
+Additional discussion is provided in the **Hardware V2.0** and **Reflection** sections.
+
+---
+
+# Feature-to-Requirement Rationale
+
+The ESP32 Wireless Communication Gateway is a critical subsystem because it provides the communication interface between the operator and every onboard subsystem.
+
+Reliable wireless communication enables:
+
+- Remote driving
+- Real-time telemetry monitoring
+- MQTT-based command and control
+- System status reporting
+- Safe operation during communication failures
+
+These system-level responsibilities directly resulted in requirements for reliable bidirectional Wi-Fi communication, structured UART messaging, and automatic failsafe behavior.
+
+Power-related requirements ensure stable ESP32 operation while preventing communication failures caused by voltage instability.
+
+The video-streaming requirement originated from the Amphibot's primary reconnaissance mission, where a live FPV feed provides the operator with situational awareness during exploration.
+
+Although this stretch objective was not fully demonstrated on hardware, it directly influenced several hardware design decisions. Most notably, it justified selecting the **ESP32-S3-WROOM-1-N8R8** instead of the N4 variant because the additional **8 MB PSRAM** is required by the OV5640 camera driver and cannot be replaced through software optimization alone.
+
+---
+
+# Requirement Verification Summary
+
+| Total Requirements | Fully Met | Partially Met | Not Met |
+|-------------------:|----------:|--------------:|---------:|
+| 6 | 5 | 1 | 0 |

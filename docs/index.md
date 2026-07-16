@@ -1,109 +1,105 @@
 ---
 title: Welcome
 tags:
-- Mihir's Individual Datasheet - Welcome Page
+- ESP32 Wireless Communication Gateway - Welcome Page
 ---
 <center>
-<font size= "6"> Mihir Patel - Individual Datasheet </font><br>
-as part of<br>
-<font size= "8"> R6 Recon Amphibot (Amphibot V1) </font><br>
-for<br>
-<font size= "5"> Team 302 </font><br>
 
-**Submission: May 04, 2026**
+<font size="6">ESP32 Wireless Communication Gateway</font><br>
+
+**Mihir Patel**<br><br>
+
+<font size="8">Team XPED - R6 Recon Amphibot (Amphibot V1)</font><br>
+
+<font size="5">EGR314 Embedded Systems Design • Team 302</font>
+
 </center>
 
 ## Introduction
 
-This datasheet documents the hardware and firmware design for my individual 
-subsystem: the **Internet-based Two-way Wireless Communication module** 
-(ESP32 Gateway) for the Amphibot V1. Its purpose is to record clear, testable 
-requirements, show the block-level hardware layout, list parts and interfaces, 
-and explain how my work plugs into the team-level system (UART daisy-chain, 
-power bus, and MQTT/Wi-Fi). This page is intended for teammates, instructors, 
-and graders so they can quickly understand what I built and how it integrates 
-into the overall project.
+This documentation presents the design and implementation of my **ESP32 Wireless Communication Gateway** for the Team XPED R6 Recon Amphibot. The gateway enables reliable wireless communication between the robot and a remote operator while integrating with the robot's modular UART-based architecture.
+
+The documentation covers subsystem requirements, hardware architecture, component selection, firmware implementation, PCB design, communication interfaces, verification, and engineering decisions. It also explains how the subsystem integrates with the overall robotic platform and supports reliable operation during remote exploration missions.
 
 ---
 
-## Project Summary
+## Project Overview
 
-The Amphibot V1 is a small, throwable amphibious exploration robot that streams 
-live FPV video and telemetry to a remote operator while reporting a consolidated 
-hazard score. My module provides the bi-directional Wi-Fi gateway between the 
-robot and the operator's device. It:
+The **R6 Recon Amphibot** is a compact amphibious exploration robot designed for remote reconnaissance in challenging environments. The system streams live FPV video, transmits sensor telemetry, and allows an operator to remotely monitor and control the robot while evaluating environmental hazards.
 
-- Hosts a reliable Wi-Fi connection and communicates with an external MQTT broker.
-- Translates UART traffic from the onboard modular bus into MQTT topics (and vice versa).
-- Implements safe fallback behaviors on connection loss — broadcasting a motor 
-  safe-stop command over UART when WiFi is lost.
-- Was designed to support live FPV video streaming via the OV5640 camera module, 
-  with full software infrastructure implemented.
+The **ESP32 Wireless Communication Gateway** serves as the primary communication bridge between the robot and the operator. Its responsibilities include:
 
-This gateway is crucial for remote control, live telemetry, and demo display 
-functions of the Amphibot. For the full team-level context, visit the 
-[Team 302 Report Website](https://egr314-s-2026-302.github.io/EGR314-Team302.github.io/).
+- Maintaining a reliable Wi-Fi connection with an external MQTT broker.
+- Translating UART packets from the modular communication bus into MQTT topics and vice versa.
+- Broadcasting a motor safe-stop command over the UART bus whenever wireless communication is lost.
+- Providing the software infrastructure required for live FPV video streaming using the OV5640 camera module.
+- Supporting real-time telemetry, command routing, and remote system monitoring.
 
----
+The gateway provides the communication backbone that enables remote operation and coordination between every subsystem in the Amphibot.
 
-## My Contribution
+For additional system-level documentation, visit the **Team XPED Project Website**:
 
-I (Mihir Patel) own the Wireless Communication subsystem (ESP32). My responsibilities were:
-
-- **Hardware:** Selected and integrated the ESP32-S3-WROOM-1-N8R8 module, the 
-  AP63203WU-7 3.3V switching regulator, barrel jack and power-jumper circuitry, 
-  and the 2×4 IDC ribbon connector interface.
-- **Firmware:** Implemented Wi-Fi + MQTT client using the `mqtt_as` async library, 
-  MQTT↔UART packet bridge, reconnection and WiFi-loss failsafe behaviors.
-- **Camera infrastructure:** Designed and implemented `camera_module.py` for OV5640 
-  frame capture and chunked MQTT publishing, and `viewer.py` for laptop-side 
-  frame reassembly and display.
-- **System integration:** Defined and implemented the 64-byte UART packet format, 
-  board ID routing, and inter-board message handling across the daisy-chain.
-- **Documentation:** Supplied the module datasheet, BOM, block diagram, schematic, 
-  PCB design, and API specification.
+**https://egr314-s-2026-302.github.io/EGR314-Team302.github.io/**
 
 ---
 
-## Project Sections
+## My Contributions
 
-You can navigate the main sections of this individual datasheet using the top 
-menu or the links below. Each section documents a specific stage of the design 
-and implementation of the **Wireless Communication (ESP32) subsystem**.
+I was responsible for the design and implementation of the **ESP32 Wireless Communication Gateway** subsystem.
 
-- **[Project Requirements](01-Requirements/Requirements.md)** – Module-level 
-  requirements, thresholds, target goals, and final results
+My responsibilities included:
 
-- **[Block Diagram](02-Block-Diagram/Block-Diagram.md)** – Subsystem-level block 
-  diagram showing power domains, UART daisy-chain connections, ESP32 peripherals, 
-  and external interfaces
+### Hardware Design
 
-- **[Component Selection](03-Component-Selection/Component-Selection.md)** – 
-  Selected components and design rationale for the ESP32 wireless gateway
+- Designed the subsystem around the **ESP32-S3-WROOM-1-N8R8** microcontroller.
+- Selected and integrated the **AP63203WU-7** 3.3 V switching regulator.
+- Designed the barrel-jack power input and power-jumper circuitry.
+- Integrated the **2×4 IDC ribbon connector** for the modular UART communication bus.
 
-- **[Microcontroller Selection](04-Microcontroller-Selection/Microcontroller-Selection.md)** – 
-  ESP32 microcontroller selection criteria, comparisons, and rationale
+### Firmware Development
 
-- **[Power Budget](05-Power-Budget/Power-Budget.md)** – Power consumption analysis, 
-  supply requirements, and power domain design
+- Implemented Wi-Fi connectivity and MQTT communication using the **mqtt_as** asynchronous library.
+- Developed the MQTT-to-UART communication bridge.
+- Implemented automatic reconnection logic and Wi-Fi loss failsafe behavior.
+- Developed UART packet routing and subsystem message handling.
 
-- **[Bill of Materials (BOM)](06-BOM/BOM.md)** – Manufacturer part numbers, 
-  footprints, quantities, and estimated costs
+### Camera Infrastructure
 
-- **[Schematic](07-Schematic/schematic.md)** – Electrical schematics for the 
-  wireless communication module
+- Developed `camera_module.py` for OV5640 image capture and MQTT-based frame transmission.
+- Developed `viewer.py` for frame reconstruction and live image display on the operator's computer.
 
-- **[PCB Layout](08-PCB/pcb.md)** – PCB layout, routing decisions, and design 
-  considerations
+### System Integration
 
-- **[API](09-API/api.md)** – Firmware behavior, UART message specification, and 
-  MQTT topic documentation
+- Designed the 64-byte UART communication protocol.
+- Implemented board identification and packet routing across the UART daisy-chain.
+- Integrated the wireless gateway with the complete Team XPED communication architecture.
 
-- **[Hardware V2.0](10-Hardware-v2/hardwarev2.md)** – What I would improve in 
-  a second hardware revision
+### Documentation
 
-- **[Resources](11-Resources/resources.md)** – Final code, downloadable files, 
-  and project videos
+- Produced subsystem requirements.
+- Created hardware block diagrams.
+- Documented component selection decisions.
+- Developed schematic and PCB documentation.
+- Documented firmware APIs and communication interfaces.
+- Performed subsystem verification and validation.
 
-- **[Reflection](12-Reflection/reflection.md)** – Lessons learned, startup tips, 
-  and recommendations for future students
+---
+
+## Documentation Overview
+
+The following sections describe each stage of the subsystem design and implementation.
+
+| Section | Description |
+|---------|-------------|
+| **[Requirements](01-Requirements/Requirements.md)** | Functional and performance requirements, design objectives, and verification results. |
+| **[Block Diagram](02-Block-Diagram/Block-Diagram.md)** | Hardware architecture showing power domains, UART interfaces, ESP32 peripherals, and external connections. |
+| **[Component Selection](03-Component-Selection/Component-Selection.md)** | Component evaluation and selection rationale for the wireless communication subsystem. |
+| **[Microcontroller Selection](04-Microcontroller-Selection/Microcontroller-Selection.md)** | Comparison of candidate microcontrollers and justification for selecting the ESP32-S3. |
+| **[Power Budget](05-Power-Budget/Power-Budget.md)** | Power consumption analysis, regulator selection, and power distribution. |
+| **[Bill of Materials](06-BOM/BOM.md)** | Complete list of components, manufacturers, footprints, quantities, and estimated costs. |
+| **[Schematic](07-Schematic/schematic.md)** | Electrical schematic of the ESP32 Wireless Communication Gateway. |
+| **[PCB Layout](08-PCB/pcb.md)** | PCB layout, routing decisions, and hardware design considerations. |
+| **[API Documentation](09-API/api.md)** | UART protocol, MQTT topics, firmware interfaces, and software architecture. |
+| **[Hardware Revision 2.0](10-Hardware-v2/hardwarev2.md)** | Proposed improvements for a future hardware revision. |
+| **[Resources](11-Resources/resources.md)** | Source code, downloadable project files, and demonstration videos. |
+| **[Reflection](12-Reflection/reflection.md)** | Engineering lessons learned, design reflections, and recommendations for future development. |

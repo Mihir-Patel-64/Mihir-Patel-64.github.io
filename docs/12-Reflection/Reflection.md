@@ -6,8 +6,6 @@ tags:
 
 # Reflection
 
----
-
 ## Review of Module's Success
 
 Looking back at the six requirements I defined for this subsystem, four core

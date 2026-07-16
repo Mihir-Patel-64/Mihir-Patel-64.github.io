@@ -1,12 +1,14 @@
 ---
-title: Module's Selected Major Components
+title: Component Selection
 tags:
-- Mihir's Individual Datasheet - Component Selection
+  - ESP32 Wireless Communication Gateway
+  - Component Selection
+  - Hardware Design
 ---
 
-# ESP32 Wireless Communication - Component Selection  
+# ESP32 Wireless Communication Gateway Component Selection  
 
-## 1. Wireless MCU / Wi-Fi Module **(Core Subsystem)**
+## 1. Wireless Microcontroller / Wi-Fi Module **(Core Subsystem)**
 
 ### Option 1
 
@@ -36,7 +38,7 @@ The S3 architecture also provides improved performance and peripheral support co
 
 ---
 
-## 2. 3.3 V Switching Regulator **(Power Subsystem)**
+## 2. 3.3 V Switching Regulator **(Voltage Regulation)**
 
 ### Option 1
 
@@ -64,7 +66,7 @@ I did consider the TPS62840 for its higher efficiency, but after looking at the 
 
 ---
 
-## 3. Power Input / Connector Strategy **(Mechanical Interface)**
+## 3. Power Input / Connector Strategy **(Power Input)**
 
 ### Option 1
 
@@ -162,7 +164,7 @@ I looked at using USB-C with a CP2102N bridge, which is how a lot of commercial 
 
 ---
 
-## 6. Input Protection & EMI Filtering **(Reliability)**
+## 6. Input Protection & EMI Filtering **(Input Protection)**
 
 ### Option 1
 

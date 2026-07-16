@@ -1,11 +1,11 @@
 ---
-title: Module Bill of Materials
+title: Bill of Materials
 tags:
 - EGR314 
 - Team 302 
 ---
 
-# Module's Bill of Materials
+# Bill of Materials
 
 ## Overview
 

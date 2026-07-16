@@ -1,7 +1,9 @@
 ---
-title: Module's Block Diagram
+title: Block Diagram
 tags:
-- Mihir's Individual Datasheet - Block Diagram
+  - ESP32 Wireless Communication Gateway
+  - Block Diagram
+  - EGR314
 ---
 
 ## Overview
@@ -12,7 +14,7 @@ The diagram follows the **EGR314 block diagram standard** and clearly separates 
 
 ---
 
-## Decision-Making Process and Requirements Alignment
+## Decision Objectives
 
 The block diagram was structured around three guiding principles: functional isolation, signal clarity, and EGR314 compliance. The most important early decision was to separate the wireless communication path (Wi-Fi/MQTT) from the wired system communication path (UART daisy-chain) at the block level. This isolation prevents RF interference from coupling into the UART signal lines and makes each communication domain independently verifiable during bring-up.
 
@@ -24,7 +26,7 @@ The camera block is shown within the subsystem boundary because it communicates 
 
 ---
 
-## Subsystem Functionality
+## Functional Overview
 
 The ESP32 Wireless Gateway performs three primary functions within the overall exploration device:
 
@@ -94,7 +96,7 @@ The regulator provides regulated 3.3V power to:
 - GPIO headers  
 - UART daisy-chain connectors  
 
-### Required EGR314 Power Jumpers
+### Power Source Selection
 
 Two jumpers are placed directly before the regulator input to allow selectable power sourcing:
 
@@ -114,7 +116,7 @@ This configuration fully satisfies the EGR314 requirement for jumper-controlled 
 
 ---
 
-## Programming and Development Interface
+## Programming Interface
 
 The ESP32-S3 is programmed using its **native USB interface**:
 
@@ -136,7 +138,7 @@ The USB interface is intentionally kept separate from the UART daisy-chain bus t
 
 ---
 
-## Camera Integration
+## Camera Interface
 
 An **Adafruit OV5640 camera module** (5MP, DVP interface) is included within the subsystem boundary.
 
@@ -148,7 +150,7 @@ This enables live reconnaissance capability without interfering with inter-board
 
 ---
 
-## Design Rationale and Standards Compliance
+## Standards Compliance
 
 This block diagram satisfies EGR314 requirements by:
 

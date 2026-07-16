@@ -1,10 +1,10 @@
 ---
-title: Module Schematic
+title: Schematic
 tags:
 - Mihir's Individual Datasheet - Schematic
 ---
 
-## Individual Subsystem Schematic
+## Schematic
 
 This schematic shows the complete design for my Wireless Communication subsystem. It includes the ESP32-S3-WROOM-1-N8R8 microcontroller module, switching 3.3V power supply (AP63203WU-7 buck regulator), barrel jack input with fuse and reverse polarity protection, USB micro connector for programming, UART daisy-chain ribbon connectors, boot and enable circuitry, debug LEDs, and expansion headers.
 
@@ -19,7 +19,7 @@ Two schematic-specific net label conventions are worth noting: the USB different
 
 ---
 
-### Downloadable Files
+### Supporting Files
 
 - **Project ZIP:**  
   [Download KiCad Project ZIP](Patel_EGR314_projectzip_4_11.zip)

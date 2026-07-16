@@ -4,7 +4,7 @@ tags:
 - Mihir's Individual Datasheet - PCB Design
 ---
 
-## Individual Subsystem PCB Design
+## PCB Design
 
 This page contains all design files and documentation for the ESP32 Wireless 
 Communication Subsystem, including the PCB layout. The system integrates an 
@@ -46,7 +46,7 @@ communication and image capture.
 
 ---
 
-### Downloadable Files
+### Supporting Files
 
 - **Project ZIP:**  
   [Download KiCad Project ZIP](Patel_EGR314_projectzip_4_11.zip)

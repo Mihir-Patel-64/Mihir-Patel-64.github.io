@@ -1,20 +1,12 @@
 ---
-title: Module's Microcontroller Selection
+title: Microcontroller Selection
 tags:
-- Mihir's Individual Datasheet - Microcontroller Selection
+  - ESP32 Wireless Communication Gateway
+  - Microcontroller Selection
+  - ESP32-S3
 ---
 
-# ESP32 Wireless Communication - Microcontroller Selection
-
-## 1. Microcontroller Selection
-
-Based on team subsystem planning:
-
-- Laksh → PIC (Sensors & HMI)
-
-- Raunak → PIC (Actuators)
-
-- Mihir → ESP32 (Wireless Communication)
+# ESP32 Wireless Communication Gateway Microcontroller Selection
 
 ### Microcontrollers Considered
 
@@ -36,11 +28,11 @@ Based on team subsystem planning:
 - **Pros:** Smallest PCB footprint, lowest BOM cost (chip only), maximum control over RF layout and BOM.  
 - **Cons:** Requires custom RF layout and impedance matching (high risk for first spin), more difficult assembly (QFN), needs certified antenna or careful trace design.
 
-**Selection Rationale (summary):** The ESP32-S3-WROOM-1-N8R8 (Choice A) gives the best tradeoff of RF reliability, native camera and USB support, 8MB PSRAM for OV5640 frame buffering, and quick bring-up for the wireless gateway role. Choice B lacks PSRAM entirely and cannot support the OV5640 camera at any useful resolution. Choice C is lowest cost but introduces RF design risk unacceptable for a first student PCB.
+**Selection Rationale (summary):** The ESP32-S3-WROOM-1-N8R8 (Choice A) gives the best tradeoff of RF reliability, native camera and USB support, 8MB PSRAM for OV5640 frame buffering, and quick bring-up for the wireless gateway role. Choice B lacks PSRAM entirely and cannot support the OV5640 camera at any useful resolution. Choice C is lowest cost but introduces RF design risk unacceptable for a first hardware revision.
 
 ---
 
-## 2. Selected Microcontroller
+## 2. Selected Device
 
 ### ESP32-S3-WROOM-1-N8R8
 
@@ -84,7 +76,7 @@ These confirm:
 
 ---
 
-## 3. Project-Specific Requirements
+## 3. Required Peripherals
 
 ### For the wireless subsystem, the required peripherals are:
 
@@ -168,11 +160,11 @@ There are no pin conflicts. All camera GPIOs (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
 
 ## 6. Role Description
 
-I am responsible for the Wireless Communication subsystem. My board serves as the gateway between the internal UART daisy-chain system and the external MQTT server over Wi-Fi. I manage publish/subscribe messaging, forward structured UART packets, provide local debug LED indicators for MQTT, WiFi, and UART activity, and designed the subsystem to support live video streaming via the onboard Adafruit OV5640 camera module (5MP, DVP interface). The camera software infrastructure — including frame capture, chunked MQTT publishing, and a laptop-side viewer — was fully implemented, though end-to-end hardware demonstration was not completed within the project timeline. My subsystem isolates wireless complexity from the sensor and actuator subsystems to maintain modularity and simplify debugging.
+The ESP32 Wireless Communication Gateway serves as the interface between the robot's UART daisy-chain and the external MQTT server. The subsystem manages publish/subscribe messaging, packet forwarding, debug status indication, and camera communication while maintaining modular separation from the remaining robot subsystems.
 
 ---
 
-## 7. Compatibility & Software Research
+## 7. Software Compatibility
 
 ### Wi-Fi & MQTT
 - Fully supported in MicroPython using the `mqtt_as` async library.
@@ -201,7 +193,7 @@ No major compatibility conflicts were identified.
 
 ---
 
-## 8. Final Microcontroller Selection
+## 8. Final Selection
 
 **Final Choice: ESP32-S3-WROOM-1-N8R8**
 
